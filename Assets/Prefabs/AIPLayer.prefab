@@ -149,5 +149,5 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 0.6
   attackDamage: 30
-  jumpArcHeight: 3
+  jumpArcHeight: 4
   jumpDuration: 0.9
