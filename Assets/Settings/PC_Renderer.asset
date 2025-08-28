@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d1a61f4cf3ead4e98118909dc2e387, type: 3}
   m_Name: VoxelGridPostFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
-    voxelSize: 1.59
+    voxelSize: 0.88
     colorSteps: 8
     edgeThickness: 0.05
     edgeDarken: 0.35
