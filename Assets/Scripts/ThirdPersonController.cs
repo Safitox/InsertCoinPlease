@@ -3,22 +3,22 @@ using UnityEngine;
 public class ThirdPersonController : MonoBehaviour
 {
     [Header("Referencias")]
-    public Transform player;        // El objeto del jugador
-    public Transform cam;           // Cámara principal
+    [SerializeField] private Transform player;        // El objeto del jugador
+    [SerializeField] private Transform cam;           // CÃ¡mara principal
 
     [Header("Movimiento")]
-    public float moveSpeed = 5f;
-    public float smoothTurnTime = 0.1f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float smoothTurnTime = 0.1f;
 
-    [Header("Cámara")]
-    public float mouseSensitivity = 150f;
-    public float cameraDistance = 5f;
-    public float verticalMin = -35f;
-    public float verticalMax = 60f;
+    [Header("CÃ¡mara")]
+    [SerializeField] private float mouseSensitivity = 150f;
+    [SerializeField] private float cameraDistance = 5f;
+    [SerializeField] private float verticalMin = -35f;
+    [SerializeField] private float verticalMax = 60f;
 
     float turnSmoothVelocity;
-    float yaw;   // Rotación horizontal
-    float pitch; // Rotación vertical
+    float yaw;   // RotaciÃ³n horizontal
+    float pitch; // RotaciÃ³n vertical
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class ThirdPersonController : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-            // Rotar hacia la dirección relativa a la cámara
+            // Rotar hacia la direcciÃ³n relativa a la cÃ¡mara
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothTurnTime);
             player.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -43,12 +43,12 @@ public class ThirdPersonController : MonoBehaviour
             player.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.World);
         }
 
-        // --- Rotación de cámara con el mouse ---
+        // --- RotaciÃ³n de cÃ¡mara con el mouse ---
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, verticalMin, verticalMax);
 
-        // Posicionar cámara alrededor del jugador
+        // Posicionar cÃ¡mara alrededor del jugador
         Vector3 offset = new Vector3(0, 1.5f, -cameraDistance);
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
         cam.position = player.position + rotation * offset;
