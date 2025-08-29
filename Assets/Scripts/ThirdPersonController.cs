@@ -54,9 +54,10 @@ public class ThirdPersonController : MonoBehaviour
             player.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.World);
         }
 
-        // --- Salto ---
+        //---Salto-- -
         if (Input.GetButtonDown("Jump"))
         {
+            Debug.Log("Jumping");
             if (IsGrounded())
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -70,28 +71,29 @@ public class ThirdPersonController : MonoBehaviour
 
     }
 
+
     private void FixedUpdate()
     {
-        // Posicionar cámara alrededor del jugador
-        // Primero chequeo obstrucción de cámara
         RaycastHit _hit;
         Vector3 _direction = cam.position - player.position;
         Ray _ray = new Ray(player.position + Vector3.up * 1.5f, _direction.normalized);
         if (Physics.Raycast(_ray, out _hit, cameraDistance))
         {
-            if (_hit.collider.gameObject != player.gameObject)
+            if (_hit.collider.gameObject != player.gameObject )
             {
                 cam.position = _hit.point;
             }
-            else //si no hay obstrucción mantengo cameradistance
-            {
-                Vector3 _offset = new Vector3(0, 1.5f, -cameraDistance);
-                Quaternion _rotation = Quaternion.Euler(pitch, yaw, 0);
-                cam.position = player.position + _rotation * _offset;
-            }
+        }
+        else //si no hay obstrucción mantengo cameradistance
+        {
+            Vector3 _offset = new Vector3(0, 1.5f, -cameraDistance);
+            Quaternion _rotation = Quaternion.Euler(pitch, yaw, 0);
+            cam.position = player.position + _rotation * _offset;
         }
         cam.LookAt(player.position + Vector3.up * 1.5f);
     }
+        // Posicionar cámara alrededor del jugador
+        // Primero chequeo obstrucción de cámara
 
     bool IsGrounded()
     {

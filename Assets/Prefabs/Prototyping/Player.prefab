@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6385131057706466490}
   - component: {fileID: 3157274671305783846}
   - component: {fileID: 6193100028819989505}
-  - component: {fileID: 9222516724534981997}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -128,15 +127,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6593359478167691156}
   cam: {fileID: 0}
+  rb: {fileID: 0}
   moveSpeed: 5
   smoothTurnTime: 0.1
   mouseSensitivity: 150
   cameraDistance: 5
   verticalMin: -35
   verticalMax: 60
-  jumpHeight: 2.4
-  gravity: -20
-  groundedSnap: -2
+  jumpForce: 7
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheckDist: 0.3
 --- !u!54 &6193100028819989505
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,31 +166,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!143 &9222516724534981997
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2828934598537730114}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4620202081973032639
 GameObject:
   m_ObjectHideFlags: 0
