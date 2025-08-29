@@ -51,7 +51,7 @@ public class LevelGenerator : MonoBehaviour
     private void GenerateFreshLevelAndMaybePlayer()
     {
     
-        ClearChildren();
+        ClearLevel();
 
         // Plataformas
         platforms.Clear();
@@ -97,7 +97,7 @@ public class LevelGenerator : MonoBehaviour
 
             if (!IsFarEnough(pos)) continue;
 
-            var plat = Instantiate(platformPrefab, pos, Quaternion.identity, transform);
+            var plat = Instantiate(platformPrefab, pos, Quaternion.identity,  surface.transform);
             plat.name = $"Platform_{platforms.Count}";
             platforms.Add(plat.transform);
         }
@@ -278,12 +278,16 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
-    void ClearChildren()
+    void ClearLevel()
     {
         // Borra plataformas, links, enemigos
         //TODO: optimizar con pooling
         for (int i = transform.childCount - 1; i >= 0; i--)
             DestroyImmediate(transform.GetChild(i).gameObject);
+        foreach (var t in platforms)
+            if (t != null)
+                DestroyImmediate(t.gameObject);
+
     }
 
     // Agrego para ver el area de juego y luego posicionar cámara de acuerdo a esta cosa
