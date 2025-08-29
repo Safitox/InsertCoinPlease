@@ -129,16 +129,22 @@ MonoBehaviour:
   cam: {fileID: 0}
   rb: {fileID: 0}
   moveSpeed: 5
-  smoothTurnTime: 0.1
-  mouseSensitivity: 150
+  accel: 20
+  rotationSmoothTime: 0.1
+  runSpeedMultiplier: 1.5
+  mouseSensitivity: 200
   cameraDistance: 5
   verticalMin: -35
   verticalMax: 60
+  maxzoom: 100
+  minzoom: 50
+  cameraCollisionRadius: 0.2
+  cameraSmooth: 0.08
   jumpForce: 7
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
-  groundCheckDist: 0.3
+    m_Bits: 4294967295
+  groundCheckDist: 2
 --- !u!54 &6193100028819989505
 Rigidbody:
   m_ObjectHideFlags: 0

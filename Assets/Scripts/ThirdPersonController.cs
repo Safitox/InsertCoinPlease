@@ -1,103 +1,142 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class ThirdPersonController : MonoBehaviour
 {
     [Header("Referencias")]
-    [SerializeField] private Transform player;        // El objeto del jugador
-    [SerializeField] private Transform cam;           // Cámara principal
-    [SerializeField] private Rigidbody rb; 
+    [SerializeField] private Transform player;  
+    [SerializeField] private Camera cam;
+    [SerializeField] private Rigidbody rb;
 
     [Header("Movimiento")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float smoothTurnTime = 0.1f;
+    [SerializeField] private float moveSpeed = 5f;          
+    [SerializeField] private float accel = 20f;             
+    [SerializeField] private float rotationSmoothTime = 0.1f;
+    [SerializeField] private float runSpeedMultiplier = 1.5f;
+    bool running = false;
 
     [Header("Cámara")]
     [SerializeField] private float mouseSensitivity = 150f;
-    [SerializeField] private float cameraDistance = 5f;
+    [SerializeField] private float cameraDistance = 5f;    
     [SerializeField] private float verticalMin = -35f;
     [SerializeField] private float verticalMax = 60f;
+    [SerializeField] private float maxzoom = 70f;
+    [SerializeField] private float minzoom = 50f;
+    [SerializeField] private float cameraCollisionRadius = 0.2f; // para evitar clipping
+    [SerializeField] private float cameraSmooth = 0.08f;
 
     [Header("Salto")]
-    [SerializeField] private float jumpForce = 7f;       // fuerza del salto
-    [SerializeField] private LayerMask groundMask;       // qué capas son suelo
-    [SerializeField] private float groundCheckDist = 0.3f;
+    [SerializeField] private float jumpForce = 7f;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float groundCheckDist = 0.35f;
 
 
+    float yaw, pitch;
     float turnSmoothVelocity;
-    float yaw;   // Rotación horizontal
-    float pitch; // Rotación vertical
-    float verticalVel;
+    Vector3 camVel; // para SmoothDamp de cámara
+
+    // input cache
+    float inputH, inputV;
+    bool jumpPressed;
 
     void Start()
     {
+        if (!rb) rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation; // evita caídas laterales
         Cursor.lockState = CursorLockMode.Locked;
-        rb= GetComponent<Rigidbody>();
-
     }
 
     void Update()
     {
-        // --- Movimiento del jugador ---
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        Vector3 _direction = new Vector3(h, 0f, v).normalized;
+        inputH = Input.GetAxisRaw("Horizontal");
+        inputV = Input.GetAxisRaw("Vertical");
+        running = Input.GetKey(KeyCode.LeftShift);
 
-        if (_direction.magnitude >= 0.1f)
-        {
-            // Rotar hacia la dirección relativa a la cámara (es un opcional.... pero queda bien)
-            float targetAngle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, smoothTurnTime);
-            player.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            player.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.World);
-        }
-
-        //---Salto-- -
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("Jumping");
-            if (IsGrounded())
-            {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+
+            jumpPressed = true;
+
         }
 
-        // --- Rotación de cámara con el mouse ---
+        // Cámara orbital
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, verticalMin, verticalMax);
 
+        // Zoom por FOV 
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll < 0 && cam.fieldOfView < maxzoom) cam.fieldOfView += 1;
+        if (scroll > 0 && cam.fieldOfView > minzoom) cam.fieldOfView -= 1;
     }
 
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        RaycastHit _hit;
-        Vector3 _direction = cam.position - player.position;
-        Ray _ray = new Ray(player.position + Vector3.up * 1.5f, _direction.normalized);
-        if (Physics.Raycast(_ray, out _hit, cameraDistance))
+
+        Vector3 inputDir = new Vector3(inputH, 0f, inputV).normalized;
+
+        // direcciones relativas a cámara
+        Vector3 camForward = cam.transform.forward; camForward.y = 0f; camForward.Normalize();
+        Vector3 camRight = cam.transform.right; camRight.y = 0f; camRight.Normalize();
+
+        Vector3 desiredVel = Vector3.zero;
+        if (inputDir.sqrMagnitude > 0.0001f)
         {
-            if (_hit.collider.gameObject != player.gameObject )
+            Vector3 moveDir = (camForward * inputDir.z + camRight * inputDir.x).normalized;
+            desiredVel = moveDir * moveSpeed;
+            desiredVel *= running ? runSpeedMultiplier : 1f;
+
+            // rotación suave hacia la dirección de movimiento
+            float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, rotationSmoothTime);
+            player.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
+
+
+        Vector3 currentVel = rb.linearVelocity;
+        Vector3 horizVel = new Vector3(currentVel.x, 0f, currentVel.z);
+        Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
+        rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
+
+
+        if (jumpPressed)
+        {
+            if (IsGrounded())
             {
-                cam.position = _hit.point;
+                Vector3 v = rb.linearVelocity;
+                if (v.y < 0f) v.y = 0f;
+                rb.linearVelocity = v;
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
+            jumpPressed = false;
         }
-        else //si no hay obstrucción mantengo cameradistance
+
+        Vector3 targetOffset = new Vector3(0, 1.5f, -cameraDistance);
+        Quaternion camRot = Quaternion.Euler(pitch, yaw, 0);
+        Vector3 desiredCamPos = player.position + camRot * targetOffset;
+        Vector3 focusPoint = player.position + Vector3.up * 1.5f;
+
+        // TODO: cambio rayhit por spherecast. mas testeo
+        Vector3 toCam = desiredCamPos - focusPoint;
+        float dist = toCam.magnitude;
+        Vector3 dir = dist > 0.001f ? toCam / dist : cam.transform.forward;
+
+        float allowedDist = dist;
+        if (Physics.SphereCast(focusPoint, cameraCollisionRadius, dir, out RaycastHit hit, dist, ~0, QueryTriggerInteraction.Ignore))
         {
-            Vector3 _offset = new Vector3(0, 1.5f, -cameraDistance);
-            Quaternion _rotation = Quaternion.Euler(pitch, yaw, 0);
-            cam.position = player.position + _rotation * _offset;
+            allowedDist = Mathf.Max(0.3f, hit.distance - 0.02f); 
         }
-        cam.LookAt(player.position + Vector3.up * 1.5f);
+
+        Vector3 finalCamPos = focusPoint + dir * allowedDist;
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, finalCamPos, ref camVel, cameraSmooth);
+        cam.transform.rotation = camRot;
+        cam.transform.LookAt(focusPoint);
     }
-        // Posicionar cámara alrededor del jugador
-        // Primero chequeo obstrucción de cámara
 
     bool IsGrounded()
     {
-        // chequeo con raycast desde el centro hacia abajo
-        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, groundCheckDist, groundMask);
+        // Raycast al piso desde el centro del player
+        Vector3 origin = transform.position + Vector3.up * 0.1f;
+        bool result = Physics.Raycast(origin, Vector3.down, groundCheckDist, groundMask, QueryTriggerInteraction.Ignore);
+        return result;
     }
 }
