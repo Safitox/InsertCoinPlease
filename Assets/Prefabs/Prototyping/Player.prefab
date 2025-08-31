@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 6385131057706466490}
   - component: {fileID: 3157274671305783846}
   - component: {fileID: 6193100028819989505}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 2366091618593149249}
   - component: {fileID: 2582521708834624964}
   - component: {fileID: 2867192827869561102}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
