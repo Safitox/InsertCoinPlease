@@ -600,14 +600,14 @@ MonoBehaviour:
   platformPrefab: {fileID: 1787592321145869738, guid: a26bdfefdc829ce44bbae9e4df2bbcc1, type: 3}
   enemyPrefab: {fileID: 3661051413211276139, guid: d6c8fee63b461964581777b5d228abf1, type: 3}
   playerPrefab: {fileID: 1687463502950617729, guid: 3e951f3442fc1494b8697cd1ca91c176, type: 3}
-  platformCount: 5
+  platformCount: 7
   areaSize: {x: 30, y: 10, z: 30}
   yRange: {x: 0, y: 10}
-  minPlatformGap: 2
+  minPlatformGap: 5
   maxLinkDistance: 20
   linkWidth: 2
   enemiesToSpawn: 3
-  enemyOnPlatformChance: 0.6
+  enemyOnPlatformChance: 0.5
   playerSpawnOffsetY: 1.2
   enemySpawnOffsetY: 1.1
   enemyPlatformMinDistanceToPlayer: 3.5
@@ -809,17 +809,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
-      propertyPath: m_TagString
+      propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3157274671305783846, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 3157274671305783846, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6593359478167691156, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.6
