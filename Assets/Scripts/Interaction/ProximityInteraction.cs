@@ -1,13 +1,17 @@
 using UnityEngine;
+using static UnityEngine.ProBuilder.AutoUnwrapSettings;
 
 public class ProximityInteraction : MonoBehaviour
 {
     //UI Interacción   
     [SerializeField] Transform interactionUI;
+    [SerializeField] private MeshRenderer meshRendererFill;
     [SerializeField] bool ShowVisualAid = true; //Por si se quiere mantener el trigger pero no mostrar la UI
-    [SerializeField] IInteract  interactableObject;
+    [SerializeField] InteractionObject  interactableObject;
+    //[SerializeField] private InterfaceRef<IInteract> interactableObject;
 
     bool playerInRange = false;
+    Material mat;
     float _interactionTime = 0f;
     float interactionTime
     {
@@ -15,13 +19,15 @@ public class ProximityInteraction : MonoBehaviour
         set
         {
             _interactionTime = Mathf.Clamp(value, 0f, interactableObject.TimeToExecute);
-            //TODO: Actualizar UI
+            //Actualizar UI
+            mat.SetFloat("_Fill",1f - _interactionTime/ interactableObject.TimeToExecute);
         }
     }
 
     private void Awake()
     {
         ShowVisual(false);
+        mat = meshRendererFill.material;
         interactionTime = interactableObject.TimeToExecute;
     }
     private void OnTriggerEnter(Collider other)

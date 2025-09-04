@@ -1,8 +1,8 @@
-Shader "Custom/RadialFillSprite_URP"
+Shader "Custom/RadialFillSprite_URP_MaterialDriven"
 {
     Properties
     {
-        _MainTex ("Sprite Texture", 2D) = "white" {}
+        [SpriteToTexture]_MainTex ("Sprite (or Texture2D)", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
         _Fill ("Fill Amount", Range(0,1)) = 0
         _StartAngle ("Start Angle (Deg)", Float) = 0
@@ -38,9 +38,7 @@ Shader "Custom/RadialFillSprite_URP"
             #pragma fragment frag
             #pragma target 2.0
 
-            // Core include (URP)
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-            // Fallback for projects where UNITY_PI isn't defined by includes
             #ifndef UNITY_PI
                 #define UNITY_PI 3.14159265358979323846
             #endif
@@ -48,7 +46,6 @@ Shader "Custom/RadialFillSprite_URP"
                 #define UNITY_TWO_PI 6.28318530717958647692
             #endif
 
-            // Texturing
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
@@ -89,37 +86,27 @@ Shader "Custom/RadialFillSprite_URP"
 
             float4 frag (Varyings IN) : SV_Target
             {
-                // Sample sprite
                 float2 uv = IN.uv;
                 float4 texCol = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
-
-                // Early discard on alpha to reduce fringes at borders
                 if (texCol.a <= 0.001) discard;
 
-                // Centered UV for angle computation
                 float2 c = float2(_Center.x, _Center.y);
                 float2 d = uv - c;
 
-                // atan2 in radians [-PI, PI] -> normalize to [0,1]
                 float ang = atan2(d.y, d.x);
                 float ang01 = (ang + UNITY_PI) * (1.0 / UNITY_TWO_PI);
 
-                // Start angle offset (degrees -> fraction)
                 float startFrac = _StartAngle * (1.0 / 360.0);
                 ang01 = frac01(ang01 + startFrac);
 
-                // Optional clockwise inversion
                 if (_Clockwise > 0.5) ang01 = 1.0 - ang01;
 
-                // Smooth radial mask from 1 (filled) to 0 (empty) around Fill
                 float edge0 = saturate(_Fill - _Softness);
                 float edge1 = saturate(_Fill);
                 float m = smoothstep(edge0, edge1, ang01);
                 float mask = 1.0 - m;
 
-                // Compose final color (respect sprite tint and vertex color)
                 float4 col = texCol * _Color * IN.color;
-
                 col.rgb *= mask;
                 col.a   *= mask;
 
