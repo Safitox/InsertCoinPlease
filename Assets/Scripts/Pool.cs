@@ -17,7 +17,7 @@ public class Pool
     public void Init(GameObject prefab, Transform parent=null)
     {
         if (parent == null)
-            _parent = GameManager.Instance.poolParent;
+            _parent = null;
         else
             _parent = parent;
         _prefab = prefab;
