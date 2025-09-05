@@ -11,6 +11,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject platformPrefab;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject playerPrefab;
+    Transform ObjectsParent2D;
 
     [Header("Layout del nivel")]
     [SerializeField] private int platformCount = 14;
@@ -100,6 +101,10 @@ public class LevelGenerator : MonoBehaviour
             var plat = Instantiate(platformPrefab, pos, Quaternion.identity,  surface.transform);
             plat.name = $"Platform_{platforms.Count}";
             platforms.Add(plat.transform);
+            if (plat.TryGetComponent<Entity2D>(out var e2D))
+            {
+                Generate2DCopy(e2D.transform);
+            }
         }
 
         if (platforms.Count == 0)
@@ -113,6 +118,10 @@ public class LevelGenerator : MonoBehaviour
         Vector3 playerPos = startPlat.position + Vector3.up * playerSpawnOffsetY;
         playerInstance = Instantiate(playerPrefab, playerPos, Quaternion.identity);
         playerAgent = playerInstance.GetComponent<NavMeshAgent>();
+        if (playerInstance.TryGetComponent<Entity2D>(out var e2D))
+        {
+            Generate2DCopy(e2D.transform);
+        }
     }
 
     void MovePlayerToNewStart()
@@ -161,6 +170,10 @@ public class LevelGenerator : MonoBehaviour
             {
                 var e = Instantiate(enemyPrefab, p.position + Vector3.up * enemySpawnOffsetY, Quaternion.identity, transform);
                 enemies.Add(e.transform);
+                if (e.TryGetComponent<Entity2D>(out var e2D))
+                {
+                    Generate2DCopy(e2D.transform);
+                }
                 placed++;
             }
         }
@@ -171,6 +184,10 @@ public class LevelGenerator : MonoBehaviour
             if (Vector3.SqrMagnitude(p.position - playerPos) < enemyPlatformMinDistanceToPlayer * enemyPlatformMinDistanceToPlayer) continue;
             var e = Instantiate(enemyPrefab, p.position + Vector3.up * enemySpawnOffsetY, Quaternion.identity, transform);
             enemies.Add(e.transform);
+            if (e.TryGetComponent<Entity2D>(out var e2D))
+            {
+                Generate2DCopy(e2D.transform);
+            }
             placed++;
         }
     }
@@ -289,6 +306,16 @@ public class LevelGenerator : MonoBehaviour
                 DestroyImmediate(t.gameObject);
 
     }
+
+    void Generate2DCopy(Transform assigned)
+    {
+        if (!ObjectsParent2D)
+            ObjectsParent2D = new GameObject("ObjectParent2D").transform;
+        GameObject go = Instantiate(assigned.GetComponent<Entity2D>().entitySprite,ObjectsParent2D);
+        assigned.GetComponent<Entity2D>().InitiateMe(go.transform);
+    }
+
+
 
     // Agrego para ver el area de juego y luego posicionar cámara de acuerdo a esta cosa
     void OnDrawGizmosSelected()
