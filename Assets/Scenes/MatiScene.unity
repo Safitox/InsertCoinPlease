@@ -7770,7 +7770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d635c7cc1ab6a2045a6e7d09134aea9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonLigth: {fileID: 1154333261}
+  TimeToExecute: 0
+  OneUse: 0
+  buttonLigth: {fileID: 0}
   redLigth: {fileID: 593607713}
   greenLigth: {fileID: 138085789}
   redRenderer: {fileID: 783244049}
