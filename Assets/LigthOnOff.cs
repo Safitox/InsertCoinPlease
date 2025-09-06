@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LigthOnOff : MonoBehaviour
+public class LigthOnOff : InteractionObject
 {
     [SerializeField] private InteractionObject buttonLigth;
 
@@ -13,21 +13,18 @@ public class LigthOnOff : MonoBehaviour
     [SerializeField] private Color greenEmissionOn = Color.green;
     [SerializeField] private Color emissionOff = Color.black;
 
-    void Update()
+    public override void Interact()
     {
-        if (buttonLigth.press)
+        if (redRenderer.material.HasProperty("_EmissionColor"))
         {
-            if (redRenderer.material.HasProperty("_EmissionColor"))
-            {
-                redRenderer.material.SetColor("_EmissionColor", emissionOff);
-                redLigth.enabled = false;
-            }
+            redRenderer.material.SetColor("_EmissionColor", emissionOff);
+            redLigth.enabled = false;
+        }
 
-            if (greenRenderer.material.HasProperty("_EmissionColor"))
-            {
-                greenRenderer.material.SetColor("_EmissionColor", greenEmissionOn);
-                greenLigth.enabled = true;
-            }
+        if (greenRenderer.material.HasProperty("_EmissionColor"))
+        {
+            greenRenderer.material.SetColor("_EmissionColor", greenEmissionOn);
+            greenLigth.enabled = true;
         }
     }
 }
