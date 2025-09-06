@@ -2,15 +2,13 @@ using UnityEngine;
 
 
 //Clase a heredar
-public class InteractionObject : MonoBehaviour
+public abstract class InteractionObject : MonoBehaviour
 {
-    public float TimeToExecute ;
+    public float TimeToExecute;
+    public bool OneUse = false;
 
-    //TODO: Cambiar a abstract!
-    public virtual void Interact()
-    {
-        Debug.Log("Presionado");
-    }
+    public abstract void Interact();
 }
+
 
 

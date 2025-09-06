@@ -8,10 +8,11 @@ public class ProximityInteraction : MonoBehaviour
     [SerializeField] private MeshRenderer meshRendererFill;
     [SerializeField] bool ShowVisualAid = true; //Por si se quiere mantener el trigger pero no mostrar la UI
     [SerializeField] InteractionObject  interactableObject;
-    //[SerializeField] private InterfaceRef<IInteract> interactableObject;
+        
 
     bool playerInRange = false;
     Material mat;
+    bool interacting = false;
     float _interactionTime = 0f;
     float interactionTime
     {
@@ -28,7 +29,7 @@ public class ProximityInteraction : MonoBehaviour
     {
         ShowVisual(false);
         mat = meshRendererFill.material;
-        interactionTime = interactableObject.TimeToExecute;
+        Reset();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -42,7 +43,8 @@ public class ProximityInteraction : MonoBehaviour
             return;
         playerInRange = false;
         ShowVisual(false);
-        interactionTime = interactableObject.TimeToExecute;
+        Reset();
+
         this.enabled = true;
     }
 
@@ -50,9 +52,11 @@ public class ProximityInteraction : MonoBehaviour
     {
         if (!playerInRange) return;
 
+        if (Input.GetButtonDown("Interact") && !interacting)
+            interacting = true;
         if (Input.GetButtonUp("Interact"))
-            interactionTime = interactableObject.TimeToExecute;
-        
+            Reset();
+
     }
     private void FixedUpdate()
     {
@@ -67,19 +71,31 @@ public class ProximityInteraction : MonoBehaviour
         }
 
         //Intercepto el botón de interacción
+
+        if (!interacting)
+            return;
         if (Input.GetButton("Interact"))
         {
             interactionTime -= Time.fixedDeltaTime;
             if (interactionTime <= 0f)
             {
                 interactableObject.Interact();
-                interactionTime = interactableObject.TimeToExecute;
+                if (interactableObject.OneUse)
+                    DestroyImmediate(gameObject);
+                else
+                    Reset();
+                
             }
         }
         
         
     }
 
+    private void Reset()
+    {
+        interactionTime = interactableObject.TimeToExecute;
+        interacting = false;
+    }
 
     void ShowVisual(bool show)
     {
