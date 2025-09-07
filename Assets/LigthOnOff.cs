@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class LigthOnOff : InteractionObject
 {
-    [SerializeField] private InteractionObject buttonLigth;
-
     [SerializeField] private Light redLigth;
     [SerializeField] private Light greenLigth;
 
