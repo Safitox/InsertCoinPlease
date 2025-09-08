@@ -241,9 +241,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8951063209819392379}
   - component: {fileID: 1451335782599131007}
-  - component: {fileID: 6027749842126783509}
+  - component: {fileID: 6984322603356409267}
   m_Layer: 7
-  m_Name: InteractionTrigger
+  m_Name: InteractionTrigger_OneUse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6027749842126783509
+--- !u!114 &6984322603356409267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6068858601994097397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224ec54bffa54d346b049443d6c2f39e, type: 3}
+  m_Script: {fileID: 11500000, guid: b6620192c0b84f646bd0148bad088ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionUI: {fileID: 3356459914234081705}

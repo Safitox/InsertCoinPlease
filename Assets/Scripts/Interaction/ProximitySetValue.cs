@@ -1,51 +1,33 @@
+using System;
 using UnityEngine;
 using static UnityEngine.ProBuilder.AutoUnwrapSettings;
 
-public class ProximitySetValue : MonoBehaviour
+public class ProximitySetValue : ProximityInteraction
 {
-    //UI Interacción   
-    [SerializeField] Transform interactionUI;
-    [SerializeField] private MeshRenderer meshRendererFill;
-    [SerializeField] bool ShowVisualAid = true; //Por si se quiere mantener el trigger pero no mostrar la UI
-    [SerializeField] InteractionObject  interactableObject;
-    [SerializeField] float amount = 0f;
+   
+    //Parámetros
+    [SerializeField] float minValue = -1f;
+    [SerializeField] float maxValue = 1f;
+    [SerializeField] float defaultValue = 0f;
+    [SerializeField] float changeSpeed = 0.05f;
+    [SerializeField] bool resetOnExit = true;
+    
+    //Encaje
+    public Action<float> OnChangeValue;
 
-    bool playerInRange = false;
-    Material mat;
-    bool interacting = false;
+
+    //Internas
     float _interactionValue = 0f;
+    
     float interactionValue
     {
         get{ return _interactionValue; }
         set
         {
-            _interactionValue = Mathf.Clamp(value, -1f, amount);
+            _interactionValue = Mathf.Clamp(value, minValue, maxValue);
             //Actualizar UI
-            mat.SetFloat("_Fill",1f - _interactionValue/ interactableObject.TimeToExecute);
+            mat.SetFloat("_Fill",1f - (interactionValue-minValue) / (maxValue-minValue));
         }
-    }
-
-    private void Awake()
-    {
-        ShowVisual(false);
-        mat = meshRendererFill.material;
-        Reset();
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        playerInRange = other.CompareTag("Player");
-        ShowVisual(true);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-            return;
-        playerInRange = false;
-        ShowVisual(false);
-        Reset();
-
-        this.enabled = true;
     }
 
     private void Update()
@@ -58,48 +40,31 @@ public class ProximitySetValue : MonoBehaviour
             Reset();
 
     }
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         if (!playerInRange)
             return;
-
-        //Hago aparecer el marcador visual
-        if (ShowVisualAid)
-        {
-            interactionUI.LookAt(Camera.main.transform);
-            interactionUI.Rotate(0, 180, 0);
-        }
-
+        base.FixedUpdate();
         //Intercepto el botón de interacción
 
         if (!interacting)
             return;
         if (Input.GetButton("Interact"))
-        {
-            interactionTime -= Time.fixedDeltaTime;
-            if (interactionTime <= 0f)
-            {
-                interactableObject.Interact();
-                if (interactableObject.OneUse)
-                    DestroyImmediate(gameObject);
-                else
-                    Reset();
-                
-            }
-        }
-        
+            interactionValue += Time.fixedDeltaTime * changeSpeed;
+        if (Input.GetButton("InteractMinus"))
+            interactionValue -= Time.fixedDeltaTime * changeSpeed;
         
     }
 
-    private void Reset()
+
+
+    protected override void Reset()
     {
-        interactionTime = interactableObject.TimeToExecute;
-        interacting = false;
+        if  (resetOnExit)
+            interactionValue=defaultValue;
+        base.Reset();
     }
 
-    void ShowVisual(bool show)
-    {
-        interactionUI.gameObject.SetActive(show && ShowVisualAid);
-    }
+
 
 }
