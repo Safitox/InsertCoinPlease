@@ -102,7 +102,7 @@ public class ThirdPersonController : MonoBehaviour
             jumpPressed = false;
         }
 
-        // 🚀 Nuevo: chequeo de escalones
+        //  Nuevo: chequeo de escalones
         StepClimb();
 
         Vector3 targetOffset = new Vector3(0, 1.5f, -cameraDistance);
@@ -134,19 +134,33 @@ public class ThirdPersonController : MonoBehaviour
 
     void StepClimb()
     {
-        // Origen bajo (cerca de los pies)
-        Vector3 originLow = transform.position + Vector3.up * 0.1f;
-        // Origen alto (altura máxima del escalón)
-        Vector3 originHigh = transform.position + Vector3.up * stepHeight;
+        Vector3 _lb = rb.linearVelocity;
+        _lb.y = 0;
+        if (_lb.magnitude < 0.5f) return;
 
-        // Raycast al frente desde abajo
-        if (Physics.Raycast(originLow, player.forward, 0.5f, groundMask))
+        Vector3 moveDir = rb.linearVelocity.normalized;
+
+        // Origen bajo (pies)
+        Vector3 originLow = transform.position + Vector3.down * 0.8f;
+        // Origen alto (altura máxima del escalón)
+        Vector3 originHigh = originLow + Vector3.up* stepHeight;
+
+        float checkDist = 0.8f;
+
+        // Dibujar los rayos en la vista de escena
+        Debug.DrawRay(originLow, moveDir * checkDist, Color.red);   // rayo bajo
+        Debug.DrawRay(originHigh, moveDir * checkDist, Color.green); // rayo alto
+
+        // Raycast bajo
+        if (Physics.Raycast(originLow, moveDir, out RaycastHit lowHit, checkDist, groundMask))
         {
-            // Si arriba no hay bloqueo → subir
-            if (!Physics.Raycast(originHigh, player.forward, 0.5f, groundMask))
+            // Raycast alto
+            if (!Physics.Raycast(originHigh, moveDir, checkDist, groundMask))
             {
-                rb.position += Vector3.up * stepSmooth;
+                Vector3 targetPos = rb.position + Vector3.up * stepSmooth;
+                rb.MovePosition(targetPos);
             }
         }
     }
+
 }
