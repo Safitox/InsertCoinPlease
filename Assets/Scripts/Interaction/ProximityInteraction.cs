@@ -16,7 +16,8 @@ public class ProximityInteraction : MonoBehaviour
     private void Awake()
     {
         ShowVisual(false);
-        mat = meshRendererFill.material;
+        if (meshRendererFill)
+            mat = meshRendererFill.material;
         Reset();
     }
     private void OnTriggerEnter(Collider other)

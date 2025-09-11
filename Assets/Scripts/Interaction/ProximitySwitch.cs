@@ -3,16 +3,20 @@ using UnityEngine;
 
 public class ProximitySwitch:ProximityInteraction
 {
-    [SerializeField] InteractionObject  interactableObject;
-        float _interactionTime = 0f;
+    [Header("Suscribir OnSwitch(bool)")]
+    // [SerializeField] InteractionObject  interactableObject;
+    [SerializeField] float TimeToExecute = 1f;
+    [SerializeField] bool oneUse=false;
+    //Internas
+    float _interactionTime = 0f;
         float interactionTime
         {
             get { return _interactionTime; }
             set
             {
-                _interactionTime = Mathf.Clamp(value, 0f, interactableObject.TimeToExecute);
+                _interactionTime = Mathf.Clamp(value, 0f, TimeToExecute);
                 //Actualizar UI
-                mat.SetFloat("_Fill",1f - _interactionTime/ interactableObject.TimeToExecute);
+                mat.SetFloat("_Fill",1f - _interactionTime/ TimeToExecute);
             }
         }
     public Action<bool> OnSwitch;
@@ -42,7 +46,7 @@ public class ProximitySwitch:ProximityInteraction
             {
                 toggle = !toggle;
                 OnSwitch?.Invoke(toggle);
-                if (interactableObject.OneUse)
+                if (oneUse)
                     DestroyImmediate(gameObject);
                 else
                     Reset();
@@ -53,7 +57,7 @@ public class ProximitySwitch:ProximityInteraction
 
     protected override void Reset()
     {
-        interactionTime = interactableObject.TimeToExecute;
+        interactionTime = TimeToExecute;
         base.Reset();
     }
 }

@@ -1,17 +1,25 @@
+using System;
 using UnityEngine;
 
-public class ProximityOneUse:ProximityInteraction
+public class ProximityPulse:ProximityInteraction
 {
-    [SerializeField] InteractionObject  interactableObject;
-        float _interactionTime = 0f;
+    [Header("Suscribir OnPulse()")]
+    public Action OnPulse;
+
+    //[SerializeField] InteractionObject  interactableObject;
+    [SerializeField] float TimeToExecute = 1f;
+    [SerializeField] bool oneUse = false;
+
+
+    float _interactionTime = 0f;
         float interactionTime
         {
             get { return _interactionTime; }
             set
             {
-                _interactionTime = Mathf.Clamp(value, 0f, interactableObject.TimeToExecute);
+                _interactionTime = Mathf.Clamp(value, 0f, TimeToExecute);
                 //Actualizar UI
-                mat.SetFloat("_Fill",1f - _interactionTime/ interactableObject.TimeToExecute);
+                mat.SetFloat("_Fill",1f - _interactionTime/ TimeToExecute);
             }
         }
 
@@ -37,8 +45,8 @@ public class ProximityOneUse:ProximityInteraction
             interactionTime -= Time.fixedDeltaTime;
             if (interactionTime <= 0f)
             {
-                interactableObject.Interact();
-                if (interactableObject.OneUse)
+                OnPulse?.Invoke();
+                if (oneUse)
                     DestroyImmediate(gameObject);
                 else
                     Reset();
@@ -49,7 +57,7 @@ public class ProximityOneUse:ProximityInteraction
 
     protected override void Reset()
     {
-        interactionTime = interactableObject.TimeToExecute;
+        interactionTime = TimeToExecute;
         base.Reset();
     }
 }
