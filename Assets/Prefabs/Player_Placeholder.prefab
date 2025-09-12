@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6385131057706466490}
   - component: {fileID: 3157274671305783846}
   - component: {fileID: 6193100028819989505}
+  - component: {fileID: 2723465983169131956}
+  - component: {fileID: 2341717727314469581}
   m_Layer: 3
   m_Name: Player_Placeholder
   m_TagString: Player
@@ -110,10 +112,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.39034414
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.070905685, y: 0, z: -0.03875017}
 --- !u!114 &3157274671305783846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +149,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   groundCheckDist: 2
-  stepHeight: 0.5
+  stepHeight: 0.3
   stepSmooth: 0.08
 --- !u!54 &6193100028819989505
 Rigidbody:
@@ -176,6 +178,79 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!143 &2723465983169131956
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828934598537730114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2341717727314469581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828934598537730114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbc12d97868ab14da5bdd7fae7ed905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handTransform: {fileID: 5225724043508680405}
+  radius: 0.5
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!1 &4567991674691299125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5225724043508680405}
+  m_Layer: 0
+  m_Name: RightHandAnclaje
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5225724043508680405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567991674691299125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.009, y: 0.072, z: 0.052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 46374731535571995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4620202081973032639
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,9 +425,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5209996246282408686, guid: 08785631950bfbd41b465bb67583fc1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5225724043508680405}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08785631950bfbd41b465bb67583fc1b, type: 3}
+--- !u!4 &46374731535571995 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5209996246282408686, guid: 08785631950bfbd41b465bb67583fc1b, type: 3}
+  m_PrefabInstance: {fileID: 5253834249184956149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2205589700598416440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6229193294755039949, guid: 08785631950bfbd41b465bb67583fc1b, type: 3}
