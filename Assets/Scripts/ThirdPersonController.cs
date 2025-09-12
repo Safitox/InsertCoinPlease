@@ -7,6 +7,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Camera cam;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Animator animator;
 
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 5f;
@@ -53,7 +54,7 @@ public class ThirdPersonController : MonoBehaviour
         inputH = Input.GetAxisRaw("Horizontal");
         inputV = Input.GetAxisRaw("Vertical");
         running = Input.GetKey(KeyCode.LeftShift);
-
+        animator.SetBool("Running", running);
         if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
 
@@ -83,13 +84,20 @@ public class ThirdPersonController : MonoBehaviour
             float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, rotationSmoothTime);
             player.rotation = Quaternion.Euler(0f, angle, 0f);
-        }
+            animator.SetBool("Walking", true    );
+            float dirDot = Vector3.Dot(moveDir, player.forward);
+            float moveMagnitude = dirDot * inputDir.magnitude;
+            animator.SetFloat("WalkingBlend", moveMagnitude);
 
-        Vector3 currentVel = rb.linearVelocity;
+        }
+        else
+            animator.SetBool("Walking", false);
+
+            Vector3 currentVel = rb.linearVelocity;
         Vector3 horizVel = new Vector3(currentVel.x, 0f, currentVel.z);
         Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
-
+        
         if (jumpPressed)
         {
             if (IsGrounded())
@@ -98,6 +106,7 @@ public class ThirdPersonController : MonoBehaviour
                 if (v.y < 0f) v.y = 0f;
                 rb.linearVelocity = v;
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                animator.SetTrigger("Jump");
             }
             jumpPressed = false;
         }
@@ -124,6 +133,7 @@ public class ThirdPersonController : MonoBehaviour
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, finalCamPos, ref camVel, cameraSmooth);
         cam.transform.rotation = camRot;
         cam.transform.LookAt(focusPoint);
+
     }
 
     bool IsGrounded()
