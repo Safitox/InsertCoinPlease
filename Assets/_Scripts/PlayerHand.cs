@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerHand : MonoBehaviour
 {
     [SerializeField] Transform handTransform;
+    [SerializeField] Transform dropPointTransform;
+
     public static GameObject objectInHand;
     private bool hasRB = false;
 
@@ -28,27 +30,27 @@ public class PlayerHand : MonoBehaviour
     void GetObject()
     {
         if (objectInHand != null) return;
-        Debug.Log("Trying to get object");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position +  Vector3.down*0.5f, radius, targetLayers);
 
-        // Iterate through the found colliders
+        // Busco el primer carryable
         foreach (var hitCollider in hitColliders)
         {
-            Debug.Log("Found collider: " + hitCollider.name);
             if (hitCollider.TryGetComponent<ICarryable>(out ICarryable carryable))
             {
-                Debug.Log("Carrying object: " + hitCollider.name);
-                objectInHand = hitCollider.gameObject;
-                objectInHand.transform.position = handTransform.position;
-                objectInHand.transform.parent = handTransform;
-                objectInHand.GetComponent<Collider>().enabled = false;
-                if (objectInHand.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                if (carryable.EnableCarry)
                 {
-                    hasRB = true;
-                    rb.isKinematic = true;
+                    objectInHand = hitCollider.gameObject;
+                    objectInHand.transform.position = handTransform.position;
+                    objectInHand.transform.parent = handTransform;
+                    objectInHand.GetComponent<Collider>().enabled = false;
+                    if (objectInHand.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                    {
+                        hasRB = true;
+                        rb.isKinematic = true;
+                    }
+                    carryable.OnCarry();
+                    break;
                 }
-                carryable.OnCarry();
-                break; 
             }
         }
     }
@@ -66,6 +68,7 @@ public class PlayerHand : MonoBehaviour
     void DropObject()
     {
         if (objectInHand == null) return;
+        if (CheckPositoners()) return;
         if (hasRB && objectInHand.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.isKinematic = false;
@@ -75,11 +78,42 @@ public class PlayerHand : MonoBehaviour
         {
             carryable.OnDrop();
         }
-        objectInHand.GetComponent<Collider>().enabled = false;
+        objectInHand.GetComponent<Collider>().enabled = true;
         objectInHand.transform.parent = null;
-        objectInHand.transform.position = transform.position + transform.forward* 0.5f + ;
+        objectInHand.transform.position = dropPointTransform.position  ;
         objectInHand = null;
     }
 
+    bool CheckPositoners()
+    {
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + Vector3.down * 0.5f, radius, targetLayers);
+
+        // Busco ProximityPositioners
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.TryGetComponent<ProximityPositioner>(out ProximityPositioner proximityPositioner))
+            {
+                if (proximityPositioner.Identity == objectInHand.GetComponent<ICarryable>().Identity)
+                {
+                    // Dejar el objeto en la posicion del positioner
+                    objectInHand.transform.position = proximityPositioner.target.position;
+                    objectInHand.transform.rotation = proximityPositioner.target.rotation;
+                    proximityPositioner.used = true;
+                    Destroy(objectInHand.GetComponent<Rigidbody>());
+                    objectInHand.GetComponent<ICarryable>().EnableCarry = false;
+                    objectInHand.GetComponent<Collider>().enabled = true;
+                    objectInHand.transform.parent = hitCollider.transform;
+                    objectInHand = null;
+                    return true;
+                }
+            }
+
+
+        }
+        return false;
+
+
+    }
 
 }

@@ -4,15 +4,11 @@ public class test_Carry : MonoBehaviour, ICarryable
 {
 
 
-    public string Identity { get; set; }
+    public string Identity { get; set; } = "BotonRojo";
+    public bool EnableCarry { get; set; } = true;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Identity = "BoxCarry";
-    }
-
 
     public void OnCarry()
     {
