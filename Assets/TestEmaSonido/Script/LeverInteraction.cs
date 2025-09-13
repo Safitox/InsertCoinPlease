@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class LeverInteraction : InteractionObject
@@ -12,7 +13,8 @@ public class LeverInteraction : InteractionObject
     public override void Interact()
     {
         isUp = !isUp; // Cambia el estado
-        //UpdateVisual();
+                      //UpdateVisual();
+        GetComponent<Animator>().SetBool("MoveLever", isUp);
         Debug.Log("Palanca " + gameObject.name + " ahora está " + (isUp ? "arriba" : "abajo"));
     }
     /*
