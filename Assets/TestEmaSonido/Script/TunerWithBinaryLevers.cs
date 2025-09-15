@@ -18,15 +18,14 @@ public class TunerWithBinaryLevers : MonoBehaviour
 
     [Header("Settings")]
     public float minPitch = 0.5f;
-    public float maxPitch = 2.0f;
+    public float maxPitch = 4.0f;
     public float tolerance = 0.01f;
 
-    private float targetPitch;
+    [SerializeField] private float targetPitch=0.9f; //Tono a llegar
     private bool isFixed = false;
 
     void Start()
     {
-        targetPitch = Random.Range(minPitch + 0.1f, maxPitch - 0.1f);
         Debug.Log("Tono objetivo: " + targetPitch);
 
         if (toneSource != null)
@@ -41,12 +40,15 @@ public class TunerWithBinaryLevers : MonoBehaviour
             cubeRenderer = feedbackCube3D.GetComponent<Renderer>();
     }
 
+
     void Update()
     {
         if (isFixed) return;
 
         float currentPitch = GetCombinedPitch();
         toneSource.pitch = currentPitch;
+
+        Debug.Log("Pitch actual generado:" + currentPitch.ToString("F2")); //F2 muestra los valores con dos decimales
 
         if (Mathf.Abs(currentPitch - targetPitch) <= tolerance)
             OnFixed();
@@ -56,10 +58,9 @@ public class TunerWithBinaryLevers : MonoBehaviour
 
     float GetCombinedPitch()
     {
-        float total = lever1.GetContribution() + lever2.GetContribution() + lever3.GetContribution(); // 0 a 3
-        float normalized = total / 3f; // 0.0 a 1.0
-        return Mathf.Lerp(minPitch, maxPitch, normalized);
+        return lever1.GetContribution() + lever2.GetContribution() + lever3.GetContribution();
     }
+
 
     void OnFixed()
     {
@@ -73,7 +74,37 @@ public class TunerWithBinaryLevers : MonoBehaviour
         }
     }
 
+    /*
+    void UpdateFeedback(float currentPitch) Versión re simple, no ayuda tampoco
+    {
+        if (cubeRenderer == null) return;
+
+        float distance = Mathf.Abs(currentPitch - targetPitch);
+
+        if (distance <= tolerance)
+            cubeRenderer.material.color = Color.green;
+        else
+            cubeRenderer.material.color = Color.red;
+    }
+    */
+
     void UpdateFeedback(float currentPitch)
+    {
+        if (feedbackCube3D == null || cubeRenderer == null) return;
+
+        // Escala el cubo directamente según el pitch actual
+        float scaleY = Mathf.Clamp(currentPitch * 2f, minPitch, maxPitch);
+        feedbackCube3D.transform.localScale = new Vector3(1f, scaleY, 1f);
+
+        // Color verde si está dentro de la tolerancia, rojo si no
+        float distance = Mathf.Abs(currentPitch - targetPitch);
+        cubeRenderer.material.color = (distance <= tolerance) ? Color.green : Color.red;
+    }
+
+
+
+    /*
+    void UpdateFeedback(float currentPitch) Muyy complejo, y muy confuso para el jugador
     {
         if (cubeRenderer == null) return;
 
@@ -81,4 +112,5 @@ public class TunerWithBinaryLevers : MonoBehaviour
         float normalized = Mathf.Clamp01(1f - (distance / (maxPitch - minPitch)));
         cubeRenderer.material.color = Color.Lerp(Color.red, Color.green, normalized);
     }
+    */
 }
