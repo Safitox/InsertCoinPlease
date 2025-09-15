@@ -214,7 +214,7 @@ public class LevelGenerator : MonoBehaviour
 
     void CreateLink(Vector3 from, Vector3 to)
     {
-        //UN PARTOOOO. Genera "puentes" entre plataformas para que salte el player falso
+        //UN PARTOOOO. Genera "puentes" entre plataformas para que salte el playerDetected falso
         //TODO: Usar pooling
         var holder = new GameObject("NavMeshLink").transform;
         holder.parent = transform;
@@ -263,7 +263,7 @@ public class LevelGenerator : MonoBehaviour
         regenerating = true;
         yield return new WaitForSeconds(levelRestartDelay);
 
-        // Desactivo el agent del player durante el cambio de nivel
+        // Desactivo el agent del playerDetected durante el cambio de nivel
         if (playerAgent == null && playerInstance != null)
             playerAgent = playerInstance.GetComponent<NavMeshAgent>();
 
