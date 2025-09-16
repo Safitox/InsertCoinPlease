@@ -14,11 +14,14 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float accel = 20f;
     [SerializeField] private float rotationSmoothTime = 0.1f;
     [SerializeField] private float runSpeedMultiplier = 1.5f;
+    [SerializeField] private float crouchSpeedMultiplier = 0.5f;
+
     bool running = false;
 
     [Header("Cámara")]
     [SerializeField] private float mouseSensitivity = 150f;
     [SerializeField] private float cameraDistance = 5f;
+    [SerializeField] private float cameraYOffset = 1f;
     [SerializeField] private float verticalMin = -35f;
     [SerializeField] private float verticalMax = 60f;
     [SerializeField] private float maxzoom = 70f;
@@ -41,6 +44,7 @@ public class ThirdPersonController : MonoBehaviour
 
     float inputH, inputV;
     bool jumpPressed;
+    bool crouching;
 
     void Start()
     {
@@ -53,7 +57,12 @@ public class ThirdPersonController : MonoBehaviour
     {
         inputH = Input.GetAxisRaw("Horizontal");
         inputV = Input.GetAxisRaw("Vertical");
-        running = Input.GetKey(KeyCode.LeftShift);
+        crouching = Input.GetKey(KeyCode.LeftControl);
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            animator.SetBool("Crouch", true);
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+            animator.SetBool("Crouch", false);
+        running = Input.GetKey(KeyCode.LeftShift) && !crouching;
         animator.SetBool("Running", running);
         if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
@@ -79,6 +88,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             Vector3 moveDir = (camForward * inputDir.z + camRight * inputDir.x).normalized;
             desiredVel = moveDir * moveSpeed;
+            if (crouching) desiredVel *= crouchSpeedMultiplier;
             desiredVel *= running ? runSpeedMultiplier : 1f;
 
             float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
@@ -93,7 +103,7 @@ public class ThirdPersonController : MonoBehaviour
         else
             animator.SetBool("Walking", false);
 
-            Vector3 currentVel = rb.linearVelocity;
+        Vector3 currentVel = rb.linearVelocity;
         Vector3 horizVel = new Vector3(currentVel.x, 0f, currentVel.z);
         Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
@@ -114,7 +124,7 @@ public class ThirdPersonController : MonoBehaviour
         //  Nuevo: chequeo de escalones
         StepClimb();
 
-        Vector3 targetOffset = new Vector3(0, 1.5f, -cameraDistance);
+        Vector3 targetOffset = new Vector3(0, cameraYOffset, -cameraDistance);
         Quaternion camRot = Quaternion.Euler(pitch, yaw, 0);
         Vector3 desiredCamPos = player.position + camRot * targetOffset;
         Vector3 focusPoint = player.position + Vector3.up * 1.5f;

@@ -19,21 +19,19 @@ public class LigthOnOff : MonoBehaviour
     }
     void Interact(bool value)
     {
-        if (!value)
+
+        if (redRenderer.material.HasProperty("_EmissionColor"))
         {
-            if (redRenderer.material.HasProperty("_EmissionColor"))
-            {
-                redRenderer.material.SetColor("_EmissionColor", emissionOff);
-                redLigth.enabled = false;
-            }
-            return;
+            redRenderer.material.SetColor("_EmissionColor", emissionOff);
+            redLigth.enabled = !value;
         }
+                
          
 
         if (greenRenderer.material.HasProperty("_EmissionColor"))
         {
             greenRenderer.material.SetColor("_EmissionColor", greenEmissionOn);
-            greenLigth.enabled = true;
+            greenLigth.enabled = value;
         }
     }
 }

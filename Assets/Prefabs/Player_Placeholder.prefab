@@ -139,8 +139,10 @@ MonoBehaviour:
   accel: 20
   rotationSmoothTime: 0.1
   runSpeedMultiplier: 1.5
+  crouchSpeedMultiplier: 0.5
   mouseSensitivity: 200
   cameraDistance: 5
+  cameraYOffset: 1.06
   verticalMin: -35
   verticalMax: 60
   maxzoom: 100

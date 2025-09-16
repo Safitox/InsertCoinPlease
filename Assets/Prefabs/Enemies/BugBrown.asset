@@ -22,4 +22,4 @@ MonoBehaviour:
   attackCooldown: 2
   damage: 1
   stunnedTime: 4
-  deathDelay: 2
+  deathDelay: 5
