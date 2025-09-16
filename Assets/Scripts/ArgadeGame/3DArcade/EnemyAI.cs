@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-//TODO: Componentes para detectar player y atacar o perseguirlo
+//TODO: Componentes para detectar playerDetected y atacar o perseguirlo
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour

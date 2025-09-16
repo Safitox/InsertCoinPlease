@@ -1,12 +1,18 @@
 using UnityEngine;
 
-public class ButtonTest : InteractionObject
+public class ButtonTest : MonoBehaviour
 {
     [SerializeField] private DoorControl doorControl;
-    public override void Interact()
+    ProximityPulse proximityPulse => GetComponentInChildren<ProximityPulse>();
+
+    private void Start()
+    {
+        proximityPulse.OnPulse += Interact;
+    }
+    private void Interact()
     {
        GetComponent<Animator>().SetTrigger("PressButton");
-       doorControl.ChangeDoorStatus();
+       doorControl.ChangeDoorStatus(true);
     }
 
 

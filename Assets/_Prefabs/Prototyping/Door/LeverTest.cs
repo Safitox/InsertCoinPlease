@@ -1,14 +1,19 @@
 using UnityEngine;
 
-public class LeverTest : InteractionObject
+public class LeverTest : MonoBehaviour
 {
     [SerializeField] private DoorControl doorControl;
-    bool isOpen = false;
-    public override void Interact()
+    ProximitySwitch proximitySwitch=>GetComponentInChildren<ProximitySwitch>();
+
+    private void Start()
     {
-        isOpen = !isOpen;
-        GetComponent<Animator>().SetBool("MoveLever", isOpen);
-       doorControl.ChangeDoorStatus();
+        if (proximitySwitch != null)
+            proximitySwitch.OnSwitch +=  Interact;
+    }
+     void Interact(bool switchValue)
+    {
+        GetComponent<Animator>().SetBool("MoveLever", switchValue);
+       doorControl.ChangeDoorStatus(switchValue);
     }
 
 

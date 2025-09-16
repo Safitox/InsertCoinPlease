@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class DoorControl : MonoBehaviour
 {
-    bool isOpen = false;
-    public void ChangeDoorStatus()
+
+    public void ChangeDoorStatus(bool value)
     {
-        isOpen= !isOpen;
-        GetComponent<Animator>().SetBool("OpenDoor", isOpen);
+        GetComponent<Animator>().SetBool("OpenDoor", value);
     }
 
 }
