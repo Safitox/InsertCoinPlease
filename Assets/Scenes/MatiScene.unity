@@ -4148,7 +4148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2a8294226891a4297835e331de6f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light: {fileID: 0}
+  _light: {fileID: 261954352}
   _interval: 0.2
 --- !u!1 &262860283
 GameObject:
@@ -4284,8 +4284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2a8294226891a4297835e331de6f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light: {fileID: 0}
-  _interval: 0.5
+  _light: {fileID: 262860285}
+  _interval: 1.5
 --- !u!1 &286510232
 GameObject:
   m_ObjectHideFlags: 0
@@ -20096,6 +20096,7 @@ GameObject:
   - component: {fileID: 1432019409}
   - component: {fileID: 1432019411}
   - component: {fileID: 1432019410}
+  - component: {fileID: 1432019412}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -20206,6 +20207,20 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1432019412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432019408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2a8294226891a4297835e331de6f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _light: {fileID: 1432019411}
+  _interval: 0.2
 --- !u!1 &1443117426
 GameObject:
   m_ObjectHideFlags: 0
@@ -22647,11 +22662,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 17a7a880bf5f3bf48a218e3c741051b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.85
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 17a7a880bf5f3bf48a218e3c741051b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.2353334
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 17a7a880bf5f3bf48a218e3c741051b3, type: 3}
       propertyPath: m_LocalRotation.w
