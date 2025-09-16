@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LigthOnOff : InteractionObject
+public class LigthOnOff : MonoBehaviour
 {
     [SerializeField] private Light redLigth;
     [SerializeField] private Light greenLigth;
@@ -11,13 +11,24 @@ public class LigthOnOff : InteractionObject
     [SerializeField] private Color greenEmissionOn = Color.green;
     [SerializeField] private Color emissionOff = Color.black;
 
-    public override void Interact()
+    [SerializeField] private ProximitySwitch proximitySwitch;
+
+    private void Start()
     {
-        if (redRenderer.material.HasProperty("_EmissionColor"))
+        proximitySwitch.OnSwitch += Interact;
+    }
+    void Interact(bool value)
+    {
+        if (!value)
         {
-            redRenderer.material.SetColor("_EmissionColor", emissionOff);
-            redLigth.enabled = false;
+            if (redRenderer.material.HasProperty("_EmissionColor"))
+            {
+                redRenderer.material.SetColor("_EmissionColor", emissionOff);
+                redLigth.enabled = false;
+            }
+            return;
         }
+         
 
         if (greenRenderer.material.HasProperty("_EmissionColor"))
         {

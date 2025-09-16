@@ -1,7 +1,6 @@
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class LeverInteraction : InteractionObject
+public class LeverInteraction : MonoBehaviour
 {
     [Header("Lever State")]
     public bool isUp = false; // Estado actual
@@ -10,15 +9,22 @@ public class LeverInteraction : InteractionObject
     public float contributionUp = 1f;
     public float contributionDown = 0f;
 
+    [SerializeField] private ProximitySwitch proximitySwitch;
+
+    private void Start()
+    {
+        proximitySwitch.OnSwitch += Interact;
+    }
+
     public float GetContribution()
     {
         return isUp ? contributionUp : contributionDown;
     }
 
 
-    public override void Interact()
+     void Interact(bool value)
     {
-        isUp = !isUp; // Cambia el estado
+        isUp = value; // Cambia el estado
                       //UpdateVisual();
         GetComponent<Animator>().SetBool("MoveLever", isUp);
         Debug.Log("Palanca " + gameObject.name + " ahora está " + (isUp ? "arriba" : "abajo"));

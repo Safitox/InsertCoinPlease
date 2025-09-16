@@ -70,7 +70,7 @@ public class TunerWithBinaryLevers : MonoBehaviour
         // Acá podés avanzar de nivel, activar efectos, etc.
         if (doorToOpen!=null) 
         {
-            doorToOpen.ChangeDoorStatus();
+            doorToOpen.ChangeDoorStatus(true);
         }
     }
 
