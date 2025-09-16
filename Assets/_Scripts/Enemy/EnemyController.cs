@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public Animator animator=>GetComponent<Animator>();
     public EnemyPlayerDEtection detection;
     public EnemyHealth health;
+    public GameObject stars;
 
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Transform playerDetected;      // jugador actual
@@ -56,7 +57,7 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate() => _stateMachine.FixedTick();
 
-    void HandleDamaged() => _stateMachine.Change<StunnedState>();
+    public void HandleDamaged() => _stateMachine.Change<StunnedState>();
     void HandleDied() => _stateMachine.Change<DeadState>();
 
     public bool InAttackRange()

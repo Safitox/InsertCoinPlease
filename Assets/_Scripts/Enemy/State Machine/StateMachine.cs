@@ -2,17 +2,6 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public interface IState
-{
-    void OnEnter();
-    void OnExit();
-    void Tick();        // por-frame
-    void FixedTick();   // opcional si usás física
-}
-
-
-
-
 public class StateMachine
 {
     public IState Current { get; private set; }

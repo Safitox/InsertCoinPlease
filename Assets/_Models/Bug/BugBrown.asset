@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BugBrown
   m_EditorClassIdentifier: 
   walkSpeed: 2.5
-  chaseSpeed: 4
+  chaseSpeed: 2
   patrolWait: 1.5
   sightRange: 12
   sightAngle: 120
-  loseSightTime: 2
+  loseSightTime: 10
   attackRange: 1.6
-  attackCooldown: 1.2
+  attackCooldown: 2
   damage: 1
   stunnedTime: 4
   deathDelay: 2

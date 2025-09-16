@@ -9,7 +9,8 @@ public class IdleState : EnemyState
     public override void OnEnter()
     {
         _timer = Random.Range(0.5f, 1.5f);
-        enemyController.agent.isStopped = true;
+        if (enemyController.agent)
+            enemyController.agent.isStopped = true;
         if (enemyController.animator) enemyController.animator.Play("Idle");
     }
 

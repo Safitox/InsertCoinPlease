@@ -6,7 +6,10 @@ public abstract class EnemyState : IState
     protected readonly StateMachine stateMachine;
 
     protected EnemyState(EnemyController controller, StateMachine stm)
-    { enemyController = controller; stateMachine = stm; }
+    { 
+        enemyController = controller; 
+        stateMachine = stm; 
+    }
 
     public virtual void OnEnter() { }
     public virtual void OnExit() { }

@@ -8,10 +8,11 @@ public class StunnedState : EnemyState
 
     public override void OnEnter()
     {
-        enemyController.health.Damage(1); // Quito 1 de vida por cada salto en la cabeza
+        //enemyController.health.Damage(1); // Quito 1 de vida por cada salto en la cabeza
         _timer = enemyController.config.stunnedTime;
         enemyController.agent.isStopped = true;
-        if (enemyController.animator) enemyController.animator.Play("Hit");
+        if (enemyController.animator) enemyController.animator.Play("Stunned");
+        enemyController.stars.SetActive(true);
         // TODO: Acciones al ser aturdido
     }
 
@@ -21,10 +22,16 @@ public class StunnedState : EnemyState
         if (_timer <= 0f)
         {
             // Si ve al jugador, perseguir; si no, patrullar
-            if (enemyController.playerDetected && enemyController.HasLineOfSight()) 
+            if (enemyController.playerDetected && enemyController.HasLineOfSight())
                 stateMachine.Change<ChaseState>();
-            else 
+            else
                 stateMachine.Change<PatrolState>();
         }
+    }
+
+    public override void OnExit()
+    {
+
+        enemyController.stars.SetActive(false);
     }
 }

@@ -5,7 +5,7 @@ public class EnemyHealth : MonoBehaviour
 {
     //Provisorio 3 golpes y muere
     public int maxHP = 3;
-    int _hp;
+    [SerializeField] int _hp;
 
     public event Action OnDamaged;
     public event Action OnDied;
@@ -16,7 +16,11 @@ public class EnemyHealth : MonoBehaviour
     {
         if (_hp <= 0) return;
         _hp -= amount;
-        OnDamaged?.Invoke();
-        if (_hp <= 0) OnDied?.Invoke();
+        if (_hp <= 0) 
+            OnDied?.Invoke();
+        else
+            OnDamaged?.Invoke();
     }
+
+
 }

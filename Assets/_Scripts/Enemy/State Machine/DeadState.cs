@@ -9,8 +9,7 @@ public class DeadState : EnemyState
     {
         _timer = enemyController.config.deathDelay;
         enemyController.agent.isStopped = true;
-        if (enemyController.animator) 
-            enemyController.animator.Play("Die");
+        enemyController.animator.Play("Die");
 
         //foreach (var col in enemyController.GetComponentsInChildren<Collider>())
         //{
