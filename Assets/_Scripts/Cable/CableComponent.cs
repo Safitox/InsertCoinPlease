@@ -77,8 +77,9 @@ public class CableComponent : MonoBehaviour
 	void InitLineRenderer()
 	{
 		line = this.gameObject.AddComponent<LineRenderer>();
-		line.SetWidth(cableWidth, cableWidth);
-		line.positionCount = segments + 1; //.SetVertexCount(segments + 1);
+		line.startWidth = cableWidth;
+		line.endWidth = cableWidth;
+        line.positionCount = segments + 1; //.SetVertexCount(segments + 1);
 		line.material = cableMaterial;
 		line.material.color =cableColor;
         line.GetComponent<Renderer>().enabled = true;
