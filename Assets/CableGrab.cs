@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class CableGrab : MonoBehaviour
 {
-    public Transform handTransform; // Mano del jugador
-    public Rigidbody cableTipRb;    // Rigidbody de la punta del cable
-    public KeyCode grabKey = KeyCode.E;
-    public float interactRange = 2f;
+    [Header("Punto donde el jugador sostiene el cable")]
+    [SerializeField] private Transform holdPoint;
+
+    [SerializeField] private GameObject currentGrabPoint;
+    private FixedJoint joint;
+    [SerializeField] private bool isHolding = false;
+    [SerializeField] private float interactRange = 2f;
 
     private Transform player;
-    private FixedJoint grabJoint;
 
     void Start()
     {
@@ -19,40 +21,111 @@ public class CableGrab : MonoBehaviour
     {
         float distance = Vector3.Distance(player.position, transform.position);
 
-        if (distance <= interactRange && Input.GetKeyDown(grabKey))
+        if (distance <= interactRange /*&& Input.GetKeyDown(grabKey)*/)
         {
-            GrabCable();
-        }
+            if (currentGrabPoint != null && Input.GetKeyDown(KeyCode.E))
+            {
+                Rigidbody grabRb = currentGrabPoint.GetComponent<Rigidbody>();
 
-        // Opcional: soltar con la misma tecla
-        if (grabJoint != null && Input.GetKeyDown(grabKey))
-        {
-            ReleaseCable();
+                if (!isHolding && grabRb != null)
+                {
+                    // Mover fÃ­sicamente al holdPoint
+                    grabRb.transform.position = holdPoint.position;
+                    grabRb.transform.rotation = holdPoint.rotation;
+
+                    // Crear el joint en el HoldPoint
+                    Rigidbody holdRb = holdPoint.GetComponent<Rigidbody>();
+                    if (holdRb == null)
+                    {
+                        holdRb = holdPoint.gameObject.AddComponent<Rigidbody>();
+                        holdRb.isKinematic = true;
+                        holdRb.useGravity = false;
+                    }
+
+                    joint = holdPoint.gameObject.AddComponent<FixedJoint>();
+                    joint.connectedBody = grabRb;
+
+                    isHolding = true;
+                }
+                else if (isHolding)
+                {
+                    if (joint != null)
+                    {
+                        Destroy(joint);
+                    }
+                    isHolding = false;
+                }
+            }
         }
     }
 
-    void GrabCable()
+    private void OnTriggerEnter(Collider other)
     {
-        if (grabJoint != null) return; // Ya agarrado
-
-        // Crear un FixedJoint en la mano para unir la punta del cable
-        grabJoint = handTransform.gameObject.AddComponent<FixedJoint>();
-        grabJoint.connectedBody = cableTipRb;
-        grabJoint.breakForce = 1000f; // Ajusta según fuerza deseada
-        grabJoint.breakTorque = 1000f;
-
-        Debug.Log("Cable agarrado con física");
-    }
-
-    void ReleaseCable()
-    {
-        if (grabJoint != null)
+        if (other.CompareTag("GrabPoint"))
         {
-            Destroy(grabJoint);
-            grabJoint = null;
-            Debug.Log("Cable soltado");
+            currentGrabPoint = other.gameObject;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("GrabPoint") && !isHolding)
+        {
+            currentGrabPoint = null;
+        }
+    }
+
+    //public Transform handTransform; // Mano del jugador
+    //public Rigidbody cableTipRb;    // Rigidbody de la punta del cable
+    //public KeyCode grabKey = KeyCode.E;
+    //public float interactRange = 2f;
+
+    //private Transform player;
+    //private FixedJoint grabJoint;
+
+    //void Start()
+    //{
+    //    player = GameObject.FindWithTag("Player").transform;
+    //}
+
+    //void Update()
+    //{
+    //    float distance = Vector3.Distance(player.position, transform.position);
+
+    //    if (distance <= interactRange && Input.GetKeyDown(grabKey))
+    //    {
+    //        GrabCable();
+    //    }
+
+    //Opcional: soltar con la misma tecla
+    //    if (grabJoint != null && Input.GetKeyDown(grabKey))
+    //    {
+    //        ReleaseCable();
+    //    }
+    //}
+
+    //void GrabCable()
+    //{
+    //    if (grabJoint != null) return; // Ya agarrado
+
+    //    Crear un FixedJoint en la mano para unir la punta del cable
+    //    grabJoint = handTransform.gameObject.AddComponent<FixedJoint>();
+    //    grabJoint.connectedBody = cableTipRb;
+    //    grabJoint.breakForce = 1000f; // Ajusta segï¿½n fuerza deseada
+    //    grabJoint.breakTorque = 1000f;
+
+    //    Debug.Log("Cable agarrado con fï¿½sica");
+    //}
+
+    //void ReleaseCable()
+    //{
+    //    if (grabJoint != null)
+    //    {
+    //        Destroy(grabJoint);
+    //        grabJoint = null;
+    //        Debug.Log("Cable soltado");
+    //    }
+    //}
 
     //public Transform handTransform;
     //public GameObject cableTip;
@@ -60,7 +133,7 @@ public class CableGrab : MonoBehaviour
     //public float interactRange = 2f;
 
     //public float moveSpeed = 5f;    // Velocidad de movimiento hacia la mano
-    //public float rotateSpeed = 5f;  // Velocidad de rotación hacia la mano
+    //public float rotateSpeed = 5f;  // Velocidad de rotaciï¿½n hacia la mano
 
     //private bool isGrabbing = false;
 
@@ -75,23 +148,23 @@ public class CableGrab : MonoBehaviour
     //{
     //    float distance = Vector3.Distance(player.position, transform.position);
 
-    //    // Detecta la interacción
+    //    // Detecta la interacciï¿½n
     //    if (distance <= interactRange && Input.GetKeyDown(grabKey))
     //    {
     //        isGrabbing = true;
     //    }
 
-    //    // Si se está agarrando, mover suavemente la punta del cable hacia la mano
+    //    // Si se estï¿½ agarrando, mover suavemente la punta del cable hacia la mano
     //    if (isGrabbing)
     //    {
     //        cableTip.transform.position = Vector3.Lerp(cableTip.transform.position, handTransform.position, moveSpeed * Time.deltaTime);
     //        cableTip.transform.rotation = Quaternion.Slerp(cableTip.transform.rotation, handTransform.rotation, rotateSpeed * Time.deltaTime);
 
-    //        // Opcional: fijar como hijo cuando esté suficientemente cerca
+    //        // Opcional: fijar como hijo cuando estï¿½ suficientemente cerca
     //        if (Vector3.Distance(cableTip.transform.position, handTransform.position) < 0.05f)
     //        {
     //            cableTip.transform.SetParent(handTransform);
-    //            isGrabbing = false; // Termina la transición
+    //            isGrabbing = false; // Termina la transiciï¿½n
     //        }
     //    }
     //}
