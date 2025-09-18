@@ -4,9 +4,9 @@ using UnityEngine;
 public class Pool
 {
     public GameObject _prefab;
-    public List<GameObject> pool = new List<GameObject>();
     public Transform _parent;
     private Transform currentGo=null;
+    private List<GameObject> pool = new List<GameObject>();
 
     public Pool(GameObject prefab, Transform parent)
     {
@@ -25,7 +25,7 @@ public class Pool
 
     public void Spawn(Vector3 position, bool activate=true)
     {
-        currentGo = GiveMeAItem().transform;
+        currentGo = GiveMeAnItem().transform;
         SpawnPos(position);
         currentGo.gameObject.SetActive(activate);
         currentGo = null;
@@ -33,7 +33,7 @@ public class Pool
 
     public void Spawn(Quaternion rotation, bool activate = true)
     {
-        currentGo = GiveMeAItem().transform;
+        currentGo = GiveMeAnItem().transform;
         SpawnRot(rotation);
         currentGo.gameObject.SetActive(activate);
         currentGo = null;
@@ -41,7 +41,7 @@ public class Pool
 
     public void Spawn(Vector3 position, Quaternion rotation, bool activate = true)
     {
-        currentGo = GiveMeAItem().transform;
+        currentGo = GiveMeAnItem().transform;
         SpawnPos(position);
         SpawnRot(rotation);
         currentGo.gameObject.SetActive(activate);
@@ -50,7 +50,7 @@ public class Pool
 
     public Transform SpawnAndReturn(Vector3 position, Quaternion rotation, bool activate = true)
     {
-        currentGo = GiveMeAItem().transform;
+        currentGo = GiveMeAnItem().transform;
         SpawnPos(position);
         SpawnRot(rotation);
         Transform result = currentGo;
@@ -65,7 +65,6 @@ public class Pool
         pool.Remove(obj);
     }
 
-    [Tooltip("All setactive(false)")]
     public void ClearAll()
     {
         foreach (GameObject go in pool)
@@ -77,19 +76,19 @@ public class Pool
     private void SpawnPos(Vector3 position)
     {
         if (!currentGo)
-            currentGo = GiveMeAItem().transform;
+            currentGo = GiveMeAnItem().transform;
         currentGo.position = position;
     }
 
     private void SpawnRot(Quaternion rotation)
     {
         if (!currentGo)
-            currentGo = GiveMeAItem().transform;
+            currentGo = GiveMeAnItem().transform;
         currentGo.rotation = rotation;
 
     }
 
-    public GameObject GiveMeAItem()
+    public GameObject GiveMeAnItem()
     {
         foreach (GameObject go in pool)
         {

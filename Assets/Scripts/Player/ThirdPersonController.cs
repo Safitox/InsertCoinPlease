@@ -48,6 +48,7 @@ public class ThirdPersonController : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.player = transform;
         if (!rb) rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         Cursor.lockState = CursorLockMode.Locked;

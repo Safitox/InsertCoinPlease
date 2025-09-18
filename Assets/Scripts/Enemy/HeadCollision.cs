@@ -9,6 +9,8 @@ public class HeadCollision : MonoBehaviour
         {
             if (timer > 0)
                 return;
+            if (other.GetComponent<Rigidbody>().linearVelocity.y >= 0)
+                return;
             timer = GetComponent<EnemyController>().config.stunnedTime;
             other.GetComponentInParent<PlayerEnemyCollision>().HitArea();
             GetComponent<EnemyController>().health.Damage(1);
