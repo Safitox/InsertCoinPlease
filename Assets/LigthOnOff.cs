@@ -26,7 +26,8 @@ public class LigthOnOff : MonoBehaviour
             redLigth.enabled = !value;
         }
                 
-         
+        BlinkingLight.blinkingOn = value;
+
 
         if (greenRenderer.material.HasProperty("_EmissionColor"))
         {
