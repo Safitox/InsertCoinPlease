@@ -146,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb9a0cc29875364cbc4c7da59cbf6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToExecute: 1
+  TimeToExecute: 10
+  OneUse: 0
   doorControl: {fileID: 0}
 --- !u!1 &6606886313984979624
 GameObject:

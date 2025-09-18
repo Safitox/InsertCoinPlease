@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CableProximity : MonoBehaviour
@@ -6,7 +7,9 @@ public class CableProximity : MonoBehaviour
     [SerializeField] Transform interactionUI;
     [SerializeField] private MeshRenderer meshRendererFill;
     [SerializeField] bool ShowVisualAid = true; //Por si se quiere mantener el trigger pero no mostrar la UI
-    [SerializeField] InteractionObject interactableObject;
+    [SerializeField] float TimeToExecute = 1f;
+    [SerializeField] bool oneUse = false;
+    public Action OnInteract;
 
     bool playerInRange = false;
     Material mat;
@@ -17,9 +20,9 @@ public class CableProximity : MonoBehaviour
         get { return _interactionTime; }
         set
         {
-            _interactionTime = Mathf.Clamp(value, 0f, interactableObject.TimeToExecute);
+            _interactionTime = Mathf.Clamp(value, 0f, TimeToExecute);
             //Actualizar UI
-            mat.SetFloat("_Fill", 1f - _interactionTime / interactableObject.TimeToExecute);
+            mat.SetFloat("_Fill", 1f - _interactionTime / TimeToExecute);
         }
     }
 
@@ -78,8 +81,8 @@ public class CableProximity : MonoBehaviour
             {
                 GrabCable();
 
-                interactableObject.Interact();
-                if (interactableObject.OneUse)
+                OnInteract?.Invoke();
+                if (oneUse)
                     DestroyImmediate(gameObject);
                 else
                     Reset();
@@ -90,7 +93,7 @@ public class CableProximity : MonoBehaviour
 
     private void Reset()
     {
-        interactionTime = interactableObject.TimeToExecute;
+        interactionTime = TimeToExecute;
         interacting = false;
     }
 
