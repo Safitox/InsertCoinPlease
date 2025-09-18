@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - GrabPoint
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Interactions
   - EnemyHeadCollider
   - PlayerFeet
-  - 
+  - NoSelf
   - 
   - 
   - 

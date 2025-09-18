@@ -11,6 +11,10 @@ public class EnemyPlayerDEtection : MonoBehaviour
     public Transform CurrentTarget { get; private set; }
     float _loseTimer;
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+    }
     void Update()
     {
         HasLineOfSight = false;

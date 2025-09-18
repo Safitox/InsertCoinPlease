@@ -8,7 +8,7 @@ public class CableConnection : MonoBehaviour, ICarryable
 
     public string Identity { get; set ; } 
     public bool EnableCarry { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
+    bool ICarryable.CarryMoving { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     private void Awake()
     {

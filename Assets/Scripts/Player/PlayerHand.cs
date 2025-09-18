@@ -5,11 +5,16 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] Transform handTransform;
     [SerializeField] Transform dropPointTransform;
 
+
     public static GameObject objectInHand;
     private bool hasRB = false;
+    public  Transform oldParent;
+    ICarryable carryInHand;
+
 
     [SerializeField] float radius = 18f;
     [SerializeField] LayerMask targetLayers;
+
 
     void Update()
     {
@@ -24,6 +29,9 @@ public class PlayerHand : MonoBehaviour
                 DropObject();
             }
         }   
+        if (objectInHand == null) return;
+        if (carryInHand.CarryMoving) 
+            objectInHand.transform.position = handTransform.position;
     }
 
 
@@ -39,9 +47,12 @@ public class PlayerHand : MonoBehaviour
             {
                 if (carryable.EnableCarry)
                 {
+                    carryInHand = carryable; 
                     objectInHand = hitCollider.gameObject;
                     objectInHand.transform.position = handTransform.position;
-                    objectInHand.transform.parent = handTransform;
+                    oldParent= objectInHand.transform.parent;
+                    if (!carryable.CarryMoving) ;
+                        objectInHand.transform.parent = handTransform;
                     objectInHand.GetComponent<Collider>().enabled = false;
                     if (objectInHand.TryGetComponent<Rigidbody>(out Rigidbody rb))
                     {
@@ -79,9 +90,11 @@ public class PlayerHand : MonoBehaviour
             carryable.OnDrop();
         }
         objectInHand.GetComponent<Collider>().enabled = true;
-        objectInHand.transform.parent = null;
+        if (!carryable.CarryMoving) ;
+            objectInHand.transform.parent = oldParent;
         objectInHand.transform.position = dropPointTransform.position  ;
         objectInHand = null;
+
     }
 
     bool CheckPositoners()
@@ -105,6 +118,7 @@ public class PlayerHand : MonoBehaviour
                     objectInHand.GetComponent<Collider>().enabled = true;
                     objectInHand.transform.parent = hitCollider.transform;
                     objectInHand = null;
+
                     return true;
                 }
             }
