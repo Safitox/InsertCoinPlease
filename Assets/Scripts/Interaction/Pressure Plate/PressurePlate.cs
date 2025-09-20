@@ -8,7 +8,10 @@ public class PressurePlate : MonoBehaviour
     [Header("Visual")]
     [SerializeField] private Transform movingPart;          // Parte que baja
     [SerializeField] private Vector3 pressedYOffset = new Vector3(0f, -0.05f, 0f);
-    [SerializeField] private float moveSpeed = 6f;         
+    [SerializeField] private float moveSpeed = 6f;
+    [SerializeField] private Color plateColor = Color.red;
+    [SerializeField] private Color pressedColor = Color.green;
+
 
     [Header("Activación")]
     [SerializeField] private float requiredMass = 10f;      // Masa mínima para activar (kg)
@@ -29,6 +32,8 @@ public class PressurePlate : MonoBehaviour
     private float _lastAboveThresholdTime;
     private bool _isPressed;
     private bool _hasFiredOneShot;
+    private Material _material;
+    
 
     private void Awake()
     {
@@ -37,12 +42,15 @@ public class PressurePlate : MonoBehaviour
 
         var col = GetComponent<Collider>();
         col.isTrigger = true; 
+        _material = movingPart.GetComponent<Renderer>()?.material;
+        _material.color= plateColor;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (((1 << other.gameObject.layer) & detectableLayers) == 0) return;
         _contacts.Add(other);
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -61,11 +69,13 @@ public class PressurePlate : MonoBehaviour
             {
                 total += Mathf.Max(0f, c.attachedRigidbody.mass);
             }
-            else if (countCharacterControllersAsMass && c.TryGetComponent<ThirdPersonController>(out _))
+            if (countCharacterControllersAsMass && c.TryGetComponent<ThirdPersonController>(out _))
             {
                 total += characterMass;
+
             }
         }
+       
         return total;
     }
 
@@ -83,6 +93,7 @@ public class PressurePlate : MonoBehaviour
                 _isPressed = true;
                 if (oneShot && !_hasFiredOneShot) _hasFiredOneShot = true;
                 onPressed?.Invoke();
+                _material.color= pressedColor;
             }
         }
         else if (!oneShot)
@@ -92,6 +103,7 @@ public class PressurePlate : MonoBehaviour
             {
                 _isPressed = false;
                 onReleased?.Invoke();
+                _material.color= plateColor;
             }
         }
 
