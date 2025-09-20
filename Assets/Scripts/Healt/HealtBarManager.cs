@@ -18,7 +18,7 @@ public class HealtBarManager : MonoBehaviour
     void Start()
     {
         camera = Camera.main;
-        silderHealtBar = GetComponent<Slider>();
+        silderHealtBar = GetComponentInChildren<Slider>();
         healtManager = GetComponentInParent<HealthManager>();
     }
 
@@ -28,7 +28,7 @@ public class HealtBarManager : MonoBehaviour
         Transform cam = camera.transform;
         //Le digo que no importa donde este siempre este orientado en frente a la camara
         transform.LookAt(cam);
-        //silderHealtBar.value = healtManager.Health/100;
+        silderHealtBar.value = healtManager.Health/100f;
         //Hay que agregar un if
 
 

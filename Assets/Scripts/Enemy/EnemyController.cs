@@ -64,8 +64,9 @@ public class EnemyController : MonoBehaviour
     {
         if (!playerDetected) return false;
         return Vector3.SqrMagnitude(transform.position-playerDetected.position)  <= config.attackRange * config.attackRange;
-    }
+       
 
+    }
     public bool HasLineOfSight()
     {
         return detection.HasLineOfSight;

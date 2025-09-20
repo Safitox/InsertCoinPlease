@@ -20,6 +20,6 @@ MonoBehaviour:
   loseSightTime: 10
   attackRange: 1.6
   attackCooldown: 2
-  damage: 1
+  damage: 35
   stunnedTime: 4
   deathDelay: 5
