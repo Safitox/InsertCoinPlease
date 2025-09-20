@@ -24,7 +24,7 @@ public class Tuner : MonoBehaviour
         // elegimos un target aleatorio dentro del rango (para variar el puzzle)
         targetPitch = Random.Range(minPitch + 0.05f, maxPitch - 0.05f);
 
-        Debug.Log("Sonido a encontrar "+ targetPitch);
+        //Debug.Log("Sonido a encontrar "+ targetPitch);
 
         // configuro el slider
         if (pitchSlider != null)
@@ -78,7 +78,7 @@ public class Tuner : MonoBehaviour
         if (pitchSlider != null) pitchSlider.value = targetPitch;
         if (toneSource != null) toneSource.pitch = targetPitch;
 
-        Debug.Log("¡Correcto! Máquina reparada.");
+        //Debug.Log("¡Correcto! Máquina reparada.");
         // TODO: añadir animación / sonido de éxito / avanzar de nivel
     }
 

@@ -48,7 +48,7 @@ public class TunerWithBinaryLevers : MonoBehaviour
         float currentPitch = GetCombinedPitch();
         toneSource.pitch = currentPitch;
 
-        Debug.Log("Pitch actual generado:" + currentPitch.ToString("F2")); //F2 muestra los valores con dos decimales
+        //Debug.Log("Pitch actual generado:" + currentPitch.ToString("F2")); //F2 muestra los valores con dos decimales
 
         if (Mathf.Abs(currentPitch - targetPitch) <= tolerance)
             OnFixed();
