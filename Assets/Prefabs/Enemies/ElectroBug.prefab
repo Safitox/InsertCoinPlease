@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff8bd9b70914144c8f2c18776905d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: fb243302438bcd64f8ed72e47af3a7dd, type: 2}
+  config: {fileID: 11400000, guid: 8ed00656dadc27f4f955574bc8e367f6, type: 2}
   patrolPoints: []
   detection: {fileID: 6460669621280707642}
   health: {fileID: 1645032583418757816}

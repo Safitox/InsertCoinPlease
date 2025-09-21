@@ -13,7 +13,7 @@ public class EnemyPlayerDEtection : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameManager.Instance.player;
     }
     void Update()
     {

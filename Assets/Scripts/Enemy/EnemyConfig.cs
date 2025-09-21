@@ -16,7 +16,10 @@ public class EnemyConfig : ScriptableObject
     [Header("Combate")]
     public float attackRange = 1.6f;
     public float attackCooldown = 1.2f;
-    public int damage = 1;
+    [Min(0f)]
+    public int damage = 35;
+    [Min(0f)]
+    public float stunTimeOnHit = 0f;
 
     [Header("Daño y muerte")]
     public float stunnedTime = 1.2f;

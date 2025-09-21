@@ -33,9 +33,27 @@ public class AttackState : EnemyState
         {
             if (_cooldown <= 0f)
             {
-                // TODO: PROGRAMAR ATAQUE
-                
-                if (enemyController.animator) enemyController.animator.Play("Attack", 0, 0f);
+               
+                if (enemyController.animator) 
+                    enemyController.animator.Play("Attack", 0, 0f);
+                if (enemyController.config.stunTimeOnHit!=0f) 
+                    enemyController.playerDetected.GetComponent<ThirdPersonController>().Stun(enemyController.config.stunTimeOnHit);
+
+                //Aplico daño (ema)
+                IHeathManager playerHealth = enemyController.playerDetected.GetComponent<IHeathManager>();
+                if (playerHealth != null )
+                {
+                    if (playerHealth.Health > 0)
+                    { 
+                        Debug.Log("El daño es de:" + enemyController.config.damage);
+                        playerHealth.TakeDamege(enemyController.config.damage);
+                    }
+
+                }
+
+
+
+
                 _cooldown = enemyController.config.attackCooldown;
             }
         }

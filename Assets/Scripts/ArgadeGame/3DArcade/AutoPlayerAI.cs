@@ -16,7 +16,10 @@ public class AutoPlayerAI : MonoBehaviour
     [SerializeField] private float jumpArcHeight = 0.9f;
     [SerializeField] private float jumpDuration = 0.35f;
 
+
+
     //Referencias
+    [SerializeField] private Animator animator;
     NavMeshAgent agent => GetComponent<NavMeshAgent>();
     Transform currentTarget;
     float nextRetarget;
@@ -41,7 +44,10 @@ public class AutoPlayerAI : MonoBehaviour
             currentTarget = FindClosestEnemy();
             nextRetarget = Time.time + retargetInterval;
             if (currentTarget != null)
+            {
                 agent.SetDestination(currentTarget.position);
+                animator.Play("Run");
+            }
         }
 
         if (currentTarget == null) return;
@@ -56,7 +62,10 @@ public class AutoPlayerAI : MonoBehaviour
 
         // Salto por OffMeshLink
         if (agent.isOnOffMeshLink && !isCrossing)
+        {
+            animator.Play("Jump");
             StartCoroutine(CrossLinkSmooth(agent.currentOffMeshLinkData));
+        }
     }
 
     Transform FindClosestEnemy()
@@ -79,7 +88,7 @@ public class AutoPlayerAI : MonoBehaviour
     {
         //TODO: Hacer un ataque distinto... considerar espadas en lugar de disparos
         nextAttack = Time.time + attackCooldown;
-
+        animator.Play("Attack");
         //Intento directo al objetivo
         if (currentTarget != null)
         {
