@@ -41,10 +41,11 @@ public class ThirdPersonController : MonoBehaviour
     float yaw, pitch;
     float turnSmoothVelocity;
     Vector3 camVel;
-
+    float stunTimer = 0f;
     float inputH, inputV;
     bool jumpPressed;
     bool crouching;
+    bool stunned = false;
 
     void Start()
     {
@@ -79,51 +80,54 @@ public class ThirdPersonController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 inputDir = new Vector3(inputH, 0f, inputV).normalized;
+        if (!stunned)
+        { 
+            Vector3 inputDir = new Vector3(inputH, 0f, inputV).normalized;
 
-        Vector3 camForward = cam.transform.forward; camForward.y = 0f; camForward.Normalize();
-        Vector3 camRight = cam.transform.right; camRight.y = 0f; camRight.Normalize();
+            Vector3 camForward = cam.transform.forward; camForward.y = 0f; camForward.Normalize();
+            Vector3 camRight = cam.transform.right; camRight.y = 0f; camRight.Normalize();
 
-        Vector3 desiredVel = Vector3.zero;
-        if (inputDir.sqrMagnitude > 0.0001f)
-        {
-            Vector3 moveDir = (camForward * inputDir.z + camRight * inputDir.x).normalized;
-            desiredVel = moveDir * moveSpeed;
-            if (crouching) desiredVel *= crouchSpeedMultiplier;
-            desiredVel *= running ? runSpeedMultiplier : 1f;
-
-            float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, rotationSmoothTime);
-            player.rotation = Quaternion.Euler(0f, angle, 0f);
-            animator.SetBool("Walking", true    );
-            float dirDot = Vector3.Dot(moveDir, player.forward);
-            float moveMagnitude = dirDot * inputDir.magnitude;
-            animator.SetFloat("WalkingBlend", moveMagnitude);
-
-        }
-        else
-            animator.SetBool("Walking", false);
-
-        Vector3 currentVel = rb.linearVelocity;
-        Vector3 horizVel = new Vector3(currentVel.x, 0f, currentVel.z);
-        Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
-        rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
-        
-        if (jumpPressed)
-        {
-            if (IsGrounded())
+            Vector3 desiredVel = Vector3.zero;
+            if (inputDir.sqrMagnitude > 0.0001f)
             {
-                Vector3 v = rb.linearVelocity;
-                if (v.y < 0f) v.y = 0f;
-                rb.linearVelocity = v;
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                animator.SetTrigger("Jump");
-            }
-            jumpPressed = false;
-        }
+                Vector3 moveDir = (camForward * inputDir.z + camRight * inputDir.x).normalized;
+                desiredVel = moveDir * moveSpeed;
+                if (crouching) desiredVel *= crouchSpeedMultiplier;
+                desiredVel *= running ? runSpeedMultiplier : 1f;
 
-        //  Nuevo: chequeo de escalones
-        StepClimb();
+                float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+                float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, rotationSmoothTime);
+                player.rotation = Quaternion.Euler(0f, angle, 0f);
+                animator.SetBool("Walking", true    );
+                float dirDot = Vector3.Dot(moveDir, player.forward);
+                float moveMagnitude = dirDot * inputDir.magnitude;
+                animator.SetFloat("WalkingBlend", moveMagnitude);
+
+            }
+            else
+                animator.SetBool("Walking", false);
+
+            Vector3 currentVel = rb.linearVelocity;
+            Vector3 horizVel = new Vector3(currentVel.x, 0f, currentVel.z);
+            Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
+            rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
+        
+            if (jumpPressed)
+            {
+                if (IsGrounded())
+                {
+                    Vector3 v = rb.linearVelocity;
+                    if (v.y < 0f) v.y = 0f;
+                    rb.linearVelocity = v;
+                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    animator.SetTrigger("Jump");
+                }
+                jumpPressed = false;
+            }
+
+            //  Nuevo: chequeo de escalones
+            StepClimb();
+        }
 
         Vector3 targetOffset = new Vector3(0, cameraYOffset, -cameraDistance);
         Quaternion camRot = Quaternion.Euler(pitch, yaw, 0);
@@ -184,4 +188,24 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
+
+    public void Stun(float time)
+    {
+        stunTimer = time;
+        animator.Play("Stunned");
+        StartCoroutine(StunCoroutine());
+    }
+
+    IEnumerator StunCoroutine()
+    {
+        stunned = true;
+
+        while (stunTimer >= 0f)
+        {
+            stunTimer -= Time.deltaTime;
+            yield return Time.fixedDeltaTime;
+        }
+        animator.SetTrigger("StopShake");
+        stunned = false;
+    }
 }
