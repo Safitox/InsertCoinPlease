@@ -7512,6 +7512,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1938140247}
+    - target: {fileID: 6056743048711600253, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056743048711600253, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6593359478167691156, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.26
@@ -26168,7 +26176,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1923810963}
+  m_Mesh: {fileID: 307411219}
 --- !u!33 &1317895641
 MeshFilter:
   m_ObjectHideFlags: 10

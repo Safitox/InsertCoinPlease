@@ -1,0 +1,77 @@
+escritorio_I|Este es un escritorio muy grande. tiene muchas cosas encima de él.
+escritorio_T|Creo que estoy un poco desorientado.
+escritorio_U|No creo que sirva para abrir esta puerta.
+escritorio_D|Creo que estoy un poco desorientado.
+computadora_I|Esta computador puede que tenga información útil.
+computadora_T|No seria una buena idea tomar una computadora en mi primer dia.
+computadora_U|Tal vez pueda abrir la puerta con ella... *TAC**TAC**TAC**TAC*.... no hubo caso.
+computadora_D|No encontre nada util de momento
+cuadro_I|Este cuadro es muy feo. Pero no se lo dire al autor....
+llave_I|llave que sirve para abrir algo
+llave_T|que podria abrir con esto
+llave_U|no me sirve
+llave_D|la guardo para mas tarde
+Camara_I|camaras de seguridad de la fabrica
+Camara_T|no esta a mi alcance
+Camara_U|no esta a mi alcance
+Camara_D|no esta a mi alcance
+Puerta_I|puerta que comunica con la sala continua
+Puerta_T|esta trabada
+Puerta_U|necesito un codigo para abrirla
+Puerta_D|veo como puedo abrirla......
+Moneda_I|Es una ficha para la maquina de cafe.
+Moneda_T|Creo que me vendria bien un cafe. la guardare para mas tarde.
+Moneda_U|CAFECITO!!!!!
+Moneda_D|Cambie de opinion. La dejare para despues.
+MaquinaCafe_I|Es una expendedora de cafe. Si solo tuviera fichas....
+MaquinaCafe_T|Es muy grande. No puedo moverlo
+MaquinaCafe_U|Esta ficha me sirve para esta maquina. Que pedire?
+MaquinaCafe_D|La usare mas tarde
+teclado_I|Este es el panel que controla la puerta. Parece que intentaron arrancarlo de la pared...
+teclado_U|Por mas que empuje la puerta no se mueve ni un centimetro
+nota_I|Tiene muchos datos anotados
+nota_T|No entiendo lo que esta escrito
+nota_U|No se para que me serviria
+nota_D|No la necesito por el momento
+cajonera_I|Es una cajonera. Posiblemente tenga algo dentro. Deberia mirar?
+cajonera_T|No creo que pueda llevarme la cajonera. Sería incómodo.
+cajonera_U|Revisare dentro... *reviso*** algo dorado acaba de caer. parece una moneda.
+cajonera_D|No hay mas nada dentro
+cajonera_A|No parece que se abra con botones o palancas...
+silla_I|Silla clasica de oficina
+silla_T|Es muy pesada
+silla_U|Es muy comoda
+silla_D|Me voy a parar
+planta_I|Es una planta... no parece que la cuiden mucho.
+planta_T|no puedo llevarla.
+planta_U|tal vez haya algo en la maceta... *revisando*... no, no hay nada interesante...
+planta_D|mas tarde la regare.
+moneda_escritorio_C|No puedo usarla aqui.
+moneda_computadora_C|No puedo usarla aqui.
+moneda_cajonera_C|No puedo usarla aqui.
+moneda_panelPuerta_C|No puedo usarla aqui.
+robot_I|Este es un robot de la empresa. Parece que esta dañado...
+robotFrase1|Protagonista: ¿Qué está sucediendo?
+robotFrase2|rob1¬Sé han apoderado de la fábrica.
+robotFrase3|Protagonista: ¿Quién ha hablado?
+robotFrase4|rob1¬YO!!!!
+robotFrase5|Protagonista: ¿Qué te ha pasado?¿Quién sos?¿Por qué estás sin piernas?
+robotFrase6|rob1¬Espera un poco.Ahora te explico.
+robotFrase7|rob1¬La IA de la fábrica tomó el control de toda la instalación y quiere destruirla.
+robotFrase8|rob1¬La única forma de detenerla es encontrando mis piernas. Quedaron atrapadas detrás de la puerta del taller.
+robotFrase9|rob1¬Si las traes podrá repararme y ayudarte a salir de aquí.
+robotFrase10|Protagonista: Pero...¿cómo lo hago?
+robotFrase11|rob1¬No es tan sencillo. Necesitas resolver los acertijos y puzzles que la IA a colocado en cada sector de la fábrica.
+robotFrase12|Protagonista: De acuerdo. Te ayudaré.
+ItemMoneda|Una Moneda
+ItemMatafuegos|Un Matafuegos clase ABC
+NoTake|No puedo llevarme esto.
+NoCombine|A simple vista, no tengo nada que combine con esto.
+NoObserve|Nada interesante
+NoActivate|No se que hacer con esto
+maindoorA|La puerta se ha cerrado! No puedo abrirla!
+maindoorCM|La puerta no parece abrir con fichas...
+spibotlocked|sb1¬Mi sensor detecta un obstáculo en la ruta.
+spibotunlock|sb1¬Ruta despejada. Reanudando objetivo.
+tab1Obs|Un tablero eléctrico. Parece que uno de los cables fue arrancado.
+tab1Tak|No puedo arrancar el tablero de la columna.
