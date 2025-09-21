@@ -4,6 +4,10 @@ public class HealthManager : MonoBehaviour, IHeathManager
 {
 
     [SerializeField] int health = 100;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip hitClip;
+
+
     public int Health { get { return health;} 
                         set { health = value; } }
 
@@ -22,6 +26,9 @@ public class HealthManager : MonoBehaviour, IHeathManager
         health -= damage;
         float healthPercent = health / 100;
         Debug.Log(transform.name + " recibió daño. Vida actual: " + health);
+        if (audioSource != null && hitClip != null)
+            audioSource.PlayOneShot(hitClip);
+
         if (health <= 0)
         {
             Death();
