@@ -7,7 +7,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Camera cam;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 5f;
