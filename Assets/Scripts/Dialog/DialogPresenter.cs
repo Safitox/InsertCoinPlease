@@ -19,7 +19,7 @@ public class DialogPresenter : MonoBehaviour
 
     public void Init() {
         manager =ServiceLocator.Instance.GetService<DialogManager>();
-        manager.Init();
+        //manager.Init();
     }
 
     public string GetDialog(string key) {

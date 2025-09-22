@@ -30,12 +30,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8617822107036656775}
+  m_Father: {fileID: 8617822108297111030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -368, y: -217}
-  m_SizeDelta: {x: 71.393, y: 73.9937}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 41.00006, y: 29}
+  m_SizeDelta: {x: 73.6066, y: 73.9937}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1407710005180393373
 CanvasRenderer:
@@ -107,7 +107,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8617822108297111030}
-  - {fileID: 4506241192537032085}
   m_Father: {fileID: 8617822107848788318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -212,8 +211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 290.93073, y: 0}
+  m_SizeDelta: {x: 450.9308, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &8617822107261631281
 CanvasRenderer:
@@ -243,7 +242,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Siguiente
+  m_text: 'Presiona espacio para continuar...
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -348,8 +349,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 40.613586, y: 0}
+  m_SizeDelta: {x: 1459.3918, y: 384.3511}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8617822107751724764
 CanvasRenderer:
@@ -444,7 +445,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -791.24, y: -224.97903, z: -855.5556, w: 25.71187}
+  m_margin: {x: 15.338743, y: -4.3761296, z: 5.8827515, w: 104.990974}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -495,10 +496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f2c2a75cd469c4383f46e2023a79d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnNextDialog: {fileID: 0}
-  dialogPanel: {fileID: 0}
-  textDialogPanel: {fileID: 0}
-  avatarFrame: {fileID: 0}
+  btnNextDialog: {fileID: 8617822108615009228}
+  dialogPanel: {fileID: 8617822108297110793}
+  textDialogPanel: {fileID: 8617822107751724767}
+  avatarFrame: {fileID: 6946069993864273903}
 --- !u!1 &8617822108297110793
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +532,7 @@ RectTransform:
   m_Children:
   - {fileID: 8617822107751724765}
   - {fileID: 8617822108615009217}
+  - {fileID: 4506241192537032085}
   m_Father: {fileID: 8617822107036656775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -553,7 +555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8617822108297110793}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -612,8 +614,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 102.81}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 147.8254, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &8617822108615009231
 CanvasRenderer:
@@ -630,7 +632,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8617822108615009216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -696,4 +698,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8617822108615009230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8617822107848788304}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using TMPro; // importo la libreria de TextMeshPro
 using System;
 
 public class DialogManager : Singleton<DialogManager>
@@ -13,10 +10,12 @@ public class DialogManager : Singleton<DialogManager>
     //string oracionActiva;
 
     // Start is called before the first frame update
-    public void Init()
+    
+    public void Start()
     {
         listaDialogos = new Dictionary<string, string>();
         listaDialogos = ObtenerDialogos();
+        Debug.Log("Dialogos cargados: " + listaDialogos.Count);
     }
 
     public Dictionary<string, string> ObtenerDialogos()
@@ -49,6 +48,7 @@ public class DialogManager : Singleton<DialogManager>
 
         if (listaDialogos.ContainsKey(key))
         {
+            Debug.Log("Dialogo encontrado: " + key + " - " + listaDialogos[key]);
             return listaDialogos[key];
         }
         else
