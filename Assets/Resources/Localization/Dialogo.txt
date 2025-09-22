@@ -1,3 +1,3 @@
-dialog1|Sophia¬Hola che¬dialog2
-dialog2|Sophia¬Ahora te explico.
-dialog3|Sophia¬chau.
+dialog1|Sophia¬0¬Hola che¬dialog2
+dialog2|Sophia¬0¬Ahora te explico.
+dialog3|Sophia¬0¬chau.
