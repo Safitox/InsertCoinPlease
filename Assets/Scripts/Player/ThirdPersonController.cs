@@ -9,6 +9,20 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     public Animator animator;
 
+    [Header("Sonidos")]
+    [SerializeField] AudioSource audioSource; 
+    [SerializeField] AudioClip stunClip;
+    [SerializeField] AudioClip stepClip;
+    [SerializeField] AudioClip jumpClip;
+
+    [SerializeField] float stepInterval = 0.5f;
+    [SerializeField] float runPitch = 1.4f;
+    [SerializeField] float walkPitch = 1f;
+
+    float stepTimer;
+
+
+
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float accel = 20f;
@@ -121,12 +135,45 @@ public class ThirdPersonController : MonoBehaviour
                     rb.linearVelocity = v;
                     rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                     animator.SetTrigger("Jump");
+
+                    if (audioSource != null && jumpClip != null) //evito error de nullpointer
+                    audioSource.PlayOneShot(jumpClip);
+
                 }
                 jumpPressed = false;
             }
 
             //  Nuevo: chequeo de escalones
             StepClimb();
+
+            // Agrego logica para el sonido de los pasos
+            bool isMoving = inputH != 0 || inputV != 0;
+
+            if (isMoving && IsGrounded())
+            {
+                stepTimer -= Time.deltaTime;
+                if (stepTimer <= 0f)
+                {
+                    audioSource.pitch = running ? runPitch : walkPitch;
+                    audioSource.PlayOneShot(stepClip);
+                    // Ajusto el intervalo para que los pasos suenen más seguidos
+                    if (running)
+                    {
+                        stepTimer = stepInterval * 0.7f;
+                    }
+                    else
+                    {
+                        stepTimer = stepInterval;
+                    }
+
+
+                }
+            }
+            else
+            {
+                stepTimer = 0f; // Reinicia si no se mueve
+            }
+
         }
 
         Vector3 targetOffset = new Vector3(0, cameraYOffset, -cameraDistance);
@@ -193,6 +240,11 @@ public class ThirdPersonController : MonoBehaviour
     {
         stunTimer = time;
         animator.Play("Stunned");
+
+        if(audioSource!=null && stunClip != null) 
+            audioSource.PlayOneShot(stunClip);
+          
+
         StartCoroutine(StunCoroutine());
     }
 
