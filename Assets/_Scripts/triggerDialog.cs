@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class triggerDialog : MonoBehaviour
 {
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -12,12 +13,18 @@ public class triggerDialog : MonoBehaviour
                 dialogView.DisplayMessage("dialog1");
                 // Optionally, disable the collider to prevent retriggering
                 // GetComponent<Collider>().enabled = false;
+                dialogView.OnEndDialog += ExecuteAction;
             }
             else
             {
                 Debug.LogWarning("DialogView service not found.");
             }
-            Destroy(gameObject); // Destroy the trigger object after activation
         }
+    }
+
+    void ExecuteAction()
+    {
+        GameManager.Instance.player.GetComponent<ThirdPersonController>().jumpEnabled = true;
+        Destroy(gameObject); // Destroy the trigger object after activation
     }
 }

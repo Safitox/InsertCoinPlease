@@ -434,14 +434,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2052502998717224932, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
-      propertyPath: hitClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 70cc28ead6644bf40acce92c393bcd01, type: 3}
-    - target: {fileID: 2052502998717224932, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 846826210}
     - target: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1341,11 +1333,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!82 &846826210 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8768988559770135166, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
-  m_PrefabInstance: {fileID: 403118828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &862454356
 GameObject:
   m_ObjectHideFlags: 0

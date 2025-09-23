@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class DialogView : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DialogView : MonoBehaviour
     public GameObject dialogPanel;
     public TextMeshProUGUI textDialogPanel;
     public Image avatarFrame;
+    public Action OnEndDialog;
     ResourceLoader RL;
 
     string nextDialogKey;
@@ -80,6 +82,7 @@ public class DialogView : MonoBehaviour
         }
         else
         {
+            OnEndDialog?.Invoke();
             setActivePanel(false);
         }
     }
