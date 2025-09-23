@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Collections;
 
 public class DialogView : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DialogView : MonoBehaviour
     public TextMeshProUGUI textDialogPanel;
     public Image avatarFrame;
     public Action OnEndDialog;
+    [SerializeField] private TextMeshProUGUI txtNext;
     ResourceLoader RL;
 
     string nextDialogKey;
@@ -19,6 +21,11 @@ public class DialogView : MonoBehaviour
         ServiceLocator.Instance.RegisterService( this);
         RL = ServiceLocator.Instance.GetService<ResourceLoader>();
         setActivePanel(false);
+    }
+
+    private void Start()
+    {
+        txtNext.text = DialogManager.Instance.GetDialog("txtPresTabNext");
     }
 
     private void LateUpdate()
@@ -60,6 +67,7 @@ public class DialogView : MonoBehaviour
             string avatarIndex = "av/" + strings[0];
             dialogLineTime= float.TryParse(strings[1], out float t) ? t : 0f;
             textDialogPanel.text = strings[2];
+            //StartCoroutine (TypeText(strings[2]));
             nextDialogKey= strings.Length >3? strings[3] : "";
             //Debug.Log("siguiente clave: " + nextDialogKey); 
             avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
@@ -92,6 +100,17 @@ public class DialogView : MonoBehaviour
         CancelInvoke();
     }
 
+
+    IEnumerator TypeText(string message)
+    {
+        textDialogPanel.text = "";
+        foreach (char letter in message.ToCharArray())
+        {
+            textDialogPanel.text += letter;
+            yield return new WaitForSeconds(0.2f);
+
+        }
+    }
 
 
 }
