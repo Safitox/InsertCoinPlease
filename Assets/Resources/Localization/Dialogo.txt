@@ -1,3 +1,18 @@
-dialog1|Sophia¬Hola che¬dialog2
-dialog2|Sophia¬Ahora te explico.
-dialog3|Sophia¬chau.
+dialog1|Sophia¬0¬¡Ah, por fin! Qué alivio… has vuelto en ti. ¬dialog2
+dialog2|Player¬0¬(El protagonista se queda quieto, ladea la cabeza, como intentando comprender. Un signo de pregunta aparece sobre él)¬dialog3
+dialog3|Sophia¬0¬¿Cómo te sientes? Ah, estaba tan preocupada… Bueno, no hace falta que respondas, puedo notar que estás confundido.¬dialog4
+dialog4|Player¬0¬(El protagonista se frota la frente, como aturdido. Da un paso hacia atrás, expectante.)  ¬dialog5
+dialog5|Sophia¬0¬Déjame presentarme. Soy Sophia, la OS principal de este lugar. Este lugar en el que estás… son mis placas, mi reino. Nos encontramos en el arcade "Double Trouble Adventure - 10 in 1"  ¬dialog6
+dialog6|Player¬0¬(El protagonista levanta la vista con extrañeza.) ¬dialog7
+dialog7|Sophia¬0¬Eres un programa antivirus. Un agente especial creado para mantener la seguridad aquí. Podría decirse que eres el superconserje del sistema: poderoso, eficiente… indispensable. ¬dialog8
+dialog8|Player¬0¬(El protagonista parpadea, como si tratara de recordar. Su cuerpo emite un breve destello.)  ¬dialog9
+dialog9|Sophia¬0¬Escucha con atención. El sistema ha sido atacado por un virus muy fuerte. Se ha extendido por todo el arcade y ha corrompido a los NPC, a los personajes jugables… a casi todos. Se comportan de forma errática, dañina. Estan bugueados.  ¬dialog10
+dialog10|Player¬0¬(El protagonista aprieta los puños, indignado. Aparece un signo de exclamación sobre su cabeza.)  ¬dialog11
+dialog11|Sophia¬0¬Ese virus me esta buscando. Limitó mi acceso y me reemplazó. Desde mi escondite, solo he conseguido comunicarme con algunos sobrevivientes… y contigo. ¬dialog12
+dialog12|Player¬0¬(El protagonista se lleva la mano al pecho, sorprendido.)  ¬dialog13
+dialog13|Sophia¬0¬Afortunadamente escuchaste mi llamado! Por eso, debo encomendarte una misión: destruir al virus y liberarme, para que pueda restaurar el arcade. Eres el más idoneo de todos nosotros para hacerlo! El antivirus! ¬dialog14
+dialog14|Player¬0¬(El protagonista asiente con decisión. Sus ojos brillan un instante.)  ¬dialog15
+dialog15|Sophia¬0¬He logrado recuperar el control de algunos protocolos. Gracias a eso puedo devolverte una habilidad básica: tu salto. ¬dialog16
+dialog16|Player¬0¬(Una luz recorre el cuerpo del protagonista. Sus piernas brillan, y se activa una animación de salto breve. El personaje hace un pequeño brinco, sorprendido y contento.)  ¬dialog17
+dialog17|Sophia¬0¬Bien. Es solo el comienzo, pero juntos podremos avanzar. Te guiaré en lo que pueda… confío en ti.  ¬dialog18
+dialog18|Sophia¬0¬Bueno, observa bien el entorno. Debería haber un interruptor por defecto en esa habitación en la que te encuentras. Púlsalo y podrás salir de aquí. ¡Ten cuidado!

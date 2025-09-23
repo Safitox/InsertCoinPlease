@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
     {
         ServiceLocator.Instance.RegisterService (new ResourceLoader());
     }
+
+
     public void LoseLife()
     {
         lives--;

@@ -28,6 +28,7 @@ public class DialogManager : Singleton<DialogManager>
             string[] lineas = file.text.Split('\n'); // esta funcion toma las lineas de un archivo y las carga en un array
             foreach (var linea in lineas)
             { // recorro el array
+                if (string.IsNullOrWhiteSpace(linea)) continue; // si la linea esta vacia, paso a la siguiente
                 var valor = linea.Split('|'); //separo los valores y los coloco en un array para consultarlos por separado
                 diccionario.Add(valor[0], valor[1]); // cargo en el diccionario
             }
@@ -46,15 +47,15 @@ public class DialogManager : Singleton<DialogManager>
             listaDialogos = ObtenerDialogos();
         }
 
-        if (listaDialogos.ContainsKey(key))
+        if (listaDialogos.TryGetValue(key, out string d))
         {
-            Debug.Log("Dialogo encontrado: " + key + " - " + listaDialogos[key]);
-            return listaDialogos[key];
+            //Debug.Log("Dialogo encontrado: " + key + " - " + listaDialogos[key]);
+            return d;
         }
         else
         {
-            return "";
-            //throw new Exception("Atencion: la clave " + key + "no se encuentra dentro del Archivo");
+            //return "";
+            throw new Exception("Atencion: la clave " + key + "no se encuentra dentro del Archivo");
         }
     }
 }
