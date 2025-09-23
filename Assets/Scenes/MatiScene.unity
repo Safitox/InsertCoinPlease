@@ -7725,7 +7725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6593359478167691156, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.89
+      value: -32.8
       objectReference: {fileID: 0}
     - target: {fileID: 6593359478167691156, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7755,6 +7755,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8008989579453029531, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2723465983169131956, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
     m_RemovedGameObjects: []
@@ -7767,6 +7771,11 @@ PrefabInstance:
 --- !u!54 &333820168 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6193100028819989505, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+  m_PrefabInstance: {fileID: 333820167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &333820169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
   m_PrefabInstance: {fileID: 333820167}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &335888825
@@ -25639,7 +25648,7 @@ GameObject:
   - component: {fileID: 1615954616}
   - component: {fileID: 1615954620}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: TriggerDialogue1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25746,6 +25755,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650a12acb94e7ff4d943c7fe334d3565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialDialogKey: dialog1
+  destroyOnEnd: 1
+  useTriggerCollider: 1
+  OnStartDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndDialogue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 333820169}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!43 &1617581496
 Mesh:
   m_ObjectHideFlags: 0

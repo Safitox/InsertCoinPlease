@@ -47,7 +47,7 @@ public class DialogManager : Singleton<DialogManager>
             listaDialogos = ObtenerDialogos();
         }
 
-        if (listaDialogos.TryGetValue(key, out string d))
+        if (listaDialogos.TryGetValue(key.Trim(), out string d))
         {
             //Debug.Log("Dialogo encontrado: " + key + " - " + listaDialogos[key]);
             return d;

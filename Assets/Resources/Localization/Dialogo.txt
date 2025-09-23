@@ -1,5 +1,5 @@
 dialog1|Sophia¬0¬¡Ah, por fin! Qué alivio… has vuelto en ti. ¬dialog2
-dialog2|Player¬0¬(El protagonista se queda quieto, ladea la cabeza, como intentando comprender. Un signo de pregunta aparece sobre él)¬dialog3
+dialog2|Player¬0¬(El protagonista se queda quieto, ladea la cabeza, como intentando comprender. Un signo de pregunta aparece sobre el)¬dialog3
 dialog3|Sophia¬0¬¿Cómo te sientes? Ah, estaba tan preocupada… Bueno, no hace falta que respondas, puedo notar que estás confundido.¬dialog4
 dialog4|Player¬0¬(El protagonista se frota la frente, como aturdido. Da un paso hacia atrás, expectante.)  ¬dialog5
 dialog5|Sophia¬0¬Déjame presentarme. Soy Sophia, la OS principal de este lugar. Este lugar en el que estás… son mis placas, mi reino. Nos encontramos en el arcade "Double Trouble Adventure - 10 in 1"  ¬dialog6

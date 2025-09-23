@@ -61,10 +61,10 @@ public class DialogView : MonoBehaviour
             dialogLineTime= float.TryParse(strings[1], out float t) ? t : 0f;
             textDialogPanel.text = strings[2];
             nextDialogKey= strings.Length >3? strings[3] : "";
-           
+            //Debug.Log("siguiente clave: " + nextDialogKey); 
             avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
 
-            //Si es diálogo automático, avanza solo
+            //Si es diálogo automático, avanza solo a la siguiente lìnea despuès de un tiempo
             if (  dialogLineTime > 0f)
                 Invoke("NextLine",dialogLineTime);
         }
@@ -78,7 +78,7 @@ public class DialogView : MonoBehaviour
         {
 
             DisplayMessage(nextDialogKey);
-            nextDialogKey = "";
+            //nextDialogKey = "";
         }
         else
         {
