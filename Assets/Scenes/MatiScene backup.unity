@@ -7779,10 +7779,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 733663770}
   - {fileID: 732437755}
   - {fileID: 1758113621}
   - {fileID: 1156250289}
+  - {fileID: 733663770}
   - {fileID: 987652524}
   - {fileID: 1317895639}
   - {fileID: 2029270749}
@@ -29230,6 +29230,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650a12acb94e7ff4d943c7fe334d3565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialDialogKey: 
+  destroyOnEnd: 1
+  useTriggerCollider: 1
+  OnStartDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndDialogue:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1617689280
 PrefabInstance:
   m_ObjectHideFlags: 0
