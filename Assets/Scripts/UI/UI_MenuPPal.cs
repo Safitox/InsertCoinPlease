@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class UI_MenuPPal : MonoBehaviour
 {
     private void Start()
