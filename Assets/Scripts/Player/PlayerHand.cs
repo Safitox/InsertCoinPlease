@@ -113,7 +113,7 @@ public class PlayerHand : MonoBehaviour
                     objectInHand.transform.position = proximityPositioner.target.position;
                     objectInHand.transform.rotation = proximityPositioner.target.rotation;
                     proximityPositioner.used = true;
-                    Destroy(objectInHand.GetComponent<Rigidbody>());
+                    //Destroy(objectInHand.GetComponent<Rigidbody>());
                     objectInHand.GetComponent<ICarryable>().EnableCarry = false;
                     objectInHand.GetComponent<Collider>().enabled = true;
                     objectInHand.transform.parent = hitCollider.transform;
