@@ -39,7 +39,7 @@ public class UI_GamePause : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
 }
