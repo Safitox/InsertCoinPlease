@@ -103,6 +103,7 @@ MonoBehaviour:
   rotationSmoothTime: 0.1
   runSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.5
+  jumpEnabled: 1
   mouseSensitivity: 200
   cameraDistance: 5
   cameraYOffset: 1.06
@@ -201,7 +202,7 @@ AudioSource:
   m_GameObject: {fileID: 2828934598537730114}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3585042146666070150, guid: 66f39a4418fbb3844a128a1e0cd9d35e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

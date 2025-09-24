@@ -1,3 +1,4 @@
+txtPresTabNext|Presione TAB para continuar...
 dialog1|Sophia¬0¬¡Ah, por fin! Qué alivio… has vuelto en ti. ¬dialog2
 dialog2|Player¬0¬(El protagonista se queda quieto, ladea la cabeza, como intentando comprender. Un signo de pregunta aparece sobre el)¬dialog3
 dialog3|Sophia¬0¬¿Cómo te sientes? Ah, estaba tan preocupada… Bueno, no hace falta que respondas, puedo notar que estás confundido.¬dialog4
@@ -16,3 +17,15 @@ dialog15|Sophia¬0¬He logrado recuperar el control de algunos protocolos. Graci
 dialog16|Player¬0¬(Una luz recorre el cuerpo del protagonista. Sus piernas brillan, y se activa una animación de salto breve. El personaje hace un pequeño brinco, sorprendido y contento.)  ¬dialog17
 dialog17|Sophia¬0¬Bien. Es solo el comienzo, pero juntos podremos avanzar. Te guiaré en lo que pueda… confío en ti.  ¬dialog18
 dialog18|Sophia¬0¬Bueno, observa bien el entorno. Debería haber un interruptor por defecto en esa habitación en la que te encuentras. Púlsalo y podrás salir de aquí. ¡Ten cuidado!
+
+dialog100|Sophia¬0¬Aguarda!!!¬dialog101
+dialog101|Player¬0¬!¬dialog102
+dialog102|Sophia¬0¬¿Te sorprendí? Je je… Lo siento. Te instalé una actualización remota cuando nos vimos la primera vez. Ahora puedes escucharme en tu cabeza. Claro, mis permisos siguen limitados por el virus, pero siempre que haya una antena de transmisión cerca, podremos comunicarnos.¬dialog103
+dialog103|Sophia¬0¬Bastante práctico, ¿no crees?¬dialog104
+dialog104|Sophia¬0¬Bien, necesito que tengas cuidado. ¿Ves esa criatura? Es uno de los arcadian, como lo somos nosotros, un bloque de código esencial para el funcionamiento de nuestro mundo. El virus lo corrompió y ahora está bugueado.¬dialog105
+dialog105|Sophia¬0¬No debes destruirlo: sus vidas son tan valiosas como la mia y la tuya. Cuando recupere el control del sistema, todo volverá a la normalidad. Mientras tanto, si se interponen en tu camino, puedes aturdirlos.¬dialog106
+dialog106|Sophia¬0¬Este arcadian parece haberse quedado dormido sobre el interruptor de la puerta. No podrás pasar a menos que lo aturdas.¬dialog107
+dialog107|Sophia¬0¬Usa tu salto para provocarles un stutter en el código y dejarlos fuera de combate por un momento. ¡Vamos, prueba saltar sobre su cabeza!
+
+
+
