@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class UI_MenuPPal : MonoBehaviour
 {
     private void Start()
@@ -9,7 +10,9 @@ public class UI_MenuPPal : MonoBehaviour
 
     public void StartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MatiScene");
+        GameManager.Instance.StartNewGame();
+
+        SceneManager.LoadScene("MatiScene");
     }
 
     public void QuitGame()
