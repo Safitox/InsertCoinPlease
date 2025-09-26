@@ -7,7 +7,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Camera cam;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     [Header("Sonidos")]
     [SerializeField] AudioSource audioSource; 
@@ -29,6 +29,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float rotationSmoothTime = 0.1f;
     [SerializeField] private float runSpeedMultiplier = 1.5f;
     [SerializeField] private float crouchSpeedMultiplier = 0.5f;
+    public bool jumpEnabled = true;
 
     bool running = false;
 
@@ -126,7 +127,7 @@ public class ThirdPersonController : MonoBehaviour
             Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
             rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
         
-            if (jumpPressed)
+            if (jumpPressed && jumpEnabled)
             {
                 if (IsGrounded())
                 {
