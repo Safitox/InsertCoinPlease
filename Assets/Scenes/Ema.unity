@@ -11844,11 +11844,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df21ed5728d85c49b4fb514dc68b459, type: 3}
---- !u!82 &846826210 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8768988559770135166, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
-  m_PrefabInstance: {fileID: 403118828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &879349243
 GameObject:
   m_ObjectHideFlags: 0
