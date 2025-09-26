@@ -7,7 +7,7 @@ public class HealtBarManager : MonoBehaviour
    
     Slider silderHealtBar;
     
-    Camera _camera;
+    Camera camera;
 
     HealthManager healtManager;
 
@@ -17,7 +17,7 @@ public class HealtBarManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _camera = Camera.main;
+        camera = Camera.main;
         silderHealtBar = GetComponentInChildren<Slider>();
         healtManager = GetComponentInParent<HealthManager>();
     }
@@ -25,7 +25,7 @@ public class HealtBarManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Transform cam = _camera.transform;
+        Transform cam = camera.transform;
         //Le digo que no importa donde este siempre este orientado en frente a la camara
         transform.LookAt(cam);
         silderHealtBar.value = healtManager.Health/100f;

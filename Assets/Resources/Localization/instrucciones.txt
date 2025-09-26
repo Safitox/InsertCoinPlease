@@ -1,7 +1,0 @@
-key|avatar¬temporizado¬texto de diálogo¬siguiente key
-
-
-Key = Clave	única de la línea de diálogo
-Avatar = Referencia al archivo portrait del que habla. Debe estar ubicado en la carpeta Resources/av
-Temporizado = Si es mayor a 0, el diálogo se cierra automáticamente tras ese número de segundos, no se muestra el botón de "siguiente" y no se pausa el juego
-Siguiente key =	Clave de la siguiente línea de diálogo. Si está vacío, se cierra el diálogo al terminar esta línea.

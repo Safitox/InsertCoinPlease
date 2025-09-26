@@ -21,6 +21,6 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 5
   damage: 0
-  stunTimeOnHit: 2.2
+  stunTimeOnHit: 4
   stunnedTime: 4
   deathDelay: 5
