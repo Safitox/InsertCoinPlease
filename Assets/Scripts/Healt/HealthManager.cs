@@ -16,10 +16,8 @@ public class HealthManager : MonoBehaviour, IHeathManager
     public void Death()
     {
         //animación de muerte
-        string deatghAnim = "Death" + Random.Range(1,4);
-        GetComponent<ThirdPersonController>().animator.Play(deatghAnim);
+
         //destroy va a destrui todo, y va a esperar 5 segundos
-        GameManager.Instance.LoseLife();
         Destroy(gameObject, 5);
     }
 
