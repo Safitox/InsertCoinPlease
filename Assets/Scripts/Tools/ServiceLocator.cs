@@ -18,7 +18,9 @@ public class ServiceLocator
     {
         var type = typeof(T);
         if (!_services.ContainsKey(type))
+        {
             _services.Add(type, service);
+        }
         else
             Debug.Log("Intentando registrar una clase ya registrada");
     }
@@ -32,6 +34,9 @@ public class ServiceLocator
         return (T)service;
     }
 
-
+    public void Clear()
+    {
+        _services.Clear();
+    }
 
 }

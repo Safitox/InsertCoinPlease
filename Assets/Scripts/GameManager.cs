@@ -8,13 +8,14 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        ServiceLocator.Instance.RegisterService (new ResourceLoader());
         DontDestroyOnLoad(this.gameObject);
     }
 
 
     public void StartNewGame()
     {
+        ServiceLocator.Instance.Clear();
+        ServiceLocator.Instance.RegisterService (new ResourceLoader());
         lastCheckpoint = Vector3.zero;
     }
 
