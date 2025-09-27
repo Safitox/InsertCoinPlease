@@ -6,8 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/AutoArcade.unity
     guid: 99c9720ab356a0642a771bea13969a05
+=======
+    path: Assets/Scenes/Loader.unity
+    guid: 73cf186ef13d3a5418c76b4da7a9d461
+  - enabled: 1
+    path: Assets/Scenes/MenuV2.unity
+    guid: 8690a47a273e9d24b8b0d9322de90aee
+  - enabled: 1
+    path: Assets/Scenes/MatiScene.unity
+    guid: 0cb846627f89f69449c7673a4b6a200c
+  - enabled: 1
+    path: Assets/Scenes/Ema.unity
+    guid: af9578ec53f19bf43b5dd05fae7df295
+  - enabled: 1
+    path: Assets/Scenes/Derrota.unity
+    guid: 46e22adf518fc1e4a941716cf91ab48a
+  - enabled: 1
+    path: Assets/Scenes/Victoria.unity
+    guid: 3e561aa6c8635d143966ecd211a6af77
+>>>>>>> main
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
