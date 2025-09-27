@@ -7658,7 +7658,7 @@ PrefabInstance:
       objectReference: {fileID: 1938140247}
     - target: {fileID: 3157274671305783846, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: jumpEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6056743048711600253, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7726,11 +7726,17 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6193100028819989505, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
   m_PrefabInstance: {fileID: 333820167}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &333820169 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+--- !u!114 &333820170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3157274671305783846, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
   m_PrefabInstance: {fileID: 333820167}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6243a775d6bccc0418345738e12592f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &335888825
 GameObject:
   m_ObjectHideFlags: 0
@@ -18916,7 +18922,7 @@ GameObject:
   - component: {fileID: 1170948810}
   - component: {fileID: 1170948809}
   m_Layer: 0
-  m_Name: TriggerDialogue1 (1)
+  m_Name: TriggerDialogue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18963,19 +18969,7 @@ MonoBehaviour:
       m_Calls: []
   OnEndDialogue:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 333820169}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!23 &1170948811
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19038,7 +19032,7 @@ Transform:
   m_GameObject: {fileID: 1170948808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.94, y: 0.27, z: -0.55}
+  m_LocalPosition: {x: 49.94, y: 0.27, z: 6.68}
   m_LocalScale: {x: 3.9522, y: 3.9522, z: 3.9522}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24703,8 +24697,8 @@ GameObject:
   - component: {fileID: 1615954619}
   - component: {fileID: 1615954618}
   - component: {fileID: 1615954617}
-  - component: {fileID: 1615954616}
   - component: {fileID: 1615954620}
+  - component: {fileID: 1615954616}
   m_Layer: 0
   m_Name: TriggerDialogue1
   m_TagString: Untagged
@@ -24822,18 +24816,18 @@ MonoBehaviour:
   OnEndDialogue:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 333820169}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 333820170}
+        m_TargetAssemblyTypeName: ThirdPersonController, Assembly-CSharp
+        m_MethodName: ChangeJumpStatus
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1623220740 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5575541085881940516, guid: d2cbc5d3a04095e479138791d2ae83b2, type: 3}

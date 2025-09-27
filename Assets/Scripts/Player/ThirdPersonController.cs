@@ -29,7 +29,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float rotationSmoothTime = 0.1f;
     [SerializeField] private float runSpeedMultiplier = 1.5f;
     [SerializeField] private float crouchSpeedMultiplier = 0.5f;
-    public bool jumpEnabled = true;
+    public bool jumpEnabled;
 
     bool running = false;
 
@@ -260,5 +260,10 @@ public class ThirdPersonController : MonoBehaviour
         }
         animator.SetTrigger("StopShake");
         stunned = false;
+    }
+
+    public void ChangeJumpStatus(bool status)
+    {
+        jumpEnabled = status;
     }
 }
