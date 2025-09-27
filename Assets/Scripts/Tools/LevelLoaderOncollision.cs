@@ -7,7 +7,7 @@ public class LevelLoaderOncollision : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Victoria",LoadSceneMode.Additive);
+            SceneManager.LoadScene("Victoria");
          }
     }
 
