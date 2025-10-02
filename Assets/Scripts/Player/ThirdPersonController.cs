@@ -81,8 +81,9 @@ public class ThirdPersonController : MonoBehaviour
             animator.SetBool("Crouch", false);
         running = Input.GetKey(KeyCode.LeftShift) && !crouching;
         animator.SetBool("Running", running);
-        if (Input.GetButtonDown("Jump"))
-            jumpPressed = true;
+        if (jumpEnabled)
+            if (Input.GetButtonDown("Jump"))
+                jumpPressed = true;
 
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
