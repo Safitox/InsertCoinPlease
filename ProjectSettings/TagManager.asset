@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - GrabPoint
+  - Music
   layers:
   - Default
   - TransparentFX

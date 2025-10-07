@@ -7,7 +7,7 @@ public class CableGrab : MonoBehaviour, ICarryable
 
     [SerializeField] private GameObject currentGrabPoint;
     private FixedJoint joint;
-    [SerializeField] private bool isHolding = false;
+    //[SerializeField] private bool isHolding = false;
     [SerializeField] private float interactRange = 2f;
 
     private Transform player;

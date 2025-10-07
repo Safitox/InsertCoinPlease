@@ -40,6 +40,7 @@ public class TriggerDialog : MonoBehaviour
     void ExecuteEndAction()
     {
         OnEndDialogue.Invoke();
+        ServiceLocator.Instance.GetService<DialogView>().OnEndDialog -= ExecuteEndAction;
         //GameManager.Instance.player.GetComponent<ThirdPersonController>().jumpEnabled = true;
         if (destroyOnEnd)
             Destroy(gameObject); // Destroy the trigger object after activation

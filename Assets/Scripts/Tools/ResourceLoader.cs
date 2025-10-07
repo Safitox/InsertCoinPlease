@@ -33,4 +33,9 @@ public class ResourceLoader
         }
         return GameObject.Instantiate(go, parent);
     }
+
+    public void ClearCache()
+    {
+        cachedResources.Clear();
+    }
 }
