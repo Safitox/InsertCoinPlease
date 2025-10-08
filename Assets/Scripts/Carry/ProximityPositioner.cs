@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -6,8 +7,9 @@ public class ProximityPositioner : MonoBehaviour
     public string Identity;
     public Transform target;
     public bool used = false;
+    public string allowOnlyTag="";
 
-    [SerializeField] private DoorControl doorControl;
+    //[SerializeField] private DoorControl doorControl;
 
     [SerializeField] private Light redLigth;
     [SerializeField] private Light greenLigth;
@@ -19,6 +21,8 @@ public class ProximityPositioner : MonoBehaviour
     [SerializeField] private Color emissionOff = Color.black;
 
     private static bool isUsed;
+
+    public Action<bool, string> Connected;
 
     private void Update()
     {
@@ -37,7 +41,7 @@ public class ProximityPositioner : MonoBehaviour
                 greenLigth.enabled = used;
             }
 
-            doorControl.ChangeDoorStatus(true);
+            //doorControl.ChangeDoorStatus(true);
         }
     }
 }
