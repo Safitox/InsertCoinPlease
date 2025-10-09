@@ -8,6 +8,7 @@ public class UI_GamePause : MonoBehaviour
     private void Start()
     {
         pauseMenu.SetActive(false);
+        GameManager.Instance.gamePaused = false;
     }
 
     private void Update()
@@ -15,6 +16,7 @@ public class UI_GamePause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gamePaused = !gamePaused;
+            GameManager.Instance.gamePaused = gamePaused;
             if (!gamePaused)
                 Continue();
             else

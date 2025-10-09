@@ -16,6 +16,7 @@ public class EnemyConfig : ScriptableObject
     [Header("Combate")]
     public float attackRange = 1.6f;
     public float attackCooldown = 1.2f;
+    public float attackDelay= 0.3f;
     [Min(0f)]
     public int damage = 35;
     [Min(0f)]

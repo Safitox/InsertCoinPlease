@@ -32,6 +32,8 @@ public class DialogView : MonoBehaviour
     {
         if (!Input.GetKeyDown(KeyCode.Tab))
             return;
+        if (GameManager.Instance.gamePaused)
+            return;
         if (dialogPanel.activeSelf)
         {
             NextLine();
