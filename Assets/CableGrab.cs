@@ -9,17 +9,17 @@ public class CableGrab : MonoBehaviour, ICarryable
     private FixedJoint joint;
     //[SerializeField] private bool isHolding = false;
     [SerializeField] private float interactRange = 2f;
-    [SerializeField] private string identity = "";
+
     private Transform player;
 
     public string Identity { get; set; } = "Cable1";
     public bool EnableCarry { get; set; } = true;
     public bool CarryMoving { get; set; } = true;
 
-    private void Start()
-    {
-        Identity= identity;
-    }
+    //void Start()
+    //{
+    //    player = GameObject.FindWithTag("Player").transform;
+    //}
 
     //void Update()
     //{

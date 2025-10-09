@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyPlayerDetection : MonoBehaviour
+public class EnemyPlayerDEtection : MonoBehaviour
 {
     public LayerMask obstacleMask;
     public Transform eyes;
@@ -34,7 +34,7 @@ public class EnemyPlayerDetection : MonoBehaviour
             Lose();
             return; 
         }
-        Debug.DrawRay(eyes.position, dir, Color.green); // rayo alto
+
         if (Physics.Raycast(eyes.position, dir.normalized, out var hit, dist, ~obstacleMask))
         {
             if (hit.transform == player)
