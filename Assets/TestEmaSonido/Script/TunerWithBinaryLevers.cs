@@ -28,31 +28,10 @@ public class TunerWithBinaryLevers : MonoBehaviour
     {
         Debug.Log("Tono objetivo: " + targetPitch);
 
-        if (toneSource != null)
-        {
-            toneSource.loop = true;
-            toneSource.playOnAwake = false;
-            toneSource.pitch = 1f;
-            toneSource.Play();
-        }
+
 
         if (feedbackCube3D != null)
             cubeRenderer = feedbackCube3D.GetComponent<Renderer>();
-
-        //Buscar y destruir el AudioSource de la escena anterior
-
-        /*
-        GameObject oldMusic = GameObject.Find("Music");
-
-        if (oldMusic != null && oldMusic != this.gameObject)
-        {
-            AudioSource oldAudio = oldMusic.GetComponent<AudioSource>();
-            if (oldAudio != null)
-            {
-                oldAudio.Stop(); // O Destroy(oldMusic);
-            }
-        }
-        */
 
     }
 
@@ -116,6 +95,31 @@ public class TunerWithBinaryLevers : MonoBehaviour
         float distance = Mathf.Abs(currentPitch - targetPitch);
         cubeRenderer.material.color = (distance <= tolerance) ? Color.green : Color.red;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameObject musicObj = GameObject.Find("Music");
+            if (musicObj != null)
+            {
+                AudioSource audio = musicObj.GetComponent<AudioSource>();
+                if (audio != null)
+                {
+                    audio.Stop(); // O audio.mute = true;
+                }
+            }
+            //Activo el tono del tuner
+
+            if (toneSource != null)
+            {
+                toneSource.loop = true;
+                toneSource.playOnAwake = false;
+                toneSource.pitch = 1f;
+                toneSource.Play();
+            }
+        }
+    }
+
 
 
 
