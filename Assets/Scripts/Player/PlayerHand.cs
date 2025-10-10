@@ -107,7 +107,23 @@ public class PlayerHand : MonoBehaviour
         {
             if (hitCollider.TryGetComponent<ProximityPositioner>(out ProximityPositioner proximityPositioner))
             {
+                bool okConnect = false;
+
                 if (proximityPositioner.Identity == objectInHand.GetComponent<ICarryable>().Identity)
+                {
+                    okConnect = true;
+                    proximityPositioner.Connected?.Invoke(true, proximityPositioner.Identity);
+                }
+                else if (proximityPositioner.allowOnlyTag != "")
+                {
+                    if (objectInHand.CompareTag(proximityPositioner.allowOnlyTag))
+                    {
+                        okConnect = true;
+                        proximityPositioner.Connected?.Invoke(false, proximityPositioner.Identity);
+                    }
+                }
+
+                if (okConnect)
                 {
                     // Dejar el objeto en la posicion del positioner
                     objectInHand.transform.position = proximityPositioner.target.position;
