@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
@@ -56,8 +55,6 @@ public class ThirdPersonController : MonoBehaviour
     [Header("Escaleras / Escalones")]
     [SerializeField] private float stepHeight = 0.5f;   // altura máxima del escalón
     [SerializeField] private float stepSmooth = 0.08f;  // qué tan suave sube
-    [SerializeField] private Transform feetLevel;   // punto desde donde se lanzan los rayos
-    [SerializeField] private Transform stairDetector; // punto desde donde se detectan las escaleras
 
     float yaw, pitch;
     float turnSmoothVelocity;
@@ -87,9 +84,8 @@ public class ThirdPersonController : MonoBehaviour
             animator.SetBool("Crouch", false);
         running = Input.GetKey(KeyCode.LeftShift) && !crouching;
         animator.SetBool("Running", running);
-        if (jumpEnabled)
-            if (Input.GetButtonDown("Jump"))
-                jumpPressed = true;
+        if (Input.GetButtonDown("Jump"))
+            jumpPressed = true;
 
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -221,11 +217,11 @@ public class ThirdPersonController : MonoBehaviour
         Vector3 moveDir = rb.linearVelocity.normalized;
 
         // Origen bajo (pies)
-        Vector3 originLow = feetLevel.position;
+        Vector3 originLow = transform.position + Vector3.down * 0.8f;
         // Origen alto (altura máxima del escalón)
-        Vector3 originHigh = stairDetector.position; // originLow + Vector3.up* stepHeight;
+        Vector3 originHigh = originLow + Vector3.up* stepHeight;
 
-        float checkDist = 0.5f;
+        float checkDist = 0.8f;
 
         // Dibujar los rayos en la vista de escena
         Debug.DrawRay(originLow, moveDir * checkDist, Color.red);   // rayo bajo

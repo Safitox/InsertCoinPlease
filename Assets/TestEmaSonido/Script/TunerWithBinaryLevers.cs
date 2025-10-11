@@ -38,22 +38,6 @@ public class TunerWithBinaryLevers : MonoBehaviour
 
         if (feedbackCube3D != null)
             cubeRenderer = feedbackCube3D.GetComponent<Renderer>();
-
-        //Buscar y destruir el AudioSource de la escena anterior
-
-        /*
-        GameObject oldMusic = GameObject.Find("Music");
-
-        if (oldMusic != null && oldMusic != this.gameObject)
-        {
-            AudioSource oldAudio = oldMusic.GetComponent<AudioSource>();
-            if (oldAudio != null)
-            {
-                oldAudio.Stop(); // O Destroy(oldMusic);
-            }
-        }
-        */
-
     }
 
 

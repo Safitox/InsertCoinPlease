@@ -7,7 +7,6 @@ public class GameManager : Singleton<GameManager>
 <<<<<<< HEAD
 =======
     public Vector3 lastCheckpoint;
-    public bool gamePaused = false;
 
     private void Awake()
     {
@@ -20,7 +19,6 @@ public class GameManager : Singleton<GameManager>
         ServiceLocator.Instance.Clear();
         ServiceLocator.Instance.RegisterService (new ResourceLoader());
         lastCheckpoint = Vector3.zero;
-
     }
 
     public void LoseLife()

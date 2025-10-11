@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Refs")]
     public Animator animator=>GetComponent<Animator>();
-    public EnemyPlayerDetection detection;
+    public EnemyPlayerDEtection detection;
     public EnemyHealth health;
     public GameObject stars;
 
