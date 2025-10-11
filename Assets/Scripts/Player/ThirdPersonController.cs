@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
@@ -7,7 +8,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Camera cam;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     [Header("Sonidos")]
     [SerializeField] AudioSource audioSource; 
@@ -29,10 +30,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private float rotationSmoothTime = 0.1f;
     [SerializeField] private float runSpeedMultiplier = 1.5f;
     [SerializeField] private float crouchSpeedMultiplier = 0.5f;
-<<<<<<< HEAD
-=======
     public bool jumpEnabled;
->>>>>>> main
 
     bool running = false;
 
@@ -55,6 +53,8 @@ public class ThirdPersonController : MonoBehaviour
     [Header("Escaleras / Escalones")]
     [SerializeField] private float stepHeight = 0.5f;   // altura máxima del escalón
     [SerializeField] private float stepSmooth = 0.08f;  // qué tan suave sube
+    [SerializeField] private Transform feetLevel;   // punto desde donde se lanzan los rayos
+    [SerializeField] private Transform stairDetector; // punto desde donde se detectan las escaleras
 
     float yaw, pitch;
     float turnSmoothVelocity;
@@ -84,8 +84,9 @@ public class ThirdPersonController : MonoBehaviour
             animator.SetBool("Crouch", false);
         running = Input.GetKey(KeyCode.LeftShift) && !crouching;
         animator.SetBool("Running", running);
-        if (Input.GetButtonDown("Jump"))
-            jumpPressed = true;
+        if (jumpEnabled)
+            if (Input.GetButtonDown("Jump"))
+                jumpPressed = true;
 
         yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -130,7 +131,7 @@ public class ThirdPersonController : MonoBehaviour
             Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
             rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
         
-            if (jumpPressed)
+            if (jumpPressed && jumpEnabled)
             {
                 if (IsGrounded())
                 {
@@ -217,11 +218,11 @@ public class ThirdPersonController : MonoBehaviour
         Vector3 moveDir = rb.linearVelocity.normalized;
 
         // Origen bajo (pies)
-        Vector3 originLow = transform.position + Vector3.down * 0.8f;
+        Vector3 originLow = feetLevel.position;
         // Origen alto (altura máxima del escalón)
-        Vector3 originHigh = originLow + Vector3.up* stepHeight;
+        Vector3 originHigh = stairDetector.position; // originLow + Vector3.up* stepHeight;
 
-        float checkDist = 0.8f;
+        float checkDist = 0.5f;
 
         // Dibujar los rayos en la vista de escena
         Debug.DrawRay(originLow, moveDir * checkDist, Color.red);   // rayo bajo

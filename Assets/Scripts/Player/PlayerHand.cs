@@ -51,7 +51,7 @@ public class PlayerHand : MonoBehaviour
                     objectInHand = hitCollider.gameObject;
                     objectInHand.transform.position = handTransform.position;
                     oldParent= objectInHand.transform.parent;
-                    if (!carryable.CarryMoving) ;
+                    if (!carryable.CarryMoving) 
                         objectInHand.transform.parent = handTransform;
                     objectInHand.GetComponent<Collider>().enabled = false;
                     if (objectInHand.TryGetComponent<Rigidbody>(out Rigidbody rb))
@@ -90,7 +90,7 @@ public class PlayerHand : MonoBehaviour
             carryable.OnDrop();
         }
         objectInHand.GetComponent<Collider>().enabled = true;
-        if (!carryable.CarryMoving) ;
+        if (!carryable.CarryMoving) 
             objectInHand.transform.parent = oldParent;
         objectInHand.transform.position = dropPointTransform.position  ;
         objectInHand = null;
@@ -107,7 +107,23 @@ public class PlayerHand : MonoBehaviour
         {
             if (hitCollider.TryGetComponent<ProximityPositioner>(out ProximityPositioner proximityPositioner))
             {
+                bool okConnect = false;
+
                 if (proximityPositioner.Identity == objectInHand.GetComponent<ICarryable>().Identity)
+                {
+                    okConnect = true;
+                    proximityPositioner.Connected?.Invoke(true, proximityPositioner.Identity);
+                }
+                else if (proximityPositioner.allowOnlyTag != "")
+                {
+                    if (objectInHand.CompareTag(proximityPositioner.allowOnlyTag))
+                    {
+                        okConnect = true;
+                        proximityPositioner.Connected?.Invoke(false, proximityPositioner.Identity);
+                    }
+                }
+
+                if (okConnect)
                 {
                     // Dejar el objeto en la posicion del positioner
                     objectInHand.transform.position = proximityPositioner.target.position;

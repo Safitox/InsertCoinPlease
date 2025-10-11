@@ -3,11 +3,13 @@ using UnityEngine;
 public class AttackState : EnemyState
 {
     float _cooldown;
+    float _delay;
 
     public AttackState(EnemyController c, StateMachine f) : base(c, f) { }
 
     public override void OnEnter()
     {
+        _delay = enemyController.config.attackDelay;
         _cooldown = 0f;
         enemyController.agent.isStopped = true;
         if (enemyController.animator) enemyController.animator.Play("Attack");
@@ -33,7 +35,8 @@ public class AttackState : EnemyState
         {
             if (_cooldown <= 0f)
             {
-               
+               _delay-= Time.deltaTime;
+                if (_delay > 0f) return;
                 if (enemyController.animator) 
                     enemyController.animator.Play("Attack", 0, 0f);
                 if (enemyController.config.stunTimeOnHit!=0f) 
@@ -55,6 +58,7 @@ public class AttackState : EnemyState
 
 
                 _cooldown = enemyController.config.attackCooldown;
+                _delay = enemyController.config.attackDelay;
             }
         }
         else
