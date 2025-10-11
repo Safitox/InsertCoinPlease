@@ -93,6 +93,7 @@ public class PressurePlate : MonoBehaviour
                 _isPressed = true;
                 if (oneShot && !_hasFiredOneShot) _hasFiredOneShot = true;
                 onPressed?.Invoke();
+                GetComponent<AudioSource>().Play();
                 _material.color= pressedColor;
             }
         }
