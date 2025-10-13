@@ -1,31 +1,12 @@
 txtPresTabNext|Presione TAB para continuar...
-dialog1|Sophia¬0¬¡Ah, por fin! Qué alivio… has vuelto en ti. ¬dialog2
-dialog2|Player¬0¬(El protagonista se queda quieto, ladea la cabeza, como intentando comprender. Un signo de pregunta aparece sobre el)¬dialog3
-dialog3|Sophia¬0¬¿Cómo te sientes? Ah, estaba tan preocupada… Bueno, no hace falta que respondas, puedo notar que estás confundido.¬dialog4
-dialog4|Player¬0¬(El protagonista se frota la frente, como aturdido. Da un paso hacia atrás, expectante.)  ¬dialog5
-dialog5|Sophia¬0¬Déjame presentarme. Soy Sophia, la OS principal de este lugar. Este lugar en el que estás… son mis placas, mi reino. Nos encontramos en el arcade "Double Trouble Adventure - 10 in 1"  ¬dialog6
-dialog6|Player¬0¬(El protagonista levanta la vista con extrañeza.) ¬dialog7
-dialog7|Sophia¬0¬Eres un programa antivirus. Un agente especial creado para mantener la seguridad aquí. Podría decirse que eres el superconserje del sistema: poderoso, eficiente… indispensable. ¬dialog8
-dialog8|Player¬0¬(El protagonista parpadea, como si tratara de recordar. Su cuerpo emite un breve destello.)  ¬dialog9
-dialog9|Sophia¬0¬Escucha con atención. El sistema ha sido atacado por un virus muy fuerte. Se ha extendido por todo el arcade y ha corrompido a los NPC, a los personajes jugables… a casi todos. Se comportan de forma errática, dañina. Estan bugueados.  ¬dialog10
-dialog10|Player¬0¬(El protagonista aprieta los puños, indignado. Aparece un signo de exclamación sobre su cabeza.)  ¬dialog11
-dialog11|Sophia¬0¬Ese virus me esta buscando. Limitó mi acceso y me reemplazó. Desde mi escondite, solo he conseguido comunicarme con algunos sobrevivientes… y contigo. ¬dialog12
-dialog12|Player¬0¬(El protagonista se lleva la mano al pecho, sorprendido.)  ¬dialog13
-dialog13|Sophia¬0¬Afortunadamente escuchaste mi llamado! Por eso, debo encomendarte una misión: destruir al virus y liberarme, para que pueda restaurar el arcade. Eres el más idoneo de todos nosotros para hacerlo! El antivirus! ¬dialog14
-dialog14|Player¬0¬(El protagonista asiente con decisión. Sus ojos brillan un instante.)  ¬dialog15
-dialog15|Sophia¬0¬He logrado recuperar el control de algunos protocolos. Gracias a eso puedo devolverte una habilidad básica: tu salto. ¬dialog16
-dialog16|Player¬0¬(Una luz recorre el cuerpo del protagonista. Sus piernas brillan, y se activa una animación de salto breve. El personaje hace un pequeño brinco, sorprendido y contento.)  ¬dialog17
-dialog17|Sophia¬0¬Bien. Es solo el comienzo, pero juntos podremos avanzar. Te guiaré en lo que pueda… confío en ti.  ¬dialog18
-dialog18|Sophia¬0¬Bueno, observa bien el entorno. Debería haber un interruptor por defecto en esa habitación en la que te encuentras. Púlsalo y podrás salir de aquí. ¡Ten cuidado!
 
-dialog100|Sophia¬0¬Aguarda!!!¬dialog101
-dialog101|Player¬0¬!¬dialog102
-dialog102|Sophia¬0¬¿Te sorprendí? Je je… Lo siento. Te instalé una actualización remota cuando nos vimos la primera vez. Ahora puedes escucharme en tu cabeza. Claro, mis permisos siguen limitados por el virus, pero siempre que haya una antena de transmisión cerca, podremos comunicarnos.¬dialog103
-dialog103|Sophia¬0¬Bastante práctico, ¿no crees?¬dialog104
-dialog104|Sophia¬0¬Bien, necesito que tengas cuidado. ¿Ves esa criatura? Es uno de los arcadian, como lo somos nosotros, un bloque de código esencial para el funcionamiento de nuestro mundo. El virus lo corrompió y ahora está bugueado.¬dialog105
-dialog105|Sophia¬0¬No debes destruirlo: sus vidas son tan valiosas como la mia y la tuya. Cuando recupere el control del sistema, todo volverá a la normalidad. Mientras tanto, si se interponen en tu camino, puedes aturdirlos.¬dialog106
-dialog106|Sophia¬0¬Este arcadian parece haberse quedado dormido sobre el interruptor de la puerta. No podrás pasar a menos que lo aturdas.¬dialog107
-dialog107|Sophia¬0¬Usa tu salto para provocarles un stutter en el código y dejarlos fuera de combate por un momento. ¡Vamos, prueba saltar sobre su cabeza!
+dialog1|Sophia¬0¬¡Despierta! Soy Sophia, la OS de este arcade.¬dialog2
+dialog2|Sophia¬0¬Un virus corrompió todo. Eres mi antivirus.¬dialog3
+dialog3|Sophia¬0¬Debes eliminarlo y restaurar el sistema.¬dialog4
+dialog4|Sophia¬0¬Te devuelvo tu salto. Pruébalo.¬dialog6
+dialog6|Sophia¬0¬Activa el interruptor y sal de aquí.
 
-
+dialog100|Sophia¬0¬¡Aguarda! Te instalé una actualización: ahora me oyes en tu cabeza.¬dialog101
+dialog101|Sophia¬0¬Un personaje del juego fue corrompido por el virus. Está buggeado. No lo mates, sus vidas importan.¬dialog102
+dialog102|Sophia¬0¬Está dormido sobre el interruptor; atúrdelo si bloquea el paso.¬dialog103
 

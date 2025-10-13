@@ -7882,6 +7882,10 @@ PrefabInstance:
       propertyPath: jumpEnabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3157274671305783846, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1271052396}
     - target: {fileID: 6056743048711600253, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7941,11 +7945,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6593359478167691156, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       insertIndex: -1
       addedObject: {fileID: 958124746}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1271052396}
   m_SourcePrefab: {fileID: 100100000, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
 --- !u!54 &333820168 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6193100028819989505, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+  m_PrefabInstance: {fileID: 333820167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &333820169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
   m_PrefabInstance: {fileID: 333820167}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &333820170 stripped
@@ -7953,7 +7965,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3157274671305783846, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
   m_PrefabInstance: {fileID: 333820167}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 333820169}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6243a775d6bccc0418345738e12592f1, type: 3}
@@ -22209,6 +22221,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6593359478167691156, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
   m_PrefabInstance: {fileID: 333820167}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1271052396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333820169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ea884605d228145a386f4338a8f3c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  cam: {fileID: 1938140247}
+  mouseSensitivity: 200
+  cameraDistance: 5
+  cameraYOffset: 1.06
+  verticalMin: -35
+  verticalMax: 60
+  maxzoom: 100
+  minzoom: 50
+  cameraCollisionRadius: 0.2
+  cameraSmooth: 0.08
 --- !u!43 &1271544569
 Mesh:
   m_ObjectHideFlags: 0
