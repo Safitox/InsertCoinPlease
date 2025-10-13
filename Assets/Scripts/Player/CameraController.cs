@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [Header("Referencias")]
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform target ;
     [SerializeField] private Camera cam;
 
     [Header("Control")]
@@ -39,6 +39,7 @@ public class CameraController : MonoBehaviour
         Vector3 e = transform.eulerAngles;
         yaw = e.y;
         pitch = e.x;
+        target = transform;
     }
 
     void Update()

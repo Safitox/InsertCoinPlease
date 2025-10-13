@@ -8,5 +8,5 @@ dialog6|Sophia¬0¬Activa el interruptor y sal de aquí.
 
 dialog100|Sophia¬0¬¡Aguarda! Te instalé una actualización: ahora me oyes en tu cabeza.¬dialog101
 dialog101|Sophia¬0¬Un personaje del juego fue corrompido por el virus. Está buggeado. No lo mates, sus vidas importan.¬dialog102
-dialog102|Sophia¬0¬Está dormido sobre el interruptor; atúrdelo si bloquea el paso.¬dialog103
+dialog102|Sophia¬0¬Está dormido sobre el interruptor; atúrdelo si bloquea el paso.
 
