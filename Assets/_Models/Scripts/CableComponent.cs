@@ -21,9 +21,6 @@ public class CableComponent : MonoBehaviour
 	[SerializeField] private int verletIterations = 1;
 	[SerializeField] private int solverIterations = 1;
 
-	//[Range(0,3)]
-	[SerializeField] private float stiffness = 1f;
-
 	private LineRenderer line;
 	private CableParticle[] points;
 
@@ -76,8 +73,9 @@ public class CableComponent : MonoBehaviour
 	void InitLineRenderer()
 	{
 		line = this.gameObject.AddComponent<LineRenderer>();
-		line.SetWidth(cableWidth, cableWidth);
-		line.SetVertexCount(segments + 1);
+		line.startWidth = cableWidth;
+		line.endWidth = cableWidth;
+		line.positionCount = segments + 1;
 		line.material = cableMaterial;
 		line.GetComponent<Renderer>().enabled = true;
 	}
