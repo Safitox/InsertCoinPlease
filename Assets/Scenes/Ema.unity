@@ -10543,7 +10543,7 @@ GameObject:
   - component: {fileID: 396599445}
   - component: {fileID: 396599444}
   m_Layer: 0
-  m_Name: v-camera2-apunta al feedback
+  m_Name: CamFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10562,7 +10562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 1
+    Enabled: 0
     m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
@@ -57401,7 +57401,7 @@ GameObject:
   - component: {fileID: 2087612822}
   - component: {fileID: 2087612821}
   m_Layer: 0
-  m_Name: v-camera1
+  m_Name: CamEscenario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57420,7 +57420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 1
+    Enabled: 0
     m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2

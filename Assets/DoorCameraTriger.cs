@@ -8,6 +8,7 @@ public class DoorCameraTrigger : MonoBehaviour
     public CinemachineCamera camEscenario;
     public Camera camaraNormal;
     public float tiempoAntesDeEscenario = 3f;
+    CameraManager camManager;
 
     void Start()
     {
@@ -18,18 +19,15 @@ public class DoorCameraTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Activar Cinemachine feedback primero
-            camaraNormal.enabled = false;
-            camFeedback.Priority = 100;
-            camEscenario.Priority = 50;
-
-            Invoke("ActivarVistaEscenario", tiempoAntesDeEscenario);
+            camManager.SetCameraMode(CameraManager.CameraMode.Feedback);
+            StartCoroutine(TransicionAEscenario());
         }
     }
 
-    void ActivarVistaEscenario()
+    IEnumerator TransicionAEscenario()
     {
-        camFeedback.Priority = 10;
-        camEscenario.Priority = 100;
+        yield return new WaitForSeconds(3f);
+        camManager.SetCameraMode(CameraManager.CameraMode.Escenario);
     }
+
 }
