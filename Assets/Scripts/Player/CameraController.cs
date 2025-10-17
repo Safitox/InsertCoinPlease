@@ -59,28 +59,12 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (target == null || cam == null) return;
+        if (target == null) return;
 
-        Vector3 targetOffset = new Vector3(0f, cameraYOffset, -cameraDistance);
         Quaternion camRot = Quaternion.Euler(pitch, yaw, 0f);
-        Vector3 desiredCamPos = target.position + camRot * targetOffset;
-        Vector3 focusPoint = target.position + Vector3.up * 1.5f;
-
-        Vector3 toCam = desiredCamPos - focusPoint;
-        float dist = toCam.magnitude;
-        Vector3 dir = dist > 0.001f ? toCam / dist : cam.transform.forward;
-
-        float allowedDist = dist;
-        if (Physics.SphereCast(focusPoint, cameraCollisionRadius, dir, out RaycastHit hit, dist, ~0, QueryTriggerInteraction.Ignore))
-        {
-            allowedDist = Mathf.Max(0.3f, hit.distance - 0.02f);
-        }
-
-        Vector3 finalCamPos = focusPoint + dir * allowedDist;
-        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, finalCamPos, ref camVel, cameraSmooth);
-        cam.transform.rotation = camRot;
-        cam.transform.LookAt(focusPoint);
+        transform.rotation = camRot;
     }
+
 
     // Método público para reubicar target en runtime si lo necesitás
     public void SetTarget(Transform newTarget)

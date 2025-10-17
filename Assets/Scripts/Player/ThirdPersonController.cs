@@ -9,6 +9,9 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     public Animator animator;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private Transform cameraPivot;
+
+
 
     [Header("Sonidos")]
     [SerializeField] AudioSource audioSource;
@@ -93,9 +96,12 @@ public class ThirdPersonController : MonoBehaviour
                 if (crouching) desiredVel *= crouchSpeedMultiplier;
                 desiredVel *= running ? runSpeedMultiplier : 1f;
 
-                float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
-                float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, rotationSmoothTime);
-                player.rotation = Quaternion.Euler(0f, angle, 0f);
+                if (cameraPivot != null)
+                {
+                    float pivotYaw = cameraPivot.eulerAngles.y;
+                    player.rotation = Quaternion.Euler(0f, pivotYaw, 0f);
+                }
+
                 animator.SetBool("Walking", true);
                 float dirDot = Vector3.Dot(moveDir, player.forward);
                 float moveMagnitude = dirDot * inputDir.magnitude;
