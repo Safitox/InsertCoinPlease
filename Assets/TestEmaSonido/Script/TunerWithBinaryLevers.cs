@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TunerWithBinaryLevers : MonoBehaviour
 {
+    [Header("Visual Feedback")]
+    public WaveFeedback waveFeedback;
 
     [Header("Door")]
     public DoorControl doorToOpen;
@@ -38,6 +40,24 @@ public class TunerWithBinaryLevers : MonoBehaviour
 
     void Update()
     {
+
+        if (isFixed) return;
+
+        float currentPitch = GetCombinedPitch();
+        toneSource.pitch = currentPitch;
+
+        // Actualiza la visualización
+        if (waveFeedback != null)
+        {
+            waveFeedback.currentPitch = currentPitch;
+            waveFeedback.targetPitch = targetPitch;
+        }
+
+        if (Mathf.Abs(currentPitch - targetPitch) <= tolerance)
+            OnFixed();
+
+        UpdateFeedback(currentPitch);
+        /*
         if (isFixed) return;
 
         float currentPitch = GetCombinedPitch();
@@ -49,6 +69,7 @@ public class TunerWithBinaryLevers : MonoBehaviour
             OnFixed();
 
         UpdateFeedback(currentPitch);
+        */
     }
 
     float GetCombinedPitch()
