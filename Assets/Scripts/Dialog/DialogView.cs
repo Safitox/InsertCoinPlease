@@ -62,7 +62,7 @@ public class DialogView : MonoBehaviour
     private void ShowText(string dialog)
     {
         bool hasdialog = dialog.Contains("¬");
-        avatarFrame.gameObject.SetActive(hasdialog);
+        //avatarFrame.gameObject.SetActive(hasdialog);
         if (hasdialog)
         {
             string[] strings = dialog.Split('¬');
@@ -72,7 +72,7 @@ public class DialogView : MonoBehaviour
             //StartCoroutine (TypeText(strings[2]));
             nextDialogKey= strings.Length >3? strings[3] : "";
             //Debug.Log("siguiente clave: " + nextDialogKey); 
-            avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
+            //avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
 
             //Si es diálogo automático, avanza solo a la siguiente lìnea despuès de un tiempo
             if (  dialogLineTime > 0f)
