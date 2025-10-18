@@ -3294,7 +3294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681897433775014367, guid: d2cbc5d3a04095e479138791d2ae83b2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -59336,7 +59336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3415232815005783744, guid: 34d1535615de6ab4a9ca814dddad5851, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4791991712699948121, guid: 34d1535615de6ab4a9ca814dddad5851, type: 3}
       propertyPath: m_ApplyActiveColorSpace
@@ -59368,7 +59368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4791991712699948121, guid: 34d1535615de6ab4a9ca814dddad5851, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.4999997
+      value: 0.59859437
       objectReference: {fileID: 0}
     - target: {fileID: 6950939384252753091, guid: 34d1535615de6ab4a9ca814dddad5851, type: 3}
       propertyPath: m_LocalScale.y
