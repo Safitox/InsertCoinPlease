@@ -6,7 +6,11 @@ public class DeathZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("¡Jugador muerto!");
+            HealthManager hm = other.GetComponent<HealthManager>();
+            if(hm != null)
+            {
+                hm.Death();
+            }
         }
     }
 }
