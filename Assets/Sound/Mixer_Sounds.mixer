@@ -72,11 +72,14 @@ AudioMixerController:
     name: MusicVolume
   - guid: 397dba13ebd7a044cb4919b423434fe6
     name: SoundVolume
+  - guid: fc0cdcb7f2781804fbefef9bf606d3ad
+    name: VoiceVolume
   m_AudioMixerGroupViews:
   - guids:
     - 7ecd9f2b10b7a4a46a21eb877d0f9edc
     - 4baeb2a5fbefd1149a96800354c8cd7d
     - 864def4463a50164e97f314cae56fd2c
+    - a70b4b088752d4943a34981dcf7185cb
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -92,6 +95,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -5385702084477564958}
   - {fileID: -3585042146666070150}
+  - {fileID: 6246534694919773728}
   m_Volume: 2f078e37bf12a3b4c91191b6ee2d4ae1
   m_Pitch: 91de423288bdac34b9eeca28092d2240
   m_Send: 00000000000000000000000000000000
@@ -127,7 +131,41 @@ AudioMixerSnapshotController:
   m_FloatValues:
     397dba13ebd7a044cb4919b423434fe6: -6.8
     2f078e37bf12a3b4c91191b6ee2d4ae1: -24.5
+    fc0cdcb7f2781804fbefef9bf606d3ad: -80
   m_TransitionOverrides: {}
+--- !u!244 &3719750085888097706
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 84d758bae2684b141a3784b62331992e
+  m_EffectName: Attenuation
+  m_MixLevel: 07df445dd9536b34db448be0a301d4dd
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &6246534694919773728
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Voices
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: a70b4b088752d4943a34981dcf7185cb
+  m_Children: []
+  m_Volume: fc0cdcb7f2781804fbefef9bf606d3ad
+  m_Pitch: de3da772829cd024ea2bc4c6ec304b7c
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 3719750085888097706}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &6443901192684284833
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

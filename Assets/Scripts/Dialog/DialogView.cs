@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System;
+﻿using System;
 using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DialogView : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class DialogView : MonoBehaviour
     public Action OnEndDialog;
     [SerializeField] private TextMeshProUGUI txtNext;
     ResourceLoader RL;
+    AudioSource audiosource=> GetComponent<AudioSource>();
 
     string nextDialogKey;
     float dialogLineTime;
@@ -48,6 +50,14 @@ public class DialogView : MonoBehaviour
     public void DisplayMessage(string key)
     {
         ShowText(DialogManager.Instance.GetDialog(key.Trim()));
+
+            AudioClip dialogAudio = DialogManager.Instance.GetDialogAudio(key.Trim());
+            Debug.Log("AudioClip obtenido: " + key.Trim());
+            if (dialogAudio)
+            {
+                audiosource.PlayOneShot(dialogAudio);
+                //Debug.Log(TypeText("Reproduciendo audio de diálogo: " + dialogAudio.name));
+            }
         setActivePanel(true);
 
     }
@@ -67,10 +77,10 @@ public class DialogView : MonoBehaviour
         {
             string[] strings = dialog.Split('¬');
             string avatarIndex = "av/" + strings[0];
-            dialogLineTime= float.TryParse(strings[1], out float t) ? t : 0f;
+            dialogLineTime = float.TryParse(strings[1], out float t) ? t : 0f;
             textDialogPanel.text = strings[2];
-            //StartCoroutine (TypeText(strings[2]));
-            nextDialogKey= strings.Length >3? strings[3] : "";
+                //StartCoroutine (TypeText(strings[2]));
+                nextDialogKey = strings.Length >3? strings[3] : "";
             //Debug.Log("siguiente clave: " + nextDialogKey); 
             avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
 

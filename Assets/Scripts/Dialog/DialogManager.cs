@@ -7,10 +7,11 @@ public class DialogManager : Singleton<DialogManager>
 {
     private const string Path = "Localization/Dialogo";
     Dictionary<string, string> listaDialogos;
-    //string oracionActiva;
+    Dictionary<string,AudioClip> listaAudios=new Dictionary<string, AudioClip>();  
+
 
     // Start is called before the first frame update
-    
+
     public void Start()
     {
         listaDialogos = new Dictionary<string, string>();
@@ -31,6 +32,13 @@ public class DialogManager : Singleton<DialogManager>
                 if (string.IsNullOrWhiteSpace(linea)) continue; // si la linea esta vacia, paso a la siguiente
                 var valor = linea.Split('|'); //separo los valores y los coloco en un array para consultarlos por separado
                 diccionario.Add(valor[0], valor[1]); // cargo en el diccionario
+                var audioFile = Resources.Load<AudioClip>("Localization/Voices/" + valor[0]);
+                if (audioFile != null)
+                {
+                    listaAudios.Add(valor[0], audioFile);
+                }
+
+
             }
             return diccionario;
         }
@@ -57,5 +65,15 @@ public class DialogManager : Singleton<DialogManager>
             //return "";
             throw new Exception("Atencion: la clave " + key + "no se encuentra dentro del Archivo");
         }
+    }
+
+    public AudioClip GetDialogAudio(string key)
+    {
+        if (listaAudios.TryGetValue(key.Trim(), out AudioClip a))
+        {
+            //Debug.Log("Audio de dialogo encontrado: " + key );
+            return a;
+        }
+        return null;
     }
 }
