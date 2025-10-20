@@ -120,15 +120,15 @@ public class TunerWithBinaryLevers : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameObject musicObj = GameObject.Find("Music");
-            if (musicObj != null)
-            {
-                AudioSource audio = musicObj.GetComponent<AudioSource>();
-                if (audio != null)
-                {
-                    audio.Stop(); // O audio.mute = true;
-                }
-            }
+            //GameObject musicObj = GameObject.Find("Music");
+            //if (musicObj != null)
+            //{
+            //    AudioSource audio = musicObj.GetComponent<AudioSource>();
+            //    if (audio != null)
+            //    {
+            //        audio.Stop(); // O audio.mute = true;
+            //    }
+            //}
             //Activo el tono del tuner
 
             if (toneSource != null)

@@ -38249,6 +38249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1312425109}
   - component: {fileID: 1312425107}
+  - component: {fileID: 1312425112}
   - component: {fileID: 1312425110}
   - component: {fileID: 1312425111}
   m_Layer: 0
@@ -38290,7 +38291,7 @@ Transform:
   m_GameObject: {fileID: 1312425106}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000063364487, y: -0.99989665, z: -0, w: 0.0143777095}
-  m_LocalPosition: {x: 7.73, y: 1.42, z: 5.74}
+  m_LocalPosition: {x: 8.35, y: 1.42, z: 5.74}
   m_LocalScale: {x: 1, y: 4.3849, z: 8.74549}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38414,6 +38415,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1312425112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312425106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ef089d0224d1a44a1d250dc2b6d998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFade: 5
+  active: {fileID: 0}
+  idle: {fileID: 1312425111}
 --- !u!1 &1320911136
 GameObject:
   m_ObjectHideFlags: 0

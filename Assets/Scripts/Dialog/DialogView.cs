@@ -33,9 +33,14 @@ public class DialogView : MonoBehaviour
     private void LateUpdate()
     {
         if (!Input.GetKeyDown(KeyCode.Tab))
+        {
             return;
+        }
         if (GameManager.Instance.gamePaused)
-            return;
+        {
+            if (!dialogPanel.activeSelf)
+                return;
+        }
         if (dialogPanel.activeSelf)
         {
             NextLine();
@@ -52,11 +57,11 @@ public class DialogView : MonoBehaviour
         ShowText(DialogManager.Instance.GetDialog(key.Trim()));
 
             AudioClip dialogAudio = DialogManager.Instance.GetDialogAudio(key.Trim());
-            Debug.Log("AudioClip obtenido: " + key.Trim());
+            //Debug.Log("AudioClip obtenido: " + key.Trim());
             if (dialogAudio)
             {
-                audiosource.PlayOneShot(dialogAudio);
-                //Debug.Log(TypeText("Reproduciendo audio de diálogo: " + dialogAudio.name));
+                StopAllCoroutines();
+                StartCoroutine(PlayAudioVoice(dialogAudio));
             }
         setActivePanel(true);
 
@@ -66,23 +71,23 @@ public class DialogView : MonoBehaviour
     public void setActivePanel(bool set)
     {
         dialogPanel.SetActive(set);
-        Time.timeScale= set && dialogLineTime==0f ? 0 : 1;
+        Time.timeScale = set && dialogLineTime == 0f ? 0 : 1;
     }
 
     private void ShowText(string dialog)
     {
         bool hasdialog = dialog.Contains("¬");
-        avatarFrame.gameObject.SetActive(hasdialog);
+        //avatarFrame.gameObject.SetActive(hasdialog);
         if (hasdialog)
         {
             string[] strings = dialog.Split('¬');
             string avatarIndex = "av/" + strings[0];
             dialogLineTime = float.TryParse(strings[1], out float t) ? t : 0f;
             textDialogPanel.text = strings[2];
-                //StartCoroutine (TypeText(strings[2]));
-                nextDialogKey = strings.Length >3? strings[3] : "";
+
+            nextDialogKey = strings.Length >3? strings[3] : "";
             //Debug.Log("siguiente clave: " + nextDialogKey); 
-            avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
+            //avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
 
             //Si es diálogo automático, avanza solo a la siguiente lìnea despuès de un tiempo
             if (  dialogLineTime > 0f)
@@ -94,6 +99,7 @@ public class DialogView : MonoBehaviour
 
     private void NextLine()
     {
+        audiosource.Stop();
         if (nextDialogKey.Trim() != "")
         {
 
@@ -122,6 +128,13 @@ public class DialogView : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
 
         }
+    }
+
+    IEnumerator PlayAudioVoice(AudioClip clip)
+    {
+
+        audiosource.PlayOneShot(clip);
+        yield return new WaitForSeconds(clip.length);
     }
 
 

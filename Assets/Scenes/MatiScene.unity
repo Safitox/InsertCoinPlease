@@ -9193,7 +9193,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 930641520714442220, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598086485261662102, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3256400346288695621, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632551336210221063, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4263012011127750891, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -9212,10 +9228,6 @@ PrefabInstance:
     - target: {fileID: 8617822107848788304, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
       propertyPath: m_Name
       value: UIPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 8617822107848788305, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
-      propertyPath: avatarFrame
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8617822107848788318, guid: f4db91990cdc9954cb9ffc450c61d8fd, type: 3}
       propertyPath: m_LocalPosition.x
