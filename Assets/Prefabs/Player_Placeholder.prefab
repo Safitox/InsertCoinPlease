@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6593359478167691156}
-  cam: {fileID: 0}
   rb: {fileID: 0}
   animator: {fileID: 4280609027243793390}
+  cameraController: {fileID: 0}
   audioSource: {fileID: 8768988559770135166}
   stunClip: {fileID: 8300000, guid: 5ab6515eb93989b47b10a46294a7af89, type: 3}
   stepClip: {fileID: 8300000, guid: 14b1bb076d034424d8e5bc0ce8fcd2ba, type: 3}
@@ -106,21 +106,11 @@ MonoBehaviour:
   runSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.5
   jumpEnabled: 1
-  mouseSensitivity: 200
-  cameraDistance: 5
-  cameraYOffset: 1.06
-  verticalMin: -35
-  verticalMax: 60
-  maxzoom: 100
-  minzoom: 50
-  cameraCollisionRadius: 0.2
-  cameraSmooth: 0.08
   jumpForce: 7
   groundMask:
     serializedVersion: 2
     m_Bits: 1535
   groundCheckDist: 2
-  stepHeight: 0.3
   stepSmooth: 0.08
   feetLevel: {fileID: 1672967866493723112}
   stairDetector: {fileID: 903079950752753461}
@@ -163,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db8b55946bcd0e49804a5d6754c0029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 02cd503935c127049b82596551430986, type: 3}
 --- !u!114 &2341717727314469581
 MonoBehaviour:
   m_ObjectHideFlags: 0

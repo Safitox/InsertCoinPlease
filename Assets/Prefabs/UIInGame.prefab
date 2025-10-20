@@ -174,8 +174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 21}
-  m_SizeDelta: {x: 402.6599, y: 245.8377}
+  m_AnchoredPosition: {x: 0, y: 7.4307}
+  m_SizeDelta: {x: 402.6599, y: 272.9763}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1812177477027306586
 CanvasRenderer:
@@ -1320,7 +1320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4506241192537032085}
   - component: {fileID: 1407710005180393373}
-  - component: {fileID: 6946069993864273903}
+  - component: {fileID: 5837315124277919080}
   m_Layer: 0
   m_Name: AvatarPic
   m_TagString: Untagged
@@ -1344,8 +1344,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 63.3634, y: 11.2293}
-  m_SizeDelta: {x: 56.8521, y: 55.1501}
+  m_AnchoredPosition: {x: 72, y: 2.3579025}
+  m_SizeDelta: {x: 86.9762, y: 83.9709}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1407710005180393373
 CanvasRenderer:
@@ -1355,7 +1355,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6787931656167776502}
   m_CullTransparentMesh: 1
---- !u!114 &6946069993864273903
+--- !u!114 &5837315124277919080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6787931656167776502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -1375,16 +1375,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 8400000, guid: 66a55f1aedec6a9499af75b8d880bb3f, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &7031804802767584838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2051,7 @@ MonoBehaviour:
   btnNextDialog: {fileID: 8617822108615009228}
   dialogPanel: {fileID: 8617822108297110793}
   textDialogPanel: {fileID: 8617822107751724767}
-  avatarFrame: {fileID: 6946069993864273903}
+  avatarFrame: {fileID: 0}
   txtNext: {fileID: 8617822107261631280}
 --- !u!114 &6449271045100487896
 MonoBehaviour:

@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float patrolRadius = 3f;
     [SerializeField] private float idleTime = 1.5f;
+    [SerializeField]  private Animator animator;
 
     NavMeshAgent agent;
     float waitUntil;
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour
 
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.05f)
         {
+            animator.Play("Idle");
             waitUntil = Time.time + idleTime;
             SetRandomPatrolPoint();
         }
@@ -32,6 +34,9 @@ public class EnemyAI : MonoBehaviour
         Vector2 rnd = Random.insideUnitCircle * patrolRadius;
         Vector3 dest = transform.position + new Vector3(rnd.x, 0, rnd.y);
         if (NavMesh.SamplePosition(dest, out var hit, 2f, NavMesh.AllAreas))
+        {
+            animator.Play("Walk");
             agent.SetDestination(hit.position);
+        }
     }
 }

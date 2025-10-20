@@ -1,17 +1,17 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+
 
 public class ThirdPersonController : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private Transform player;
-    [SerializeField] private Camera cam;
     [SerializeField] private Rigidbody rb;
     public Animator animator;
+    [SerializeField] private CameraController cameraController;
 
     [Header("Sonidos")]
-    [SerializeField] AudioSource audioSource; 
+    [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip stunClip;
     [SerializeField] AudioClip stepClip;
     [SerializeField] AudioClip jumpClip;
@@ -21,8 +21,6 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] float walkPitch = 1f;
 
     float stepTimer;
-
-
 
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 5f;
@@ -34,31 +32,17 @@ public class ThirdPersonController : MonoBehaviour
 
     bool running = false;
 
-    [Header("Cámara")]
-    [SerializeField] private float mouseSensitivity = 150f;
-    [SerializeField] private float cameraDistance = 5f;
-    [SerializeField] private float cameraYOffset = 1f;
-    [SerializeField] private float verticalMin = -35f;
-    [SerializeField] private float verticalMax = 60f;
-    [SerializeField] private float maxzoom = 70f;
-    [SerializeField] private float minzoom = 50f;
-    [SerializeField] private float cameraCollisionRadius = 0.2f;
-    [SerializeField] private float cameraSmooth = 0.08f;
-
     [Header("Salto")]
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundCheckDist = 0.35f;
 
     [Header("Escaleras / Escalones")]
-    [SerializeField] private float stepHeight = 0.5f;   // altura máxima del escalón
     [SerializeField] private float stepSmooth = 0.08f;  // qué tan suave sube
     [SerializeField] private Transform feetLevel;   // punto desde donde se lanzan los rayos
     [SerializeField] private Transform stairDetector; // punto desde donde se detectan las escaleras
 
-    float yaw, pitch;
     float turnSmoothVelocity;
-    Vector3 camVel;
     float stunTimer = 0f;
     float inputH, inputV;
     bool jumpPressed;
@@ -87,24 +71,19 @@ public class ThirdPersonController : MonoBehaviour
         if (jumpEnabled)
             if (Input.GetButtonDown("Jump"))
                 jumpPressed = true;
-
-        yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-        pitch = Mathf.Clamp(pitch, verticalMin, verticalMax);
-
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll < 0 && cam.fieldOfView < maxzoom) cam.fieldOfView += 1;
-        if (scroll > 0 && cam.fieldOfView > minzoom) cam.fieldOfView -= 1;
     }
 
     void FixedUpdate()
     {
         if (!stunned)
-        { 
+        {
             Vector3 inputDir = new Vector3(inputH, 0f, inputV).normalized;
 
-            Vector3 camForward = cam.transform.forward; camForward.y = 0f; camForward.Normalize();
-            Vector3 camRight = cam.transform.right; camRight.y = 0f; camRight.Normalize();
+
+            Transform camT = cameraController != null ? cameraController.CamTransform : Camera.main.transform;
+
+            Vector3 camForward = camT.forward; camForward.y = 0f; camForward.Normalize();
+            Vector3 camRight = camT.right; camRight.y = 0f; camRight.Normalize();
 
             Vector3 desiredVel = Vector3.zero;
             if (inputDir.sqrMagnitude > 0.0001f)
@@ -117,11 +96,10 @@ public class ThirdPersonController : MonoBehaviour
                 float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
                 float angle = Mathf.SmoothDampAngle(player.eulerAngles.y, targetAngle, ref turnSmoothVelocity, rotationSmoothTime);
                 player.rotation = Quaternion.Euler(0f, angle, 0f);
-                animator.SetBool("Walking", true    );
+                animator.SetBool("Walking", true);
                 float dirDot = Vector3.Dot(moveDir, player.forward);
                 float moveMagnitude = dirDot * inputDir.magnitude;
                 animator.SetFloat("WalkingBlend", moveMagnitude);
-
             }
             else
                 animator.SetBool("Walking", false);
@@ -130,7 +108,7 @@ public class ThirdPersonController : MonoBehaviour
             Vector3 horizVel = new Vector3(currentVel.x, 0f, currentVel.z);
             Vector3 newHorizVel = Vector3.MoveTowards(horizVel, desiredVel, accel * Time.fixedDeltaTime);
             rb.linearVelocity = new Vector3(newHorizVel.x, currentVel.y, newHorizVel.z);
-        
+
             if (jumpPressed && jumpEnabled)
             {
                 if (IsGrounded())
@@ -141,9 +119,8 @@ public class ThirdPersonController : MonoBehaviour
                     rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                     animator.SetTrigger("Jump");
 
-                    if (audioSource != null && jumpClip != null) //evito error de nullpointer
-                    audioSource.PlayOneShot(jumpClip);
-
+                    if (audioSource != null && jumpClip != null)
+                        audioSource.PlayOneShot(jumpClip);
                 }
                 jumpPressed = false;
             }
@@ -151,7 +128,7 @@ public class ThirdPersonController : MonoBehaviour
             //  Nuevo: chequeo de escalones
             StepClimb();
 
-            // Agrego logica para el sonido de los pasos
+            // Sonido de pasos
             bool isMoving = inputH != 0 || inputV != 0;
 
             if (isMoving && IsGrounded())
@@ -161,45 +138,14 @@ public class ThirdPersonController : MonoBehaviour
                 {
                     audioSource.pitch = running ? runPitch : walkPitch;
                     audioSource.PlayOneShot(stepClip);
-                    // Ajusto el intervalo para que los pasos suenen más seguidos
-                    if (running)
-                    {
-                        stepTimer = stepInterval * 0.7f;
-                    }
-                    else
-                    {
-                        stepTimer = stepInterval;
-                    }
-
-
+                    stepTimer = running ? stepInterval * 0.7f : stepInterval;
                 }
             }
             else
             {
                 stepTimer = 0f; // Reinicia si no se mueve
             }
-
         }
-
-        Vector3 targetOffset = new Vector3(0, cameraYOffset, -cameraDistance);
-        Quaternion camRot = Quaternion.Euler(pitch, yaw, 0);
-        Vector3 desiredCamPos = player.position + camRot * targetOffset;
-        Vector3 focusPoint = player.position + Vector3.up * 1.5f;
-
-        Vector3 toCam = desiredCamPos - focusPoint;
-        float dist = toCam.magnitude;
-        Vector3 dir = dist > 0.001f ? toCam / dist : cam.transform.forward;
-
-        float allowedDist = dist;
-        if (Physics.SphereCast(focusPoint, cameraCollisionRadius, dir, out RaycastHit hit, dist, ~0, QueryTriggerInteraction.Ignore))
-        {
-            allowedDist = Mathf.Max(0.3f, hit.distance - 0.02f);
-        }
-
-        Vector3 finalCamPos = focusPoint + dir * allowedDist;
-        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, finalCamPos, ref camVel, cameraSmooth);
-        cam.transform.rotation = camRot;
-        cam.transform.LookAt(focusPoint);
 
     }
 
@@ -220,18 +166,15 @@ public class ThirdPersonController : MonoBehaviour
         // Origen bajo (pies)
         Vector3 originLow = feetLevel.position;
         // Origen alto (altura máxima del escalón)
-        Vector3 originHigh = stairDetector.position; // originLow + Vector3.up* stepHeight;
+        Vector3 originHigh = stairDetector.position;
 
         float checkDist = 0.5f;
 
-        // Dibujar los rayos en la vista de escena
         Debug.DrawRay(originLow, moveDir * checkDist, Color.red);   // rayo bajo
         Debug.DrawRay(originHigh, moveDir * checkDist, Color.green); // rayo alto
 
-        // Raycast bajo
         if (Physics.Raycast(originLow, moveDir, out RaycastHit lowHit, checkDist, groundMask))
         {
-            // Raycast alto
             if (!Physics.Raycast(originHigh, moveDir, checkDist, groundMask))
             {
                 Vector3 targetPos = rb.position + Vector3.up * stepSmooth;
@@ -240,15 +183,13 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-
     public void Stun(float time)
     {
         stunTimer = time;
         animator.Play("Stunned");
 
-        if(audioSource!=null && stunClip != null) 
+        if (audioSource != null && stunClip != null)
             audioSource.PlayOneShot(stunClip);
-          
 
         StartCoroutine(StunCoroutine());
     }
@@ -260,7 +201,7 @@ public class ThirdPersonController : MonoBehaviour
         while (stunTimer >= 0f)
         {
             stunTimer -= Time.deltaTime;
-            yield return Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
         animator.SetTrigger("StopShake");
         stunned = false;

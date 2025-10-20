@@ -6,23 +6,21 @@ public class UI_MenuButtonMouseBehaviour : MonoBehaviour, IPointerExitHandler, I
 {
 
     [SerializeField] private bool haAlphaHitTest = false;
+    [SerializeField] private AudioClip sndHovered;
+    [SerializeField] private AudioClip sndClicked;
+    
 
     public GameObject showObject;
 
-    private void Start()
-    {
-        if (haAlphaHitTest)
-            GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
-    }
-
     public void OnPointerExit(PointerEventData eventData)
     {
-        showObject.SetActive(false);
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        showObject.SetActive(true);
+
+        GetComponent<AudioSource>().PlayOneShot(sndHovered);
     }
 }
 
