@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Cargando men\xFA principal...\n"
+  m_text: "(por ahora)\nCargando men\xFA principal...\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de181a58a34155c428ae524c0b275e3d, type: 2}
   m_sharedMaterial: {fileID: 2491311997457345885, guid: de181a58a34155c428ae524c0b275e3d, type: 2}
@@ -324,8 +324,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.05
-  m_fontSizeBase: 54.05
+  m_fontSize: 33.03
+  m_fontSizeBase: 33.03
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
