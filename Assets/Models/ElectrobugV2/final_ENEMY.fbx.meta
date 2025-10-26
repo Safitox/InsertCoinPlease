@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30cf0a919d101014094bd396aaa9629a
+guid: 3ea9a5b0ee32357468b9ee57f4d49a61
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,42 +8,42 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Cube_Enemy_pbr_diffuse
-    second: {fileID: 2800000, guid: dd44561636b5adb40872308e42be2540, type: 3}
+    second: {fileID: 2800000, guid: 9f7a43843b95ebf4d8f790593c47ef8b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Cube_Enemy_pbr_metalness
-    second: {fileID: 2800000, guid: ca6fbe3954319a34f9bba716f76e22fd, type: 3}
+    second: {fileID: 2800000, guid: 9eeef22cfac54904f92472af81acad14, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Cube_Enemy_pbr_normal
-    second: {fileID: 2800000, guid: 55276c387bfda6d4684235ba2cefb82e, type: 3}
+    second: {fileID: 2800000, guid: 893d1bd62360d314d94939166b64b195, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Cube_Enemy_pbr_specular
-    second: {fileID: 2800000, guid: 7c00fdc36b2bef143abe307b0145b8ae, type: 3}
+    second: {fileID: 2800000, guid: 25d7a68fb28f2624cadebd1e502add18, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: HAND_R_Enemy_pbr_diffuse
-    second: {fileID: 2800000, guid: 7ad4dba681ffc49419ec9bfc143d8053, type: 3}
+    second: {fileID: 2800000, guid: c1d31a05adbbfcb4ba1bfedabe409593, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: HAND_R_Enemy_pbr_metalness
-    second: {fileID: 2800000, guid: fb542bc2ecb573144ac3caf7ef86aae7, type: 3}
+    second: {fileID: 2800000, guid: 8419c08b69f56904eb46d148c8d9605d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: HAND_R_Enemy_pbr_normal
-    second: {fileID: 2800000, guid: 3292ce92b201f8f4ba4ede016d727267, type: 3}
+    second: {fileID: 2800000, guid: d73f6c66f7ff0134da01ee00c476547b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: HAND_R_Enemy_pbr_specular
-    second: {fileID: 2800000, guid: 5f174253cd2ab134da83f51d8144a969, type: 3}
+    second: {fileID: 2800000, guid: 0b7bd47ddafb7ac4995315b9a61b1008, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
