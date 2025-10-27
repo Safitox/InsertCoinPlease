@@ -26,6 +26,7 @@ public class PressurePlate : MonoBehaviour
     [Header("Eventos")]
     public UnityEvent onPressed;
     public UnityEvent onReleased;
+    public string globalEventOnPress = "";
 
     private Vector3 _initialLocalPos;
     private HashSet<Collider> _contacts = new HashSet<Collider>();
@@ -95,6 +96,8 @@ public class PressurePlate : MonoBehaviour
                 onPressed?.Invoke();
                 GetComponent<AudioSource>().Play();
                 _material.color= pressedColor;
+                if (globalEventOnPress != "")
+                    GameManager.Instance.globalEvent?.Invoke(globalEventOnPress);
             }
         }
         else if (!oneShot)

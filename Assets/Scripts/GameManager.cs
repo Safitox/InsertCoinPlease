@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -6,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     public int lives = 3;
     public Vector3 lastCheckpoint;
     public bool gamePaused = false;
+    public Action<string> globalEvent;
 
     private void Awake()
     {
