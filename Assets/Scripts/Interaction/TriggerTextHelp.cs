@@ -4,6 +4,32 @@ public class TriggerTextHelp : MonoBehaviour
 {
     [SerializeField] string helpText;
     [SerializeField] bool HideOnExit = false;
+    [SerializeField] string destroyOnGlobalEvent = "";
+
+    private void Start()
+    {
+        if (destroyOnGlobalEvent != "")
+        {
+            GameManager.Instance.globalEvent += OnGlobalEvent;
+        }
+    }
+
+
+    void OnGlobalEvent(string parameter)
+    {
+        if (parameter == destroyOnGlobalEvent)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+    private void OnDestroy()
+    {
+        if (destroyOnGlobalEvent != "")
+        GameManager.Instance.globalEvent -= OnGlobalEvent;
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

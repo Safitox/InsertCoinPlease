@@ -715,6 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helpText: "Esta puerta se activa con un bot\xF3n..."
   HideOnExit: 1
+  destroyOnGlobalEvent: door1opened
 --- !u!65 &27469448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5947,6 +5948,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 548935132682399376, guid: fde2951412bc5c046b6de68e4b759a72, type: 3}
+      propertyPath: globalEventOnPress
+      value: door1opened
+      objectReference: {fileID: 0}
+    - target: {fileID: 548935132682399376, guid: fde2951412bc5c046b6de68e4b759a72, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10049,7 +10054,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1500
   field of view: 60
   orthographic: 0
   orthographic size: 5
