@@ -43,10 +43,10 @@ public class MusicCrossfader : MonoBehaviour
         idle.PlayScheduled(startDsp);
 
         StopAllCoroutines();
-        StartCoroutine(FadeRoutine(fadeSeconds, startDsp));
+        StartCoroutine(CrossFade(fadeSeconds, startDsp));
     }
 
-    IEnumerator FadeRoutine(float fadeSeconds, double startDsp)
+    IEnumerator CrossFade(float fadeSeconds, double startDsp)
     {
         float t = 0f;
         float startVolActive = active.volume;
@@ -62,12 +62,12 @@ public class MusicCrossfader : MonoBehaviour
             yield return null;
         }
 
-        // Intercambio de roles
+
         var temp = active;
         active = idle;
         idle = temp;
 
-        // Asegurar estados
+
         idle.Stop();
         idle.volume = 0f;
         active.volume = 1f;

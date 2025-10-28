@@ -3392,6 +3392,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.3782566
       objectReference: {fileID: 0}
+    - target: {fileID: 5575541085881940516, guid: d2cbc5d3a04095e479138791d2ae83b2, type: 3}
+      propertyPath: globalEventToTrigger
+      value: door2Open
+      objectReference: {fileID: 0}
     - target: {fileID: 8681897433775014367, guid: d2cbc5d3a04095e479138791d2ae83b2, type: 3}
       propertyPath: m_Name
       value: NextLevelDoor
@@ -41909,6 +41913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helpText: Usa R para agarrar/soltar los extremos de los cables
   HideOnExit: 1
+  destroyOnGlobalEvent: door2Open
 --- !u!65 &1403011092
 BoxCollider:
   m_ObjectHideFlags: 0
