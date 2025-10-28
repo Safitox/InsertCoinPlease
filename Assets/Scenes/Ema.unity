@@ -25695,7 +25695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5758295766293065289, guid: f7df10af59b49b144a6c2bceef7abfbd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.25
+      value: 7.26
       objectReference: {fileID: 0}
     - target: {fileID: 5758295766293065289, guid: f7df10af59b49b144a6c2bceef7abfbd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -36517,7 +36517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1148785451
 MonoBehaviour:
   m_ObjectHideFlags: 0
