@@ -11,3 +11,5 @@ dialog101|Sophia¬0¬No sabría que decirte que ha pasado en este lugar, pero pa
 dialog102|Sophia¬0¬Todos han sido corrompidos por el virus. Éste está buggeado. No lo mates, sus vidas valen igual que nosotros.¬dialog103
 dialog103|Sophia¬0¬Se ha dormido sobre el interruptor; atúrdelo para poder avanzar.
 
+dialog200|Sophia¬0¬El sonido se ha deformado, tendrás que ajustar las palancas hasta que las ondas del sonido se sincronicen.
+

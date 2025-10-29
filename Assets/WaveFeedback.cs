@@ -1,15 +1,16 @@
 using UnityEngine;
+using System.Collections;
 
 public class WaveFeedback : MonoBehaviour
 {
     [Header("Wave Settings")]
     public LineRenderer currentWave;
     public LineRenderer targetWave;
-    [SerializeField] public int points = 150;
+    [SerializeField] public int points = 50;
     [SerializeField] public float width = 30f;
     [SerializeField] public float amplitude = 0.5f;
     [SerializeField] public float speed = 2f;
-    [SerializeField] public float separation = 0.1f; // <-- nueva línea
+    [SerializeField] public float separation = 0.1f;
 
     [HideInInspector] public float targetPitch = 1f;
     [HideInInspector] public float currentPitch = 1f;
@@ -20,29 +21,83 @@ public class WaveFeedback : MonoBehaviour
     {
         if (currentWave != null) currentWave.positionCount = points;
         if (targetWave != null) targetWave.positionCount = points;
+
+        StartCoroutine(UpdateWaves());
     }
 
-    void Update()
+    IEnumerator UpdateWaves()
     {
-        timeOffset += Time.deltaTime * speed;
+        var wait = new WaitForSeconds(0.03f); // ~33 FPS visuales
+        while (true)
+        {
+            timeOffset += Time.deltaTime * speed;
 
-        if (targetWave != null)
-            DrawWave(targetWave, targetPitch, Color.green, separation); // onda fija
+            if (targetWave != null)
+                DrawWave(targetWave, targetPitch, Color.green, separation);
 
-        if (currentWave != null)
-            DrawWave(currentWave, currentPitch, Color.red, -separation); // onda del jugador
+            if (currentWave != null)
+                DrawWave(currentWave, currentPitch, Color.red, -separation);
+
+            yield return wait;
+        }
     }
 
     void DrawWave(LineRenderer lr, float pitch, Color color, float offsetZ)
     {
         lr.startColor = lr.endColor = color;
-
         for (int i = 0; i < points; i++)
         {
             float x = (float)i / points * width;
             float y = Mathf.Sin((x * pitch * 4f) + timeOffset) * amplitude;
-            lr.SetPosition(i, new Vector3(x - width / 2, y, offsetZ)); //desplazamos una un poco en Z
+            lr.SetPosition(i, new Vector3(x - width / 2, y, offsetZ));
         }
     }
 }
+//using UnityEngine;
+
+//public class WaveFeedback : MonoBehaviour
+//{
+//    [Header("Wave Settings")]
+//    public LineRenderer currentWave;
+//    public LineRenderer targetWave;
+//    [SerializeField] public int points = 50;
+//    [SerializeField] public float width = 30f;
+//    [SerializeField] public float amplitude = 0.5f;
+//    [SerializeField] public float speed = 2f;
+//    [SerializeField] public float separation = 0.1f; // <-- nueva línea
+
+//    [HideInInspector] public float targetPitch = 1f;
+//    [HideInInspector] public float currentPitch = 1f;
+
+//    private float timeOffset;
+
+//    void Start()
+//    {
+//        if (currentWave != null) currentWave.positionCount = points;
+//        if (targetWave != null) targetWave.positionCount = points;
+//    }
+
+//    void Update()
+//    {
+//        timeOffset += Time.deltaTime * speed;
+
+//        if (targetWave != null)
+//            DrawWave(targetWave, targetPitch, Color.green, separation); // onda fija
+
+//        if (currentWave != null)
+//            DrawWave(currentWave, currentPitch, Color.red, -separation); // onda del jugador
+//    }
+
+//    void DrawWave(LineRenderer lr, float pitch, Color color, float offsetZ)
+//    {
+//        lr.startColor = lr.endColor = color;
+
+//        for (int i = 0; i < points; i++)
+//        {
+//            float x = (float)i / points * width;
+//            float y = Mathf.Sin((x * pitch * 4f) + timeOffset) * amplitude;
+//            lr.SetPosition(i, new Vector3(x - width / 2, y, offsetZ)); //desplazamos una un poco en Z
+//        }
+//    }
+//}
 
