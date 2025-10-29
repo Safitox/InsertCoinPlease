@@ -1,12 +1,13 @@
 txtPresTabNext|Presione TAB para continuar...
 
-dialog1|Sophia¬0¬¡Despierta! Soy Sophia, la OS de este arcade.¬dialog2
-dialog2|Sophia¬0¬Un virus corrompió todo. Eres mi antivirus.¬dialog3
-dialog3|Sophia¬0¬Debes eliminarlo y restaurar el sistema.¬dialog4
-dialog4|Sophia¬0¬Te devuelvo tu salto. Pruébalo.¬dialog6
-dialog6|Sophia¬0¬Activa el interruptor y sal de aquí.
+dialog1|Sophia¬0¬¡Has Despertado! Soy Sophia, la OS de este arcade.¬dialog2
+dialog2|Sophia¬0¬Un virus corrompió todo. Necesito tu ayuda, serás mi antivirus.¬dialog3
+dialog3|Sophia¬0¬Tendrás que restaurar el sistema para que volvamos a la normalidad.¬dialog4
+dialog4|Sophia¬0¬He reactivado tu habilidad de salto. Tendrás que usarla en el camino.¬dialog6
+dialog6|Sophia¬0¬A partir de ahora solo podré darte consejos, tu te encargarás de poder avanzar por el sistema.
 
-dialog100|Sophia¬0¬¡Aguarda! Te instalé una actualización: ahora me oyes en tu cabeza.¬dialog101
-dialog101|Sophia¬0¬Un personaje del juego fue corrompido por el virus. Está buggeado. No lo mates, sus vidas importan.¬dialog102
-dialog102|Sophia¬0¬Está dormido sobre el interruptor; atúrdelo si bloquea el paso.
+dialog100|Sophia¬0¬¡Aguarda! Ho...Hola...Me escuchas en tu cabeza?. Espero no te moleste haberte agregado esta pequeña actualización.¬dialog101
+dialog101|Sophia¬0¬No sabría que decirte que ha pasado en este lugar, pero parece ser que el virus llegó a todos lados.¬dialog102
+dialog102|Sophia¬0¬Todos han sido corrompidos por el virus. Éste está buggeado. No lo mates, sus vidas valen igual que nosotros.¬dialog103
+dialog103|Sophia¬0¬Se ha dormido sobre el interruptor; atúrdelo para poder avanzar.
 
