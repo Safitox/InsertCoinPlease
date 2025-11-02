@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class TriggerTextHelp : MonoBehaviour
@@ -26,8 +27,10 @@ public class TriggerTextHelp : MonoBehaviour
 
     private void OnDestroy()
     {
+        try { 
         if (destroyOnGlobalEvent != "")
-        GameManager.Instance.globalEvent -= OnGlobalEvent;
+            GameManager.Instance.globalEvent -= OnGlobalEvent;
+    } catch{}
         
     }
     private void OnTriggerEnter(Collider other)

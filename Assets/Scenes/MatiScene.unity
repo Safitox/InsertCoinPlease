@@ -2192,67 +2192,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &209940959
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 209940961}
-  - component: {fileID: 209940960}
-  - component: {fileID: 209940962}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &209940960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209940959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6f16ced99dc2748a57ca635b032ec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  lives: 3
-  lastCheckpoint: {x: 0, y: 0, z: 0}
-  gamePaused: 0
---- !u!4 &209940961
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209940959}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51.84931, y: -0.23898649, z: -29.10042}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &209940962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209940959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b01fee17f42191419bcdd641b2db622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &210189674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e2ce60402946b34d8cf2ed81a8d04c8, type: 3}
@@ -3156,6 +3095,10 @@ PrefabInstance:
       propertyPath: radius
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2341717727314469581, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 333820171}
     - target: {fileID: 2828934598537730114, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3272,6 +3215,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6243a775d6bccc0418345738e12592f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &333820171 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1778226229482947216, guid: e7f82ccf90b84d54cad3d141c1d48609, type: 3}
+  m_PrefabInstance: {fileID: 333820167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &346473415
 GameObject:
   m_ObjectHideFlags: 0
@@ -21382,7 +21330,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1310498151}
-  - {fileID: 209940961}
   - {fileID: 1770859944}
   - {fileID: 1938140248}
   - {fileID: 1443117429}
