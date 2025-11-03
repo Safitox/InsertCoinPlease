@@ -47,7 +47,7 @@ public class ThirdPersonController : MonoBehaviour
     float inputH, inputV;
     bool jumpPressed;
     bool crouching;
-    bool stunned = false;
+    public bool stunned = false;
 
     void Start()
     {

@@ -19813,6 +19813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MChara
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9fd2be85b6f0d9842a27982d9efbdf4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19934,8 +19938,8 @@ Transform:
   m_GameObject: {fileID: 1991618036}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -9.35, z: 1.41}
-  m_LocalScale: {x: 0.43194, y: 3.0665, z: 3.0471}
+  m_LocalPosition: {x: 3.5, y: -9.6862, z: 1.41}
+  m_LocalScale: {x: 0.43194, y: 3.7386768, z: 3.0471}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1035623571}

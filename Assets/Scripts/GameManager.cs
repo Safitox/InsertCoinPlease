@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
     {
         player.position = lastCheckpoint;
         player.GetComponent<ThirdPersonController>().animator.Play("Idle");
+        player.GetComponent<ThirdPersonController>().stunned = false;
+
         player.GetComponent<HealthManager>().Health = 100;
     }
 
