@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     public void StartNewGame()
     {
         ServiceLocator.Instance.Clear();
-        ServiceLocator.Instance.RegisterService (new ResourceLoader());
+
         lastCheckpoint = Vector3.zero;
 
     }

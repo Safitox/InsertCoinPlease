@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class UI_MenuButtonMouseBehaviour : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
 
-    [SerializeField] private bool haAlphaHitTest = false;
     [SerializeField] private AudioClip sndHovered;
     [SerializeField] private AudioClip sndClicked;
     

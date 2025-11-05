@@ -13,7 +13,7 @@ public class DialogView : MonoBehaviour
     public Image avatarFrame;
     public Action OnEndDialog;
     [SerializeField] private TextMeshProUGUI txtNext;
-    ResourceLoader RL;
+
     AudioSource audiosource=> GetComponent<AudioSource>();
 
     string nextDialogKey;
@@ -21,7 +21,7 @@ public class DialogView : MonoBehaviour
 
     private void Awake() {
         ServiceLocator.Instance.RegisterService( this);
-        RL = ServiceLocator.Instance.GetService<ResourceLoader>();
+
         setActivePanel(false);
     }
 
@@ -81,13 +81,12 @@ public class DialogView : MonoBehaviour
         if (hasdialog)
         {
             string[] strings = dialog.Split('¬');
-            string avatarIndex = "av/" + strings[0];
+            //string avatarIndex = "av/" + strings[0];
             dialogLineTime = float.TryParse(strings[1], out float t) ? t : 0f;
             textDialogPanel.text = strings[2];
 
             nextDialogKey = strings.Length >3? strings[3] : "";
-            //Debug.Log("siguiente clave: " + nextDialogKey); 
-            //avatarFrame.sprite = RL.GiveMeAResource<Sprite>(avatarIndex,true);
+
 
             //Si es diálogo automático, avanza solo a la siguiente lìnea despuès de un tiempo
             if (  dialogLineTime > 0f)
