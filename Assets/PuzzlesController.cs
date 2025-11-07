@@ -10,6 +10,7 @@ public class PuzzleController : MonoBehaviour
     [Header("Animator del puzzle")]
     [SerializeField] private Animator puzzleAnimator;
     [SerializeField] private string SecondPuzzle = "Activate";
+    [SerializeField] private Light lights;
 
     private bool puzzleCompleted = false;
 
@@ -21,6 +22,11 @@ public class PuzzleController : MonoBehaviour
         {
             puzzleCompleted = true;
             puzzleAnimator.SetTrigger(SecondPuzzle);
+
+            if (!lights.enabled) {
+                lights.enabled = true;
+            }
         }
     }
+
 }

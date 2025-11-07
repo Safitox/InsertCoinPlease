@@ -4,6 +4,7 @@ public class puzzleTwo : MonoBehaviour
 {
     [SerializeField] PressurePlate pressure;
     public Animator animator;
+    [SerializeField] private Light lights;
 
     private void Start()
     {
@@ -13,5 +14,9 @@ public class puzzleTwo : MonoBehaviour
     public void PlayAnimation()
     {
         animator.SetTrigger("Pressed");
+        if (!lights.enabled)
+        {
+            lights.enabled = true;
+        }
     }
 }
