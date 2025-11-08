@@ -8,6 +8,7 @@ public class FinalStairs : MonoBehaviour
     [Header("Animator")]
     [SerializeField] private Animator animator;
     [SerializeField] private string ThirdPuzzle = "Activated";
+    [SerializeField] private Light lights;
 
     private bool complete = false;
 
@@ -19,6 +20,10 @@ public class FinalStairs : MonoBehaviour
         {
             complete = true;
             animator.SetTrigger("Activated");
+            if (!lights.enabled)
+            {
+                lights.enabled = true;
+            }
         }
     }
 }
