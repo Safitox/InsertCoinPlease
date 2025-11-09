@@ -13,3 +13,8 @@ dialog103|Sophia¬0¬Se ha dormido sobre el interruptor; atúrdelo para poder av
 
 dialog200|Sophia¬0¬El sonido se ha deformado, tendrás que ajustar las palancas hasta que las ondas del sonido se sincronicen.
 
+dialog250|Sophia¬0¬Estas por entrar en la Sala De Comandos, ahí se encuentra el virus que ha causado todo.¬dialog251
+dialog251|Sophia¬0¬Logré bloquear las puertas para que no destruya el arcade entero, antes de que me quitara el control.¬dialog252
+dialog252|Sophia¬0¬Tendrás que resolver Puzzles que puse hace mucho tiempo en caso de que ocurriera una emergencia... Y ese momento ha llegado, las luces te guiarán a cada Puzzle.¬dialog253
+dialog253|Sophia¬0¬Está en tí el recuperar el control del Arcade. Hay una Palanca para Reiniciar el Sistema, custodiada por el virus. Vencerlo no será fácil.¬dialog254
+dialog254|Sophia¬0¬Ya sabes que hacer. Creo en tí y Buena Suerte.
