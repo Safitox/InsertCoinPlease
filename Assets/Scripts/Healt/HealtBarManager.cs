@@ -3,33 +3,37 @@ using UnityEngine.UI;
 
 public class HealtBarManager : MonoBehaviour
 {
-   
-    Slider silderHealtBar;
-    
-    Camera _camera;
+    private Slider sliderHealthBar;
+    private Camera _camera;
+    private HealthManager healthManager;
 
-    HealthManager healtManager;
-
-    int healthBarValue;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _camera = Camera.main;
-        silderHealtBar = GetComponentInChildren<Slider>();
-        healtManager = GetComponentInParent<HealthManager>();
+        sliderHealthBar = GetComponentInChildren<Slider>();
+        healthManager = GetComponentInParent<HealthManager>();
+
+        // evento
+        CameraEvents.OnCameraRegistered += OnCameraChanged;
+
+        // Si ya hay una cámara activa, la usamos
+        _camera = CameraEvents.CurrentCamera;
     }
 
-    // Update is called once per frame
+    void OnDestroy()
+    {
+        CameraEvents.OnCameraRegistered -= OnCameraChanged;
+    }
+
+    private void OnCameraChanged(Camera cam)
+    {
+        _camera = cam;
+    }
+
     void Update()
     {
-        Transform cam = _camera.transform;
-        //Le digo que no importa donde este siempre este orientado en frente a la camara
-        transform.LookAt(cam);
-        silderHealtBar.value = healtManager.Health/100f;
-        //Hay que agregar un if
+        if (_camera == null) return;
 
-
+        transform.LookAt(_camera.transform);
+        sliderHealthBar.value = healthManager.Health / 100f;
     }
 }

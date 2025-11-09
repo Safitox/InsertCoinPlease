@@ -40,6 +40,9 @@ public class CameraController : MonoBehaviour
         yaw = e.y;
         pitch = e.x;
         target = transform;
+
+        //Registro está cámara como la activa
+        CameraEvents.CurrentCamera = cam;
     }
 
     void Update()
