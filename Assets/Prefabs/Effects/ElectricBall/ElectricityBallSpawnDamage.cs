@@ -4,12 +4,11 @@ public class ElectricityBallSpawnDamage : MonoBehaviour
 {
     [SerializeField] private int amount = 20;
     [SerializeField] private float radius = 5f;
-    [SerializeField] GameObject pf_RaySpawn;
 
 
     //daño al jugador
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private float damageOnSpread = 1f;
+    [SerializeField] private int damage = 10;
+    [SerializeField] private int damageOnSpread = 1;
 
     bool playerHit = false;
 
@@ -17,15 +16,16 @@ public class ElectricityBallSpawnDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !playerHit)
         {
-            Health playerHealth = collision.gameObject.GetComponent<Health>();
+            HealthManager playerHealth = collision.gameObject.GetComponent<HealthManager>();
             if (playerHealth != null)
             {
-                playerHealth.Damage(damage);
+                playerHealth.TakeDamage(damage);
                 playerHit = true;
             }
         }
         Explo();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        playerHit = false;
     }
 
     private void Explo() {
@@ -40,17 +40,20 @@ public class ElectricityBallSpawnDamage : MonoBehaviour
                 if (!playerHit) {
                     if (hit.collider.CompareTag("Player") )
                     {
-                        Health playerHealth = hit.collider.gameObject.GetComponent<Health>();
+                        HealthManager playerHealth = hit.collider.gameObject.GetComponent<HealthManager>();
                         if (playerHealth != null)
                         {
-                            playerHealth.Damage(damageOnSpread);
+                            playerHealth.TakeDamage(damageOnSpread);
                         }
                     }
                 }
-                GameObject go = Instantiate(pf_RaySpawn, hit.point, Quaternion.LookRotation(hit.point - transform.position));
-                Destroy(go, Random.Range(2f,3f));
+                ShootElectricBalls.AddEffect(hit.point);
+
+
             }
         }
+
+        ShootElectricBalls.PlayExplosionEffect(transform.position);
 
 
     }

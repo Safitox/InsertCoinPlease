@@ -49,7 +49,7 @@ public class AttackState : EnemyState
                     if (playerHealth.Health > 0)
                     { 
                         Debug.Log("El daño es de:" + enemyController.config.damage);
-                        playerHealth.TakeDamege(enemyController.config.damage);
+                        playerHealth.TakeDamage(enemyController.config.damage);
                     }
 
                 }

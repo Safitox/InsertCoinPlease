@@ -23,7 +23,7 @@ public class HealthManager : MonoBehaviour, IHeathManager
         GameManager.Instance.LoseLife();
     }
 
-    public void TakeDamege(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         float healthPercent = health / 100;
