@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MusicCrossfader : MonoBehaviour
 {
@@ -84,5 +85,7 @@ public class MusicCrossfader : MonoBehaviour
         idle.Stop();
         idle.volume = 0f;
         active.volume = 1f;
+        SceneManager.LoadSceneAsync("FinalLevel",LoadSceneMode.Additive);
+        Destroy(this);
     }
 }
