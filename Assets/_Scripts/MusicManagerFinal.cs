@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         // Comienza con la música inicial
-        PlayIntroMusic();
+        //PlayIntroMusic();
     }
 
     public void PlayIntroMusic()
@@ -24,6 +24,15 @@ public class MusicManager : MonoBehaviour
         audioSource.clip = bossMusic;
         audioSource.loop = true;
         audioSource.Play();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.unityLogger.Log("Trigger entered by: " + other.gameObject.name);
+            PlayIntroMusic();
+        }
     }
 }
 

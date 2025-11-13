@@ -13,7 +13,7 @@ public class BossTrigger : MonoBehaviour
             activated = true;
 
             // Buscar el MusicManager en la escena y cambiar la música
-            MusicManager musicManager = FindObjectOfType<MusicManager>();
+            MusicManager musicManager = FindFirstObjectByType<MusicManager>();
             if (musicManager != null && boss != null)
             {
                 musicManager.PlayBossMusic();
