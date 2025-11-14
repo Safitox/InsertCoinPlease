@@ -4,16 +4,14 @@ using UnityEngine.SceneManagement;
 public class BossLife : MonoBehaviour
 {
     public bool isEnabled = true;
-    [SerializeField] private Animator bossAnimator;
+    [SerializeField] private BossController bossController;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!isEnabled) return;
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Aquí puedes agregar lógica para reducir la vida del jefe
-            Debug.Log("Boss hit add link to animation");
-            //bossAnimator.SetTrigger("Die");
+            bossController.KillBoss();
 
             isEnabled = false;
 

@@ -19,22 +19,24 @@ public class ShootElectricBalls : MonoBehaviour
     static Queue<GameObject> electricEffectsQueue = new Queue<GameObject>();
     void Start()
     {
+        GameObject ballParent = new GameObject("ElectricBallsPool");
         if (effectParent == null)
         {
             GameObject effectParentGo = new GameObject("ElectricEffectsPool");
             effectParent = effectParentGo.transform;
         }
-        electricBallPool = new Pool(electricBallPrefab, this.transform);
+        electricBallPool = new Pool(electricBallPrefab, ballParent.transform);
         electricEffectPool = new Pool(electricEffectPrefab, effectParent);
         electricExplosionEffect= Instantiate(explosionEffectPrefab);
         electricExplosionEffect.SetActive(false);
         //player = GameManager.Instance.player;
-        InvokeRepeating("Shoot", 2f, 3f);
+
     }
 
     public void ShootElectricBall()
     {
         GameObject ball= electricBallPool.GiveMeAnItem();
+        ball.transform.localScale = Vector3.one*1.5f;
         ball.transform.position = shootSpawn.position;
         Rigidbody rb= ball.GetComponent<Rigidbody>();
         ball.SetActive(true);

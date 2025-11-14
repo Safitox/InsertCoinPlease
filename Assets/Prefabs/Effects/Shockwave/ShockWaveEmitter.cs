@@ -14,7 +14,7 @@ public class ShockWaveEmitter : MonoBehaviour
     void Start()
     {
         PrepareEmitter();
-        InvokeRepeating("EmitShockWave", duration+3,duration+3);
+        //InvokeRepeating("EmitShockWave", duration+3,duration+3);
     }
 
     
@@ -42,7 +42,6 @@ public class ShockWaveEmitter : MonoBehaviour
             emitter.transform.position = transform.position;
             var rb = emitter.GetComponent<Rigidbody>();
             rb.angularVelocity = Vector3.zero;
-
             rb.linearVelocity = emitter.transform.forward * impulse;
             
         }

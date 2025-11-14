@@ -3,6 +3,7 @@ using UnityEngine;
 public class WaveLife : MonoBehaviour
 {
     public float lifeTime = 4f;
+    public int lifeToTaker = 30;
 
 
     private void OnEnable()
@@ -26,7 +27,7 @@ public class WaveLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<HealthManager>()?.TakeDamage(10);
+            collision.gameObject.GetComponent<HealthManager>()?.TakeDamage(lifeToTaker);
             gameObject.SetActive(false);
         }
     }
