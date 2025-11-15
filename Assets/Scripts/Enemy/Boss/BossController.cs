@@ -18,7 +18,14 @@ public class BossController : MonoBehaviour
     private void OnEnable()
     {
         player= GameObject.FindWithTag("Player").transform;
-        Invoke(nameof(StartAttacks), 3f);
+        if (player == null)
+        {
+            return;
+        }
+        else
+        {
+            Invoke(nameof(StartAttacks), 3f);
+        }
         
     }
 
