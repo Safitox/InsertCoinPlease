@@ -29,8 +29,13 @@ public class ShootElectricBalls : MonoBehaviour
         electricEffectPool = new Pool(electricEffectPrefab, effectParent);
         electricExplosionEffect= Instantiate(explosionEffectPrefab);
         electricExplosionEffect.SetActive(false);
-        //player = GameManager.Instance.player;
 
+    }
+
+    private void OnEnable()
+    {
+        player = GameManager.Instance.player;
+        
     }
 
     public void ShootElectricBall()
